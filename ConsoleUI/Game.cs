@@ -7,6 +7,7 @@ namespace ConsoleUI
     class Game
     {
         RoomHandler roomHandler;
+        Database db = new();
 
         public Game(RoomHandler _roomHandler)
         {
@@ -23,6 +24,16 @@ namespace ConsoleUI
             {
                 Console.WriteLine(roomHandler.GetRoomName(roomID));
             }
+        }
+
+        public Player LoadCharacter()
+        {
+            Player player = null;
+            foreach (var character in db.GetPlayers())
+            {
+                player = character;
+            }
+            return player;
         }
     }
 }
