@@ -1,17 +1,21 @@
 ﻿using System;
 using Dapper;
 using System.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace GameLib
 {
     public class Database
     {
+        string connectionString = "Server=40.85.84.155;Database=OOP_VIT;User=Student13;Password=big-bada-boom!;";
 
-        public Player GetCharacter()
+        public IEnumerable<Player> GetPlayers()
         {
-            Player ply;
-
-            return ply;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                return connection.Query<Player>("SELECT Id, FirstName FROM F8");
+            }
         }
+
     }
 }
