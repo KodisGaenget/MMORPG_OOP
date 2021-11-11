@@ -35,9 +35,7 @@ namespace GameLib
             //inventory.AddItemToInventory(item);
         }
 
-
-
-        public void ChangeHealth(int value)
+        public bool ChangeHealth(int value)
         {
             int newHp = CurrentHealth + value;
 
@@ -51,8 +49,9 @@ namespace GameLib
             }
             if (CurrentHealth <= 0)
             {
-                System.Console.WriteLine("You are dead!");
+                return true;
             }
+            return false;
         }
 
         public void ChangePosition(int newPos)
