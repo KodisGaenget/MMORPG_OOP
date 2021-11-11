@@ -1,5 +1,6 @@
 using GameLib;
 using System;
+using System.Collections.Generic;
 
 namespace ConsoleUI
 {
@@ -14,7 +15,14 @@ namespace ConsoleUI
 
         public void Start(int _roomID)
         {
-            Console.WriteLine(roomHandler.DescribeRoom(_roomID));
+            Console.Clear();
+            Console.WriteLine($"You are in {roomHandler.GetRoomName(_roomID)}");
+            ConsoleUtils.TypeWriter(roomHandler.DescribeRoom(1));
+            Console.WriteLine($"Move to:");
+            foreach (var roomID in roomHandler.GetConnectedRooms(_roomID))
+            {
+                Console.WriteLine(roomHandler.GetRoomName(roomID));
+            }
         }
     }
 }
