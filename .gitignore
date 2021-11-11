@@ -4,12 +4,13 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,visualstudiocode
 
 ### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+.vscode/
 *.code-workspace
+ConsoleUI/bin/
+ConsoleUI/obj/
+GameLib/obj/
+GameLib/bin/
+
 
 # Local History for Visual Studio Code
 .history/
