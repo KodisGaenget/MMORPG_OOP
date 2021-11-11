@@ -10,7 +10,7 @@ namespace GameLib
         string connectionString = "Server=40.85.84.155;Database=OOP_VIT;User=Student13;Password=big-bada-boom!;";
 
 
-        public IEnumerable<Player> GetPlayers()
+        public IEnumerable<Player> GetPlayer()
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

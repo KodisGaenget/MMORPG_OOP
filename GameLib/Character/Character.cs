@@ -4,7 +4,7 @@ namespace GameLib
 {
     public abstract class Character
     {
-        internal int Id { get; init; }
+        public int Id { get; init; }
         public string Name { get; init; }
         public int OriginalHealth { get; init; }
         public int CurrentHealth { get; init; }
