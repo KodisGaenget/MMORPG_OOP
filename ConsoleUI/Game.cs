@@ -12,6 +12,7 @@ namespace ConsoleUI
         public Game(RoomHandler _roomHandler)
         {
             this.roomHandler = _roomHandler;
+            LoadCharacter();
         }
 
         public void Start(int _roomID)
@@ -29,7 +30,7 @@ namespace ConsoleUI
         public Player LoadCharacter()
         {
             Player player = null;
-            foreach (var character in db.GetPlayers())
+            foreach (var character in db.GetPlayer())
             {
                 player = character;
             }
