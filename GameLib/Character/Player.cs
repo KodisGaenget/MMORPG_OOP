@@ -7,7 +7,8 @@ namespace GameLib
     {
         private List<Item> inventory = new();
         private List<Item> equipped = new();
-        public int CurrentExp { get; }
+        public int CurrentExp { get; private set; }
+        public int Position { get; private set; }
         IClass charClass;
 
         public Player(IClass charClass)
