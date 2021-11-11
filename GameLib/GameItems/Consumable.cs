@@ -10,6 +10,7 @@ namespace GameLib
         {
             Name = name;
             Id = id;
+            Price = price;
             AmountToRestore = amountToRestore;
             ConsumableType = consumableType;
         }
