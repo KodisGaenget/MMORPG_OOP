@@ -18,7 +18,7 @@ namespace ConsoleUI
             Console.Clear();
             Console.WriteLine($"You are in {roomHandler.GetRoomName(_roomID)}");
             ConsoleUtils.TypeWriter(roomHandler.DescribeRoom(1));
-            Console.WriteLine($"Move to:");
+            Console.Write($"1. Examine room\n2. Move to ");
             foreach (var roomID in roomHandler.GetConnectedRooms(_roomID))
             {
                 Console.WriteLine(roomHandler.GetRoomName(roomID));
