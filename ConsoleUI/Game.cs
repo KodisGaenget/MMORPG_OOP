@@ -7,7 +7,7 @@ namespace ConsoleUI
     class Game
     {
         RoomHandler roomHandler;
-        Database db = new();
+        internal Database db = new();
 
         public Game(RoomHandler _roomHandler)
         {
