@@ -6,12 +6,13 @@ namespace GameLib
     {
         public int Id { get; init; }
         public string Name { get; init; }
-        public int OriginalHealth { get; init; }
-        public int CurrentHealth { get; init; }
-        public int Power { get; init; }
-        public int Armor { get; internal set; }
-        public int Damage { get; internal set; }
-        public int Level { get; internal set; }
+        public int OriginalHealth { get; protected set; }
+        public int CurrentHealth { get; protected set; }
+        public int Power { get; protected set; }
+        public int Armor { get; protected set; }
+        public int Damage { get; protected set; }
+        public int Level { get; protected set; }
+        public int Position { get; protected set; }
 
         public abstract int Attack();
 

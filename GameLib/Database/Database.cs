@@ -25,5 +25,15 @@ namespace GameLib
                 return connection.Query<Item>(sql, new { @playerID = playerId });
             }
         }
+        public void SavePlayer(Player p)
+        {
+
+            string sql = "UPDATE Player Set OriginalHealth = @ohp, CurrentHealth = @chp, Power = @power, Armor = @armor, Damage = @dmg, Level = @lvl, CurrentExp = @cexp, Position = @pos WHERE Id = @playerID";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(sql, new { @playerID = p.Id, @ohp = p.OriginalHealth, @chp = p.CurrentHealth, @power = p.Power, @armor = p.Armor, @dmg = p.Damage, @lvl = p.Level, @cexp = p.CurrentExp, @pos = p.Position });
+            }
+
+        }
     }
 }
