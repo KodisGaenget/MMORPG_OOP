@@ -5,7 +5,7 @@ namespace GameLib
 {
     public class Player : Character
     {
-        private List<Item> inventory = new();
+        Inventory inventory;
         private List<Item> equipped = new();
         public int CurrentExp { get; private set; }
 
@@ -13,6 +13,7 @@ namespace GameLib
 
         public Player(IClass charClass)
         {
+            inventory = new();
             this.charClass = charClass;
         }
 
@@ -25,18 +26,16 @@ namespace GameLib
 
         public void Equip(Item item)
         {
+            inventory.RemoveFromItem(item);
             equipped.Add(item);
         }
         public void UnEquip(Item item)
         {
             equipped.Remove(item);
-            AddItemToInventory(item);
+            //inventory.AddItemToInventory(item);
         }
 
-        public void AddItemToInventory(Item item)
-        {
-            inventory.Add(item);
-        }
+
 
         public void ChangeHealth(int value)
         {
