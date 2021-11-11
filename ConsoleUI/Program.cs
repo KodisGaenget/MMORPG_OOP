@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MMORPG_OOP
+namespace ConsoleUI
 {
     class Program
     {
