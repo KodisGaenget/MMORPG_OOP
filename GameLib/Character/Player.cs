@@ -15,10 +15,19 @@ namespace GameLib
             this.charClass = charClass;
         }
 
-
         public override int Attack()
         {
             throw new NotImplementedException();
         }
+
+        public void Equip()
+        {
+
+        }
+        public void UnEquip()
+        {
+
+        }
+
     }
 }
