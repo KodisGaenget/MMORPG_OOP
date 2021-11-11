@@ -5,8 +5,15 @@ namespace GameLib
 {
     public class Player : Character
     {
-        List<Item> Inventory = new();
+        private List<Item> inventory = new();
+        private List<Item> equipped = new();
+        public int CurrentExp { get; }
+        IClass charClass;
 
+        public Player(IClass charClass)
+        {
+            this.charClass = charClass;
+        }
 
 
         public override int Attack()
