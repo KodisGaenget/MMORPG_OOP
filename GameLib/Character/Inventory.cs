@@ -5,6 +5,7 @@ namespace GameLib
 {
     class Inventory
     {
+        public int Id { get; private set; }
         List<Item> items = new();
 
 
@@ -16,6 +17,11 @@ namespace GameLib
         internal void RemoveFromItem(Item item)
         {
             items.Remove(item);
+        }
+
+        public void SaveInventory(Database db)
+        {
+            db.SaveInventory(items);
         }
     }
 
