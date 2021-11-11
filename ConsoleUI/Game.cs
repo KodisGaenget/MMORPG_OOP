@@ -30,7 +30,7 @@ namespace ConsoleUI
         public Player LoadCharacter()
         {
             Player player = null;
-            foreach (var character in db.GetPlayer())
+            foreach (var character in db.LoadPlayer())
             {
                 player = character;
             }
