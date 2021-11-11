@@ -22,7 +22,11 @@ namespace ConsoleUI
 
             roomHandler.AddRooms(allRooms);
             Game game = new(roomHandler);
-            game.Start(game.LoadCharacter().Position);
+            Player player = game.LoadCharacter();
+            game.Start(player.Position);
+
+            player.ChangeHealth(-100);
+            player.SaveCharacter(game.db);
 
         }
     }
