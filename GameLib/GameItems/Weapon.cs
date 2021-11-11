@@ -6,13 +6,26 @@ namespace GameLib
     {
         public int MinDamage { get; set; }
         public int MaxDamage { get; set; }
+        public WeaponType WeaponType { get; set; }
 
-        public Weapon(string name, int id, int price, int minDamage, int maxDamage)
+        public Weapon(string name, int id, int price, int minDamage, int maxDamage, WeaponType _WeaponType)
         {
             Name = name;
             Id = id;
+            Price = price;
             MinDamage = minDamage;
             MaxDamage = maxDamage;
+            WeaponType = _WeaponType;
         }
+    }
+
+    public enum WeaponType
+    {
+        Daggers,
+        ThrowingStar,
+        DoubleEdgedAxe,
+        Warhammer,
+        Staff,
+        SpellBook
     }
 }
