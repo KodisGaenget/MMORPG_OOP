@@ -15,6 +15,11 @@ namespace GameLib
             this.charClass = charClass;
         }
 
+        private Player()
+        {
+
+        }
+
         public override int Attack()
         {
             throw new NotImplementedException();
@@ -27,6 +32,11 @@ namespace GameLib
         public void UnEquip()
         {
 
+        }
+
+        public override string ToString()
+        {
+            return $"Id: {Id}, Name: {Name}, Original Hp: {OriginalHealth}, Current Hp: {CurrentHealth}, Power: {Power}, Armor: {Armor}, Damage: {Damage}, Level: {Level}, CurrentExp: {CurrentExp}";
         }
 
     }
