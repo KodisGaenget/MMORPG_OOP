@@ -4,25 +4,34 @@ namespace GameLib
 {
     public class Armor : Item
     {
-        public int ArmorValue { get; set; }
-        public ArmorType ArmorType { get; set; }
-
-        public Armor(string name, int id, int price, int armorValue, ArmorType _ArmorType)
+        public int Value { get; set; }
+        public ArmorSlot Slot { get; set; }
+        public ArmorType Type { get; set; }
+        public Armor(string name, int id, int price, int value, ArmorSlot slot, ArmorType type)
         {
-            string Name = name;
-            int Id = id;
+            Name = name;
+            Id = id;
             Price = price;
-            int ArmorValue = armorValue;
-            ArmorType = _ArmorType;
+            Value = value;
+            Slot = slot;
+            Type = type;
+
         }
     }
 
-    public enum ArmorType
+    public enum ArmorSlot
     {
         Helmet,
         Chest,
         Gloves,
         Legs,
         Boots
+    }
+
+    public enum ArmorType
+    {
+        Cloth,
+        Leather,
+        Plate
     }
 }
