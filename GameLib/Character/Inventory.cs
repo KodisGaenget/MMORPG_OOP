@@ -8,6 +8,11 @@ namespace GameLib
         public int Id { get; private set; }
         List<Item> items = new();
 
+        public Inventory()
+        {
+
+        }
+
 
         internal void AddItemToInventory(Item item)
         {
