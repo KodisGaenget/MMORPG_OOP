@@ -6,6 +6,7 @@ namespace GameLib
     {
         List<Room> allRooms = new();
 
+
         public List<int> GetConnectedRooms(int _roomId)
         {
             List<int> connectedRooms = new();
@@ -21,44 +22,17 @@ namespace GameLib
 
         public string ExamineRoom(int _roomID)
         {
-            string roomExamination = "";
-            foreach (var item in allRooms)
-            {
-                if (item.RoomID == _roomID)
-                {
-                    roomExamination = item.ExamineRoomText;
-                    item.RoomExamined = true;
-                }
-            }
-
-            return roomExamination;
-
+            return GetRoom(_roomID).ExamineRoomText;
         }
 
         public bool IsRoomExaminated(int _roomID)
         {
-            bool isExaminated = false;
-            foreach (var item in allRooms)
-            {
-                if (item.RoomID == _roomID)
-                {
-                    isExaminated = item.RoomExamined;
-                }
-            }
-            return isExaminated;
+            return GetRoom(_roomID).RoomExamined;
         }
 
         public string GetRoomName(int _roomID)
         {
-            string roomName = "";
-            foreach (var room in allRooms)
-            {
-                if (room.RoomID == _roomID)
-                {
-                    roomName = room.RoomName;
-                }
-            }
-            return roomName;
+            return GetRoom(_roomID).RoomName;
         }
 
         public void AddRooms(List<Room> rooms)
@@ -68,16 +42,19 @@ namespace GameLib
 
         public string DescribeRoom(int _roomID)
         {
-            string roomDescription = "";
-            foreach (var room in allRooms)
+            return GetRoom(_roomID).RoomDescription;
+        }
+        
+        public Room GetRoom(int _roomID)
+        {
+            foreach (var item in allRooms)
             {
-                if (_roomID == room.RoomID)
+                if (item.RoomID == _roomID)
                 {
-                    roomDescription = room.RoomDescription;
+                    return item;
                 }
             }
-
-            return roomDescription;
+            return null;
         }
     }
 }
