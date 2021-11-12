@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using GameLib;
 
 namespace ConsoleUI
@@ -22,10 +24,16 @@ namespace ConsoleUI
 
             roomHandler.AddRooms(allRooms);
             Game game = new(roomHandler);
-            Player player = new();
-            game.Start(player.Position);
 
-            player.ChangeHealth(-100);
+
+
+
+
+
+
+            //game.Start();
+
+            //player.ChangeHealth(-100);
             // player.Save(game.db);
 
             // Weapon Daggers = new("Kökskniv", 1, 1000000, 4, 6, WeaponType.Daggers);

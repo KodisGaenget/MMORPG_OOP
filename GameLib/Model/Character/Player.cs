@@ -6,24 +6,24 @@ namespace GameLib
     public class Player : Character
     {
         public Inventory Inventory { get; private set; }
-        public Equipped Equipped { get; private set; }
+        public Equipment Equipment { get; private set; }
         public int CurrentExp { get; private set; }
-        public string CharClass { get; private set; }
+        public string Class { get; private set; }
 
         IClass charClass;
-        //IDataManager dataManager;
         internal bool inDb = false;
 
         public Player(IClass charClass)
         {
             Inventory = new();
-            Equipped = new();
+            Equipment = new();
             this.charClass = charClass;
-            CharClass = charClass.Name;
+            Class = charClass.Name;
         }
 
         public Player()
         {
+            Inventory = new();
             inDb = true;
         }
 
@@ -35,7 +35,7 @@ namespace GameLib
         public void Equip(Item item)
         {
             // Inventory.RemoveFromItem(item);
-            Equipped.SetSlot(item);
+            Equipment.SetSlot(item);
         }
         public void UnEquip(Item item)
         {
@@ -46,6 +46,12 @@ namespace GameLib
         {
             Inventory = inv;
         }
+
+        internal void SetEquipment(Equipment eq)
+        {
+            Equipment = eq;
+        }
+
 
 
         // public void Load()

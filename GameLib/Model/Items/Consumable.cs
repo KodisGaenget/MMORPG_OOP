@@ -4,8 +4,8 @@ namespace GameLib
 {
     public class Consumable : Item
     {
-        public int AmountToRestore { get; set; }
-        public ConsumableType ConsumableType { get; set; }
+        // public int AmountToRestore { get; set; }
+        // public ConsumableType ConsumableType { get; set; }
         public Consumable(string name, int id, int price, int amountToRestore, ConsumableType consumableType)
         {
             Name = name;

@@ -8,15 +8,21 @@ namespace GameLib
     {
         RoomHandler roomHandler;
         public Database db = new();
+        Player player;
 
         public Game(RoomHandler _roomHandler)
         {
             this.roomHandler = _roomHandler;
-
+            CharacterLoader characterLoader = new(db);
+            characterLoader.Load();
+            player = characterLoader.GetCharacter();
+            Start(player.Position);
         }
 
         public void Start(int _roomID)
         {
+            Console.WriteLine(player.ToString());
+            //System.Console.WriteLine(player.Equipment.ToString());
             // Console.Clear();
             //Console.WriteLine($"You are in {roomHandler.GetRoomName(_roomID)}");
             // ConsoleUtils.TypeWriter(roomHandler.DescribeRoom(1));
@@ -26,6 +32,5 @@ namespace GameLib
             //     Console.WriteLine(roomHandler.GetRoomName(roomID));
             // }
         }
-
     }
 }
