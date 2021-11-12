@@ -20,16 +20,23 @@ namespace GameLib
 
         public void SavePlayer(Player p)
         {
-            string sql = "UPDATE Player Set OriginalHealth = @ohp, CurrentHealth = @chp, Power = @power, Armor = @armor, Damage = @dmg, Level = @lvl, CurrentExp = @cexp, Position = @pos WHERE Id = @playerID";
+            string sql = "UPDATE Player Set OriginalHealth = @ohp, CurrentHealth = @chp, Power = @power, Armor = @armor, Damage = @dmg, Level = @lvl, CurrentExp = @cexp, Position = @pos, Class = @class WHERE Id = @playerID";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Execute(sql, new { @playerID = p.Id, @ohp = p.OriginalHealth, @chp = p.CurrentHealth, @power = p.Power, @armor = p.Armor, @dmg = p.Damage, @lvl = p.Level, @cexp = p.CurrentExp, @pos = p.Position });
+                connection.Execute(sql, new { @playerID = p.Id, @ohp = p.OriginalHealth, @chp = p.CurrentHealth, @power = p.Power, @armor = p.Armor, @dmg = p.Damage, @lvl = p.Level, @cexp = p.CurrentExp, @pos = p.Position, @class = p.CharClass });
             }
         }
 
-        internal void SaveInventory(List<Item> items)
+        internal void SaveInventory(Player p, List<Item> items)
         {
-            throw new NotImplementedException();
+            if (p.inDb)
+            {
+                string sql = "UPDATE Inventory Set OriginalHealth = @ohp, CurrentHealth = @chp, Power = @power, Armor = @armor, Damage = @dmg, Level = @lvl, CurrentExp = @cexp, Position = @pos WHERE Id = @playerID";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Execute(sql, new { @playerID = p.Id, @ohp = p.OriginalHealth, @chp = p.CurrentHealth, @power = p.Power, @armor = p.Armor, @dmg = p.Damage, @lvl = p.Level, @cexp = p.CurrentExp, @pos = p.Position });
+                }
+            }
         }
 
         public IEnumerable<Item> LoadInventory(int playerId)

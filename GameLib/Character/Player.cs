@@ -8,16 +8,22 @@ namespace GameLib
         Inventory inventory;
         private List<Item> equipped = new();
         public int CurrentExp { get; private set; }
+        public string CharClass { get; private set; }
 
         IClass charClass;
+        internal bool inDb = false;
 
         public Player(IClass charClass)
         {
             inventory = new();
             this.charClass = charClass;
+            CharClass = charClass.Name;
         }
 
-        private Player() { }
+        private Player()
+        {
+            inDb = true;
+        }
 
         public override int Attack()
         {
@@ -62,6 +68,7 @@ namespace GameLib
         public void SaveCharacter(Database db)
         {
             db.SavePlayer(this);
+            inventory.SaveInventory(this, db);
         }
 
         public override string ToString()
