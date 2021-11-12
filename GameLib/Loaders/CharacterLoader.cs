@@ -6,9 +6,10 @@ namespace GameLib
 {
     public class CharacterLoader : ILoadable
     {
-        public Database db { get; private set; }
-        public Player p { get; private set; }
-        public Inventory inv = new();
+        private Database db;
+        private Player p;
+        private Inventory inv = new();
+
 
         public CharacterLoader(Database db)
         {
@@ -16,13 +17,13 @@ namespace GameLib
             Load();
         }
 
-        public void Load()
+        public bool Load()
         {
             p = db.LoadPlayer().First();
             inv.ImportInventory(db.LoadInventory(p.Id).ToList());
             p.SetInventory(inv);
+            return true;
         }
-
 
         private void SaveCharacter(Inventory inv)
         {
