@@ -5,12 +5,12 @@ namespace GameLib
 {
     public class CharacterLoader : IDataManager
     {
-        internal void Load(Database db, IEnumerable<Item> invList, Inventory inv)
+        public void Load(Database db, IEnumerable<Item> invList, Inventory inv)
         {
             LoadCharacter(invList, inv);
         }
 
-        internal void Save(Database db, Player p, Inventory inv)
+        public void Save(Database db, Player p, Inventory inv)
         {
             SaveCharacter(db, p, inv);
         }
@@ -57,3 +57,4 @@ namespace GameLib
         }
     }
 }
+
