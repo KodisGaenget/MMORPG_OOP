@@ -22,7 +22,24 @@ namespace ConsoleUI
 
             roomHandler.AddRooms(allRooms);
             Game game = new(roomHandler);
-            game.Start(game.LoadCharacter().Position);
+            Player player = new();
+            game.Start(player.Position);
+
+            player.ChangeHealth(-100);
+            player.Save(game.db);
+
+            // Weapon Daggers = new("Kökskniv", 1, 1000000, 4, 6, WeaponType.Daggers);
+            // Weapon DildoKniv = new("Vässad dildo", 2, 9000000, 12, 18, WeaponType.Daggers);
+
+            // List<Weapon> weaponList = new();
+
+            // weaponList.Add(DildoKniv);
+            // weaponList.Add(Daggers);
+
+            // foreach (var item in weaponList)
+            // {
+            //     Console.WriteLine($"{item.MinDamage}  {item.MaxDamage}");
+            // }
 
         }
     }
