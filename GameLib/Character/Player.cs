@@ -6,7 +6,7 @@ namespace GameLib
     public class Player : Character
     {
         public Inventory Inventory { get; private set; }
-        public List<Item> Equipped { get; private set; }
+        public Equipped Equipped { get; private set; }
         public int CurrentExp { get; private set; }
         public string CharClass { get; private set; }
 
@@ -34,12 +34,12 @@ namespace GameLib
 
         public void Equip(Item item)
         {
-            Inventory.RemoveFromItem(item);
-            Equipped.Add(item);
+            // Inventory.RemoveFromItem(item);
+            Equipped.SetSlot(item);
         }
         public void UnEquip(Item item)
         {
-            Equipped.Remove(item);
+            //Equipped.Remove(item);
             //inventory.AddItemToInventory(item);
         }
         internal void SetInventory(Inventory inv)
