@@ -5,6 +5,6 @@ namespace GameLib
 {
     public interface ILoadable
     {
-        void Load(); //IEnumerable<Item> invList, Inventory inv
+        bool Load(); //IEnumerable<Item> invList, Inventory inv
     }
 }
