@@ -13,6 +13,7 @@ namespace GameLib
             Price = price;
             AmountToRestore = amountToRestore;
             ConsumableType = consumableType;
+            ItemType = this.GetType().ToString();
         }
     }
     public enum ConsumableType

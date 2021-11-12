@@ -16,6 +16,7 @@ namespace GameLib
             MinDamage = minDamage;
             MaxDamage = maxDamage;
             Type = type;
+            ItemType = this.GetType().ToString();
         }
     }
 

@@ -15,6 +15,7 @@ namespace GameLib
             Value = value;
             Slot = slot;
             Type = type;
+            ItemType = this.GetType().ToString();
 
         }
     }
