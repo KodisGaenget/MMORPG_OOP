@@ -19,9 +19,9 @@ namespace GameLib
             items.Remove(item);
         }
 
-        public void SaveInventory(Database db)
+        public void SaveInventory(Player p, Database db)
         {
-            db.SaveInventory(items);
+            db.SaveInventory(p, items);
         }
     }
 
