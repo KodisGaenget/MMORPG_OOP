@@ -3,15 +3,20 @@ using System.Collections.Generic;
 
 namespace GameLib
 {
-    class Inventory
+    public class Inventory
     {
         public int Id { get; private set; }
         List<Item> items = new();
 
 
-        public void AddItemToInventory(Item item)
+        internal void AddItemToInventory(Item item)
         {
             items.Add(item);
+        }
+
+        public void ImportInventory(List<Item> items)
+        {
+            this.items.AddRange(items);
         }
 
         internal void RemoveFromItem(Item item)

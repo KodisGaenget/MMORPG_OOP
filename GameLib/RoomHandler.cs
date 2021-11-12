@@ -7,10 +7,6 @@ namespace GameLib
         List<Room> allRooms = new();
 
 
-
-
-
-        // wtf?
         public List<int> GetConnectedRooms(int _roomId)
         {
             List<int> connectedRooms = new();
@@ -24,43 +20,41 @@ namespace GameLib
             return connectedRooms;
         }
 
-        public string GetRoomName(int _roomID)
+        public string ExamineRoom(int _roomID)
         {
-            string roomName = "";
-            foreach (var room in allRooms)
-            {
-                if (room.RoomID == _roomID)
-                {
-                    roomName = room.RoomName;
-                }
-            }
-            return roomName;
+            return GetRoom(_roomID).ExamineRoomText;
         }
 
+        public bool IsRoomExaminated(int _roomID)
+        {
+            return GetRoom(_roomID).RoomExamined;
+        }
 
-
+        public string GetRoomName(int _roomID)
+        {
+            return GetRoom(_roomID).RoomName;
+        }
 
         public void AddRooms(List<Room> rooms)
         {
             allRooms.AddRange(rooms);
         }
 
-
-
-
-
         public string DescribeRoom(int _roomID)
         {
-            string roomDescription = "";
-            foreach (var room in allRooms)
+            return GetRoom(_roomID).RoomDescription;
+        }
+        
+        public Room GetRoom(int _roomID)
+        {
+            foreach (var item in allRooms)
             {
-                if (_roomID == room.RoomID)
+                if (item.RoomID == _roomID)
                 {
-                    roomDescription = room.RoomDescription;
+                    return item;
                 }
             }
-
-            return roomDescription;
+            return null;
         }
     }
 }

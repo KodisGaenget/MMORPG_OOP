@@ -4,6 +4,6 @@ namespace GameLib
 {
     public interface ISaveable
     {
-        void Save();
+        void Save(Database db, Player p, Inventory inv);
     }
 }

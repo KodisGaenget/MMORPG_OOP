@@ -5,24 +5,27 @@ namespace GameLib
 {
     public class Player : Character
     {
-        Inventory inventory;
+        Inventory inventory = new();
         private List<Item> equipped = new();
         public int CurrentExp { get; private set; }
         public string CharClass { get; private set; }
 
         IClass charClass;
+        IDataManager dataManager;
+
         internal bool inDb = false;
 
         public Player(IClass charClass)
         {
-            inventory = new();
             this.charClass = charClass;
             CharClass = charClass.Name;
+            Load();
         }
 
-        private Player()
+        public Player()
         {
             inDb = true;
+            dataManager = new CharacterLoader();
         }
 
         public override int Attack()
@@ -40,6 +43,18 @@ namespace GameLib
             equipped.Remove(item);
             //inventory.AddItemToInventory(item);
         }
+
+
+        public void Load()
+        {
+            //dataManager.Load();
+        }
+
+        public void Save(Database database)
+        {
+            //dataManager.Save();
+        }
+
 
         public bool ChangeHealth(int value)
         {
@@ -65,15 +80,11 @@ namespace GameLib
             Position = newPos;
         }
 
-        public void SaveCharacter(Database db)
-        {
-            db.SavePlayer(this);
-            inventory.SaveInventory(this, db);
-        }
-
         public override string ToString()
         {
             return $"Id: {Id}, Name: {Name}, Original Hp: {OriginalHealth}, Current Hp: {CurrentHealth}, Power: {Power}, Armor: {Armor}, Damage: {Damage}, Level: {Level}, CurrentExp: {CurrentExp}";
         }
     }
 }
+
+
