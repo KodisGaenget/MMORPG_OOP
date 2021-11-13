@@ -32,23 +32,11 @@ namespace GameLib
             }
         }
 
-        internal string GetItemType(string type)
-        {
-            if (type == "Helmet" || type == "Chest" || type == "Gloves" || type == "Legs" || type == "Boots" || type == "Armor")
-            {
-                return "Armor";
-            }
-            if (type == "Weapon")
-            {
-                return "Weapon";
 
-            }
-
-            return "Empty";
-        }
 
         public override string ToString()
         {
+            Checker checker = new();
             string equippedString = "is equipped with:\n";
             foreach (var item in CurrentEquipped)
             {
@@ -57,13 +45,13 @@ namespace GameLib
                     equippedString += $"{item.Key}: Unequipped\n";
                     continue;
                 }
-                if (GetItemType(item.Key) == "Armor")
+                if (checker.GetItemType(item.Key) == "Armor")
                 {
                     Armor armor = db.GetArmorItem(item.Value);
                     equippedString += $"{item.Key}: {armor.Name} - Defense {armor.Defense}\n";
                     continue;
                 }
-                if (GetItemType(item.Key) == "Weapon")
+                if (checker.GetItemType(item.Key) == "Weapon")
                 {
                     // System.Console.WriteLine(item.Value);
                     var weapon = db.GetWeaponItem(item.Value);
