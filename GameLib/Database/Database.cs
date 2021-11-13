@@ -2,6 +2,7 @@
 using Dapper;
 using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GameLib
 {
@@ -10,12 +11,12 @@ namespace GameLib
         string connectionString = "Server=40.85.84.155;Database=OOP_VIT;User=Student13;Password=big-bada-boom!;";
 
 
-        public IEnumerable<Player> LoadPlayer(int Id)
+        public Player LoadPlayer(int Id)
         {
             string sql = "SELECT Id, Name, OriginalHealth, CurrentHealth, Power, Armor, Damage, Level, CurrentExp, Position, Class FROM Player WHERE Id = @playerID";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                return connection.Query<Player>(sql, new { @playerID = Id });
+                return connection.Query<Player>(sql, new { @playerID = Id }).First();
             }
         }
 
@@ -48,23 +49,44 @@ namespace GameLib
             }
         }
 
-        public IEnumerable<Item> LoadInventory(int Id)
+        public List<Item> LoadInventory(int Id)
         {
             string sql = "SELECT inv.ItemId FROM Player as p inner join Inventory as inv on inv.PlayerID = p.Id  WHERE p.Id = @playerID";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                return connection.Query<Item>(sql, new { @playerID = Id });
+                return connection.Query<Item>(sql, new { @playerID = Id }).ToList();
             }
         }
 
-        //FIXME BYGG OM EQUIPMENT!!
-        public IEnumerable<Equipment> LoadEquipment(int playerId)
+        public Dictionary<string, int> LoadEquipment(int playerId)
         {
-            string sql = "Select * From Equipped eq inner join Item i on eq.Helmet = i.ItemId or Chest = i.ItemId or gloves = ItemId or Legs = ItemId or Boots = ItemId or Weapon = ItemId where eq.PlayerId = @playerID;";
+            string sql = "Select  ArmorSlot, ItemId  From Equipped eq inner join Item i on eq.Helmet = i.ItemId or Chest = i.ItemId or gloves = ItemId or Legs = ItemId or Boots = ItemId or Weapon = ItemId where eq.PlayerId = @playerID;";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                return connection.Query<Equipment>(sql, new { @playerID = playerId });
+                return connection.Query(sql, new { @playerID = playerId }).ToDictionary(row => (string)row.ArmorSlot, row => (int)row.ItemId);
             }
         }
+
+
+
+        public Armor GetArmorItem(int id)
+        {
+            string sql = "Select * From Item where ItemType = 'Armor' AND ItemId = @itemID;";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                return connection.Query<Armor>(sql, new { @itemID = id }).First();
+            }
+        }
+
+        public Weapon GetWeponItem(int id)
+        {
+            string sql = "Select * From Item where ItemType = 'Weapon' AND ItemId = @itemID;";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                return connection.Query<Weapon>(sql, new { @itemID = id }).First();
+            }
+        }
+
+
     }
 }

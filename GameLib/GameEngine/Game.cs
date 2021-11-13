@@ -22,7 +22,7 @@ namespace GameLib
         public void Start(int _roomID)
         {
             Console.WriteLine(player.ToString());
-            //System.Console.WriteLine(player.Equipment.ToString());
+            System.Console.WriteLine(player.Equipment);
             // Console.Clear();
             //Console.WriteLine($"You are in {roomHandler.GetRoomName(_roomID)}");
             // ConsoleUtils.TypeWriter(roomHandler.DescribeRoom(1));

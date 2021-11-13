@@ -6,6 +6,8 @@ namespace GameLib
     {
         public int AmountToRestore { get; set; }
         public ConsumableType ConsumableType { get; set; }
+        public int MaxStack { get; set; }
+
         public Consumable(string name, int id, int price, int amountToRestore, ConsumableType consumableType)
         {
             Name = name;

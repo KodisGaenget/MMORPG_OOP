@@ -16,7 +16,6 @@ namespace GameLib
         public Player(IClass charClass)
         {
             Inventory = new();
-            Equipment = new();
             this.charClass = charClass;
             Class = charClass.Name;
         }
@@ -35,7 +34,7 @@ namespace GameLib
         public void Equip(Item item)
         {
             // Inventory.RemoveFromItem(item);
-            Equipment.SetSlot(item);
+            // Equipment.SetSlot(item);
         }
         public void UnEquip(Item item)
         {

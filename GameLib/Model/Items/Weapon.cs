@@ -6,7 +6,7 @@ namespace GameLib
     {
         public int MinDamage { get; set; }
         public int MaxDamage { get; set; }
-        public WeaponType Type { get; set; }
+        public WeaponType WeaponType { get; set; }
 
         public Weapon(string name, int id, int price, int minDamage, int maxDamage, WeaponType type)
         {
@@ -15,7 +15,7 @@ namespace GameLib
             Price = price;
             MinDamage = minDamage;
             MaxDamage = maxDamage;
-            Type = type;
+            WeaponType = type;
             ItemType = this.GetType().ToString();
         }
     }

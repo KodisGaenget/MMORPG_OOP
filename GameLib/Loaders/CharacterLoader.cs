@@ -15,16 +15,17 @@ namespace GameLib
         public CharacterLoader(Database db)
         {
             this.db = db;
+            eq = new(db);
             Load();
         }
 
         public bool Load()
         {
-            p = db.LoadPlayer(1).First();
-            inv.ImportInventory(db.LoadInventory(p.Id).ToList());
-            // eq.SortEq(db.LoadEquipment(p.Id).ToList());
+            p = db.LoadPlayer(1);
+            inv.ImportInventory(db.LoadInventory(p.Id));
+            eq.ImportEquipment(db.LoadEquipment(p.Id));
             p.SetInventory(inv);
-            // p.SetEquipment(eq);
+            p.SetEquipment(eq);
 
             return true;
         }
