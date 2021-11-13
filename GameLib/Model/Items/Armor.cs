@@ -18,6 +18,11 @@ namespace GameLib
             Type = type;
             ItemType = this.GetType().ToString();
         }
+
+        public Armor()
+        {
+
+        }
     }
 
     public enum Slot
@@ -26,7 +31,8 @@ namespace GameLib
         Chest,
         Gloves,
         Legs,
-        Boots
+        Boots,
+        Weapon
     }
 
     public enum ArmorType

@@ -60,27 +60,25 @@ namespace GameLib
 
         public Dictionary<string, int> LoadEquipment(int playerId)
         {
-            string sql = "Select  ArmorSlot, ItemId  From Equipped eq inner join Item i on eq.Helmet = i.ItemId or Chest = i.ItemId or gloves = ItemId or Legs = ItemId or Boots = ItemId or Weapon = ItemId where eq.PlayerId = @playerID;";
+            string sql = "EXEC LoadEquipped @playerID;";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                return connection.Query(sql, new { @playerID = playerId }).ToDictionary(row => (string)row.ArmorSlot, row => (int)row.ItemId);
+                return connection.Query(sql, new { @playerID = playerId }).ToDictionary(row => (string)row.Slot, row => (int)row.Id);
             }
         }
 
-
-
         public Armor GetArmorItem(int id)
         {
-            string sql = "Select * From Item where ItemType = 'Armor' AND ItemId = @itemID;";
+            string sql = "Exec GetArmorItem @itemID;";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 return connection.Query<Armor>(sql, new { @itemID = id }).First();
             }
         }
 
-        public Weapon GetWeponItem(int id)
+        public Weapon GetWeaponItem(int id)
         {
-            string sql = "Select * From Item where ItemType = 'Weapon' AND ItemId = @itemID;";
+            string sql = "Exec GetWeaponItem @itemID;";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 return connection.Query<Weapon>(sql, new { @itemID = id }).First();

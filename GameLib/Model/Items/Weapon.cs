@@ -18,6 +18,12 @@ namespace GameLib
             WeaponType = type;
             ItemType = this.GetType().ToString();
         }
+
+        public Weapon()
+        {
+
+        }
+
     }
 
     public enum WeaponType

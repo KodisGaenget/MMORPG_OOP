@@ -5,12 +5,6 @@ namespace GameLib
 {
     public class Equipment
     {
-        // public Armor Helmet { get; private set; }
-        // public Armor Chest { get; private set; }
-        // public Armor Gloves { get; private set; }
-        // public Armor Legs { get; private set; }
-        // public Armor Boots { get; private set; }
-        // public Weapon Weapon { get; private set; }
         private Dictionary<string, int> CurrentEquipped = new()
         {
             { "Helmet", 0 },
@@ -29,40 +23,6 @@ namespace GameLib
             this.db = db;
         }
 
-        // internal Item SetSlot(Item item)
-        // {
-        //     // GetItemType(item);
-        //     if (newWeapon != null)
-        //     {
-        //         // if (Weapon != null)
-        //         // {
-        //         //     var oldWeapon = Weapon;
-        //         //     Weapon = newWeapon;
-        //         //     newWeapon = null;
-        //         //     return oldWeapon;
-        //         // }
-        //         // Weapon = newWeapon;
-        //     }
-        //     if (newArmor != null)
-        //     {
-        //         // newArmor.Slot;
-        //     }
-
-        //     return null;
-        // }
-
-        // private void GetItemType(Item item)
-        // {
-        //     if (item is Weapon)
-        //     {
-        //         newWeapon = item as Weapon;
-        //     }
-        //     else if (item is Armor)
-        //     {
-        //         newArmor = item as Armor;
-        //     }
-
-        // }
 
         internal void ImportEquipment(Dictionary<string, int> eqList)
         {
@@ -78,33 +38,37 @@ namespace GameLib
             {
                 return "Armor";
             }
-            else if (type == "Weapon")
+            if (type == "Weapon")
             {
                 return "Weapon";
+
             }
 
             return "Empty";
-
         }
 
         public override string ToString()
         {
-            string equippedString = "";
+            string equippedString = "is equipped with:\n";
             foreach (var item in CurrentEquipped)
             {
                 if (item.Value == 0)
                 {
                     equippedString += $"{item.Key}: Unequipped\n";
+                    continue;
                 }
-                else if (GetItemType(item.Key) == "Armor")
+                if (GetItemType(item.Key) == "Armor")
                 {
-                    // equippedString += $"{item.Key}: Equipped\n";
-                    equippedString += $"{item.Key}: {db.GetArmorItem(item.Value).Name}";
+                    Armor armor = db.GetArmorItem(item.Value);
+                    equippedString += $"{item.Key}: {armor.Name} - Defense {armor.Defense}\n";
+                    continue;
                 }
-                else if (GetItemType(item.Key) == "Weapon")
+                if (GetItemType(item.Key) == "Weapon")
                 {
-                    // equippedString += $"{item.Key}: Equipped\n";
-                    equippedString += $"{item.Key}: {db.GetWeponItem(item.Value).Name}";
+                    // System.Console.WriteLine(item.Value);
+                    var weapon = db.GetWeaponItem(item.Value);
+                    equippedString += $"{item.Key}: {weapon.Name} {weapon.MinDamage}-{weapon.MaxDamage} Damage\n";
+                    continue;
                 }
             }
             return equippedString;
