@@ -31,15 +31,15 @@ namespace GameLib
             throw new NotImplementedException();
         }
 
-        public void Equip(Item item)
+        public void Equip(int itemId)
         {
-            // Inventory.RemoveFromItem(item);
+            Inventory.RemoveItem(itemId);
             // Equipment.SetSlot(item);
         }
-        public void UnEquip(Item item)
+        public void UnEquip(int itemId)
         {
             //Equipped.Remove(item);
-            //inventory.AddItemToInventory(item);
+            //inventory.AddItem(item);
         }
         internal void SetInventory(Inventory inv)
         {
