@@ -9,14 +9,8 @@ namespace GameLib
     {
         string connectionString = "Server=40.85.84.155;Database=OOP_VIT;User=Student13;Password=big-bada-boom!;";
 
-        public Database()
-        {
 
-        }
-
-        //////////////
-        /// SAVERS ///
-        //////////////
+        #region Save functions
 
         public int NewPlayer(Player p)
         {
@@ -57,10 +51,9 @@ namespace GameLib
                 }
             }
         }
+        #endregion 
 
-        /////////////
-        // LOADERS //
-        /////////////
+        #region Load functions
 
         public Player LoadPlayer(int Id)
         {
@@ -88,11 +81,9 @@ namespace GameLib
                 return connection.Query(sql, new { @playerID = playerId }).ToDictionary(p => (string)p.Slot, p => (int)p.Id);
             }
         }
+        #endregion
 
-
-        //////////////
-        // RECIVERS //
-        //////////////
+        #region Recive functions
 
         public Armor GetArmorItem(int id)
         {
@@ -112,6 +103,7 @@ namespace GameLib
             }
         }
 
+        #endregion
 
     }
 }
