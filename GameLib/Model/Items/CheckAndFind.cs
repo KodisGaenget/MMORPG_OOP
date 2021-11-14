@@ -31,5 +31,23 @@ namespace GameLib
             }
             return founded;
         }
+
+        internal static KeyValuePair<string, int> FindItem(int searchedItem, string searchedSlot, IReadOnlyDictionary<string, int> items)
+        {
+            KeyValuePair<string, int> founded = new();
+
+            foreach (KeyValuePair<string, int> item in items)
+            {
+                if (item.Key == searchedSlot)
+                {
+                    founded = item;
+                }
+                if (item.Value == searchedItem)
+                {
+                    founded = item;
+                }
+            }
+            return founded;
+        }
     }
 }
