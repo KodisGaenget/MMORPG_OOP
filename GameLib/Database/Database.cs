@@ -44,10 +44,14 @@ namespace GameLib
             }
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                foreach (var item in p.Inventory.GetInventory())
+                var inventory = p.Inventory.GetInventory();
+                foreach (var item in inventory)
                 {
-                    string sql = "Insert into Inventory (PlayerId, ItemId, Amount) values (@playerID, @item, @amount) ";
-                    connection.Execute(sql, new { @playerID = p.Id, @item = item.Key, @amount = item.Value });
+                    if (item.Value > 0)
+                    {
+                        string sql = "Insert into Inventory (PlayerId, ItemId, Amount) values (@playerID, @item, @amount) ";
+                        connection.Execute(sql, new { @playerID = p.Id, @item = item.Key, @amount = item.Value });
+                    }
                 }
             }
         }
