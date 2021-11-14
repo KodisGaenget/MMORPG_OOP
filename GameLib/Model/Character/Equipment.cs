@@ -23,7 +23,6 @@ namespace GameLib
             this.db = db;
         }
 
-
         internal void ImportEquipment(Dictionary<string, int> eqList)
         {
             foreach (var item in eqList)
@@ -31,8 +30,6 @@ namespace GameLib
                 CurrentEquipped[item.Key] = item.Value;
             }
         }
-
-
 
         public override string ToString()
         {

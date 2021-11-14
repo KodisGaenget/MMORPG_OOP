@@ -52,18 +52,6 @@ namespace GameLib
         }
 
 
-
-        // public void Load()
-        // {
-        //     dataManager.Load(db);
-        // }
-
-        // public void Save(Database database)
-        // {
-        //     //dataManager.Save();
-        // }
-
-
         public bool ChangeHealth(int value)
         {
             int newHp = CurrentHealth + value;
@@ -92,6 +80,7 @@ namespace GameLib
         {
             return $"Id: {Id}, Name: {Name}, Class: {Class}, Original Hp: {OriginalHealth}, Current Hp: {CurrentHealth}, Power: {Power}, Armor: {Armor}, Damage: {Damage}, Level: {Level}, CurrentExp: {CurrentExp}";
         }
+
     }
 }
 

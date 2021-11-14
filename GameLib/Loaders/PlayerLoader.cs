@@ -1,15 +1,17 @@
 ﻿namespace GameLib
 {
-    public class CharacterLoader : ILoadable
+    public class PlayerLoader : ILoadable
     {
         private Database db;
         private Player p;
         private Inventory inv = new();
         private Equipment eq;
+        private int id;
 
 
-        public CharacterLoader(Database db)
+        public PlayerLoader(Database db, int id)
         {
+            this.id = id;
             this.db = db;
             eq = new(db);
             Load();
@@ -17,7 +19,7 @@
 
         public bool Load()
         {
-            p = db.LoadPlayer(1);
+            p = db.LoadPlayer(id);
             inv.ImportInventory(db.LoadInventory(p.Id));
             eq.ImportEquipment(db.LoadEquipment(p.Id));
             p.SetInventory(inv);

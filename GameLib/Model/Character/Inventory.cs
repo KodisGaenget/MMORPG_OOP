@@ -1,38 +1,42 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GameLib
 {
     public class Inventory
     {
         public int Id { get; private set; }
-        List<Item> items = new();
+        Dictionary<int, int> items = new();
 
         public Inventory()
         {
 
         }
-
-
-        internal void AddItemToInventory(Item item)
+        internal IReadOnlyDictionary<int, int> GetInventory()
         {
-            items.Add(item);
+            var readOnly = (IReadOnlyDictionary<int, int>)items.ToDictionary(pair => pair.Key, pair => pair.Value);
+            return readOnly;
         }
 
-        public void ImportInventory(List<Item> items)
+        internal void AddItem(int newItem, int amount)
         {
-            this.items.AddRange(items);
+            items.Add(newItem, amount);
         }
 
-        internal void RemoveFromItem(Item item)
+        public void ImportInventory(Dictionary<int, int> newItems)
+        {
+            foreach (var item in newItems)
+            {
+                items.TryAdd(item.Key, item.Value);
+            }
+        }
+
+        internal void RemoveFromItem(int item)
         {
             items.Remove(item);
         }
 
-        public void SaveInventory(Player p, Database db)
-        {
-            db.SaveInventory(p, items);
-        }
     }
 
 }

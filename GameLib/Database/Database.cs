@@ -1,5 +1,4 @@
-﻿using System;
-using Dapper;
+﻿using Dapper;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +9,27 @@ namespace GameLib
     {
         string connectionString = "Server=40.85.84.155;Database=OOP_VIT;User=Student13;Password=big-bada-boom!;";
 
-
-        public Player LoadPlayer(int Id)
+        public Database()
         {
-            string sql = "SELECT Id, Name, OriginalHealth, CurrentHealth, Power, Armor, Damage, Level, CurrentExp, Position, Class FROM Player WHERE Id = @playerID";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                return connection.Query<Player>(sql, new { @playerID = Id }).First();
-            }
+
         }
 
-        public void SavePlayer(Player p)
+        //////////////
+        /// SAVERS ///
+        //////////////
+
+        public int NewPlayer(Player p)
+        {
+            int newId;
+            string sql = "EXEC Add_NewPlayer @name, @ohp, @chp, @power, @armor, @dmg, @lvl, @cexp, @pos, @class";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                newId = connection.Query(sql, new { @name = p.Name, @ohp = p.OriginalHealth, @chp = p.CurrentHealth, @power = p.Power, @armor = p.Armor, @dmg = p.Damage, @lvl = p.Level, @cexp = p.CurrentExp, @pos = p.Position, @class = p.Class }).First();
+            }
+            return newId;
+        }
+
+        public void UpdatePlayer(Player p)
         {
             string sql = "UPDATE Player Set OriginalHealth = @ohp, CurrentHealth = @chp, Power = @power, Armor = @armor, Damage = @dmg, Level = @lvl, CurrentExp = @cexp, Position = @pos, Class = @class WHERE Id = @playerID";
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -29,7 +38,7 @@ namespace GameLib
             }
         }
 
-        internal void SaveInventory(Player p, List<Item> items)
+        internal void SaveInventory(Player p)
         {
             if (p.inDb)
             {
@@ -41,20 +50,33 @@ namespace GameLib
             }
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                foreach (var item in items)
+                foreach (var item in p.Inventory.GetInventory())
                 {
-                    string sql = "Insert into Inventory (PlayerId, ItemId) values (@playerID, @item) ";
-                    connection.Execute(sql, new { @playerID = p.Id, @item = item });
+                    string sql = "Insert into Inventory (PlayerId, ItemId, Amount) values (@playerID, @item, @amount) ";
+                    connection.Execute(sql, new { @playerID = p.Id, @item = item.Key, @amount = item.Value });
                 }
             }
         }
 
-        public List<Item> LoadInventory(int Id)
+        /////////////
+        // LOADERS //
+        /////////////
+
+        public Player LoadPlayer(int Id)
         {
-            string sql = "SELECT inv.ItemId FROM Player as p inner join Inventory as inv on inv.PlayerID = p.Id  WHERE p.Id = @playerID";
+            string sql = "SELECT Id, Name, OriginalHealth, CurrentHealth, Power, Armor, Damage, Level, CurrentExp, Position, Class FROM Player WHERE Id = @playerID";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                return connection.Query<Item>(sql, new { @playerID = Id }).ToList();
+                return connection.Query<Player>(sql, new { @playerID = Id }).First();
+            }
+        }
+
+        public Dictionary<int, int> LoadInventory(int Id)
+        {
+            string sql = "SELECT ItemId, Amount FROM Player as p inner join Inventory as inv on inv.PlayerID = p.Id  WHERE p.Id = @playerID";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                return connection.Query(sql, new { @playerID = Id }).ToDictionary(p => (int)p.ItemId, p => (int)p.Amount);
             }
         }
 
@@ -63,9 +85,14 @@ namespace GameLib
             string sql = "EXEC LoadEquipped @playerID;";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                return connection.Query(sql, new { @playerID = playerId }).ToDictionary(row => (string)row.Slot, row => (int)row.Id);
+                return connection.Query(sql, new { @playerID = playerId }).ToDictionary(p => (string)p.Slot, p => (int)p.Id);
             }
         }
+
+
+        //////////////
+        // RECIVERS //
+        //////////////
 
         public Armor GetArmorItem(int id)
         {
