@@ -33,7 +33,6 @@ namespace GameLib
 
         public override string ToString()
         {
-            Checker checker = new();
             string equippedString = "is equipped with:\n";
             foreach (var item in CurrentEquipped)
             {
@@ -42,13 +41,13 @@ namespace GameLib
                     equippedString += $"{item.Key}: Unequipped\n";
                     continue;
                 }
-                if (checker.GetItemType(item.Key) == "Armor")
+                if (CheckAndFind.GetItemType(item.Key) == "Armor")
                 {
                     Armor armor = db.GetArmorItem(item.Value);
                     equippedString += $"{item.Key}: {armor.Name} - Defense {armor.Defense}\n";
                     continue;
                 }
-                if (checker.GetItemType(item.Key) == "Weapon")
+                if (CheckAndFind.GetItemType(item.Key) == "Weapon")
                 {
                     // System.Console.WriteLine(item.Value);
                     var weapon = db.GetWeaponItem(item.Value);
