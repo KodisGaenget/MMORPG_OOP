@@ -25,7 +25,7 @@ namespace GameLib
             player.Inventory.RemoveItem(1);
             // player.ChangeHealth(300); //Lägger till eller tar bort hp på players upp till maxhp och ner till 0
             // player.Inventory.AddItem(1, 1); //Lägger till itemID: 1 i inventory
-            // Console.WriteLine(player.ToString());
+            // Console.WriteLine(player.ToString()); //Skriver ut player
             // System.Console.WriteLine(player.Name + " " + player.Equipment); //Skriver ut namn och nuvanade eq.
             // Console.Clear();
 
