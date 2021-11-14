@@ -32,10 +32,21 @@ namespace GameLib
             }
         }
 
-        internal void RemoveFromItem(int item)
+        internal void RemoveItem(int item, int amount = 1)
         {
-            items.Remove(item);
+            var itemToRemove = CheckAndFind.FindItem(item, GetInventory());
+
+            if (itemToRemove.Value == 1)
+            {
+                items.Remove(itemToRemove.Key);
+            }
+            else
+            {
+                items[itemToRemove.Key] = -amount;
+            }
         }
+
+
 
     }
 
