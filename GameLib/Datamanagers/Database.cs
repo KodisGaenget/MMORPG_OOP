@@ -89,6 +89,15 @@ namespace GameLib
 
         #region Recive functions
 
+        public Dictionary<int, string> GetAllItems()
+        {
+            string sql = "Exec GetAllItems";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                return connection.Query(sql).ToDictionary(p => (int)p.Id, p => (string)p.ItemType);
+            }
+        }
+
         public Armor GetArmorItem(int id)
         {
             string sql = "Exec GetArmorItem @itemID;";

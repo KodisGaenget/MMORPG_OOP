@@ -31,6 +31,22 @@ namespace GameLib
             }
         }
 
+        internal IReadOnlyDictionary<string, int> GetEquipment()
+        {
+            var readOnly = (IReadOnlyDictionary<string, int>)CurrentEquipped.ToDictionary(pair => pair.Key, pair => pair.Value);
+            return readOnly;
+        }
+
+        internal void EquipItem(string slot, int newItem)
+        {
+            CurrentEquipped[slot] = newItem;
+        }
+
+        internal void RemoveItem(string slot, int item)
+        {
+            CurrentEquipped[slot] = item;
+        }
+
         public override string ToString()
         {
             string equippedString = "is equipped with:\n";
@@ -49,8 +65,7 @@ namespace GameLib
                 }
                 if (CheckAndFind.GetItemType(item.Key) == "Weapon")
                 {
-                    // System.Console.WriteLine(item.Value);
-                    var weapon = db.GetWeaponItem(item.Value);
+                    Weapon weapon = db.GetWeaponItem(item.Value);
                     equippedString += $"{item.Key}: {weapon.Name} {weapon.MinDamage}-{weapon.MaxDamage} Damage\n";
                     continue;
                 }

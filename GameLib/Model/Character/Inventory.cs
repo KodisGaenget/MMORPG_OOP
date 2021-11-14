@@ -11,17 +11,12 @@ namespace GameLib
 
         public Inventory()
         {
-
         }
+
         internal IReadOnlyDictionary<int, int> GetInventory()
         {
             var readOnly = (IReadOnlyDictionary<int, int>)items.ToDictionary(pair => pair.Key, pair => pair.Value);
             return readOnly;
-        }
-
-        internal void AddItem(int newItem, int amount)
-        {
-            items.Add(newItem, amount);
         }
 
         public void ImportInventory(Dictionary<int, int> newItems)
@@ -30,6 +25,11 @@ namespace GameLib
             {
                 items.TryAdd(item.Key, item.Value);
             }
+        }
+
+        internal void AddItem(int newItem, int amount)
+        {
+            items.Add(newItem, amount);
         }
 
         internal void RemoveItem(int item, int amount = 1)

@@ -31,16 +31,49 @@ namespace GameLib
             throw new NotImplementedException();
         }
 
-        public void Equip(int itemId)
+        public int GetDefense(ItemLoader itemLoader)
+        {
+            int FightDefence = this.Armor;
+            foreach (var item in Equipment.GetEquipment())
+            {
+                if (itemLoader.GetItemType(item.Value) == "Armor")
+                {
+                    FightDefence += GetArmorDef(item.Value, itemLoader);
+                }
+            }
+            return FightDefence;
+        }
+
+        private int GetArmorDef(int itemId, ItemLoader itemLoader)
+        {
+            foreach (var item in itemLoader.armorList)
+            {
+                if (item.Id == itemId)
+                {
+                    return item.Defense;
+                }
+            }
+            return 0;
+        }
+
+
+        public void Equip(string slot, int itemId)
         {
             Inventory.RemoveItem(itemId);
-            // Equipment.SetSlot(item);
+
+            Equipment.EquipItem(slot, itemId);
         }
-        public void UnEquip(int itemId)
+
+        public void UnEquip(string slot)
         {
-            //Equipped.Remove(item);
-            //inventory.AddItem(item);
+            var oldItem = Equipment.GetEquipment()[slot];
+            if (oldItem > 0)
+            {
+                Inventory.AddItem(oldItem, 1);
+            }
+            Equipment.RemoveItem(slot, -1);
         }
+
         internal void SetInventory(Inventory inv)
         {
             Inventory = inv;
