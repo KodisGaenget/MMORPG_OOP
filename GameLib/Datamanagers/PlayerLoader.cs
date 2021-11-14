@@ -1,6 +1,6 @@
 ﻿namespace GameLib
 {
-    public class PlayerLoader : ILoadable
+    internal class PlayerLoader : ILoadable
     {
         private Database db;
         private Player p;
@@ -32,18 +32,6 @@
         {
             return p;
         }
-
-
-
-        // private void SaveCharacter(Inventory inv)
-        // {
-        //     db.SavePlayer(p);
-        //     inv.SaveInventory(p, db);
-        // }
-        // public void Save(Database db, Player p, Inventory inv)
-        // {
-        //     SaveCharacter(inv);
-        // }
     }
 }
 
