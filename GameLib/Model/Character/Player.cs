@@ -71,7 +71,7 @@ namespace GameLib
             return false;
         }
 
-        public void ChangePosition(int newPos)
+        internal void ChangePosition(int newPos)
         {
             Position = newPos;
         }
