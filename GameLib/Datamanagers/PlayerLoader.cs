@@ -1,11 +1,14 @@
-﻿namespace GameLib
+﻿using Characters;
+using GameInterfaces;
+
+namespace GameLib
 {
     internal class PlayerLoader : ILoadable
     {
         private Database db;
         private Player p;
         private Inventory inv = new();
-        private Equipment eq;
+        private Equipment eq = new();
         private int id;
 
 
@@ -13,7 +16,6 @@
         {
             this.id = id;
             this.db = db;
-            eq = new(db);
             Load();
         }
 

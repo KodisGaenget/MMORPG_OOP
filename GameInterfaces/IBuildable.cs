@@ -1,7 +1,7 @@
-namespace GameLib
+namespace GameInterfaces
 {
     public interface IBuildable
     {
-        Player Build();
+        void Build();
     }
 }

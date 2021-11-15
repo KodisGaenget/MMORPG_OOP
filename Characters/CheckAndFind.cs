@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace GameLib
+namespace Characters
 {
     internal static class CheckAndFind
     {

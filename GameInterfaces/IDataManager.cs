@@ -1,6 +1,7 @@
 using System;
+using GameInterfaces;
 
-namespace GameLib
+namespace GameInterfaces
 {
     public interface IDataManager : ISaveable, ILoadable
     {

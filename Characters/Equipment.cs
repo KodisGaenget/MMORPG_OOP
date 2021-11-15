@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GameLib
+namespace Characters
 {
     public class Equipment
     {
@@ -14,16 +14,13 @@ namespace GameLib
             { "Boots", 0 },
             { "Weapon", 0 }
         };
-        private Database db;
-        // private Armor newArmor;
-        // private Weapon newWeapon;
 
-        public Equipment(Database db)
+        public Equipment()
         {
-            this.db = db;
+
         }
 
-        internal void ImportEquipment(Dictionary<string, int> eqList)
+        public void ImportEquipment(Dictionary<string, int> eqList)
         {
             foreach (var item in eqList)
             {
@@ -49,25 +46,16 @@ namespace GameLib
 
         public override string ToString()
         {
-            string equippedString = "is equipped with:\n";
+            string equippedString = "";
             foreach (var item in CurrentEquipped)
             {
                 if (item.Value == 0)
                 {
                     equippedString += $"{item.Key}: Unequipped\n";
-                    continue;
                 }
-                if (CheckAndFind.GetItemType(item.Key) == "Armor")
+                else if (CheckAndFind.GetItemType(item.Key) == "Armor" || CheckAndFind.GetItemType(item.Key) == "Weapon")
                 {
-                    Armor armor = db.GetArmorItem(item.Value);
-                    equippedString += $"{item.Key}: {armor.Name} - Defense {armor.Defense}\n";
-                    continue;
-                }
-                if (CheckAndFind.GetItemType(item.Key) == "Weapon")
-                {
-                    Weapon weapon = db.GetWeaponItem(item.Value);
-                    equippedString += $"{item.Key}: {weapon.Name} {weapon.MinDamage}-{weapon.MaxDamage} Damage\n";
-                    continue;
+                    equippedString += $"{item.Key}: Equipped\n";
                 }
             }
             return equippedString;

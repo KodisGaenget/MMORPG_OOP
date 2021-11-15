@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameInterfaces;
 
-namespace GameLib
+namespace PlayerClasses
 {
-    public class Mage : IClass
+    public class Mage : PlayerClass, IClass
     {
         public int health => 100;
         public string Name => "Mage";
 
-        private List<Spell> learnedSpells = new();
+        // private List<Spell> learnedSpells = new();
 
         public int Block(int i)
         {

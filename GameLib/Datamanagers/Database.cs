@@ -3,6 +3,8 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 
+using Characters;
+
 namespace GameLib
 {
     public class Database

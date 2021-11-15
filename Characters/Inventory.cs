@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GameLib
+namespace Characters
 {
     public class Inventory
     {
@@ -13,7 +13,7 @@ namespace GameLib
         {
         }
 
-        internal IReadOnlyDictionary<int, int> GetInventory()
+        public IReadOnlyDictionary<int, int> GetInventory()
         {
             var readOnly = (IReadOnlyDictionary<int, int>)items.ToDictionary(pair => pair.Key, pair => pair.Value);
             return readOnly;

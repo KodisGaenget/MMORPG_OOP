@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using Characters;
 
 
 namespace GameLib
 {
     public class Game
     {
-        RoomHandler roomHandler;
+        public RoomHandler roomHandler;
         Database db = new();
-        Player player;
-        ItemLoader itemLoader;
+        public Player player;
+        public ItemLoader itemLoader;
 
 
         public Game(RoomHandler _roomHandler)
@@ -19,11 +20,12 @@ namespace GameLib
             itemLoader = new(db);
             player = playerLoader.GetCharacter();
             Start();
+            PlayerSaver playerSaver = new(db, player);
         }
 
         public void Start()
         {
-            player.GetDefense(itemLoader);
+            // playerLoader.GetDefense(itemLoader);
             // Console.WriteLine($"You are in {roomHandler.GetRoomName(player.Position)}");
             // player.Inventory.RemoveItem(1);
             // player.ChangeHealth(300); //Lägger till eller tar bort hp på players upp till maxhp och ner till 0

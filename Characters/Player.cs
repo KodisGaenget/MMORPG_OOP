@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameInterfaces;
 
-namespace GameLib
+namespace Characters
 {
     public class Player : Character
     {
@@ -11,7 +12,7 @@ namespace GameLib
         public string Class { get; private set; }
 
         IClass charClass;
-        internal bool inDb = false;
+        public bool inDb = false;
 
         public Player(IClass charClass)
         {
@@ -31,31 +32,31 @@ namespace GameLib
             throw new NotImplementedException();
         }
 
-        public int GetDefense(ItemLoader itemLoader)
-        {
-            int FightDefence = this.Armor;
-            foreach (var item in Equipment.GetEquipment())
-            {
-                if (itemLoader.GetItemType(item.Value) == "Armor")
-                {
-                    FightDefence += GetArmorDef(item.Value, itemLoader);
-                }
-            }
-            return FightDefence;
-        }
+        // public int GetDefense(ItemLoader itemLoader) //Inte här! Läggas i itemLoader?
+        // {
+        //     int FightDefence = this.Armor;
+        //     foreach (var item in Equipment.GetEquipment())
+        //     {
+        //         if (itemLoader.GetItemType(item.Value) == "Armor")
+        //         {
+        //             FightDefence += GetArmorDef(item.Value, itemLoader);
+        //         }
+        //     }
+        //     return FightDefence;
+        // }
 
-        private int GetArmorDef(int itemId, ItemLoader itemLoader)
-        {
-            foreach (var item in itemLoader.armorList)
-            {
-                if (item.Id == itemId)
-                {
-                    return item.Defense;
-                }
-            }
-            return 0;
-        }
-
+        //TODO Lägga någon annanstans!? itemLoader?
+        // private int GetArmorDef(int itemId, ItemLoader itemLoader)
+        // {
+        //     foreach (var item in itemLoader.armorList)
+        //     {
+        //         if (item.Id == itemId)
+        //         {
+        //             return item.Defense;
+        //         }
+        //     }
+        //     return 0;
+        // }
 
         public void Equip(string slot, int itemId)
         {
@@ -74,12 +75,12 @@ namespace GameLib
             Equipment.RemoveItem(slot, -1);
         }
 
-        internal void SetInventory(Inventory inv)
+        public void SetInventory(Inventory inv)
         {
             Inventory = inv;
         }
 
-        internal void SetEquipment(Equipment eq)
+        public void SetEquipment(Equipment eq)
         {
             Equipment = eq;
         }

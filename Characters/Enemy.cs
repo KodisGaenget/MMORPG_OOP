@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameLib
+namespace Characters
 {
     public abstract class Enemy
     {

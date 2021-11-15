@@ -1,0 +1,425 @@
+{
+  "format": 1,
+  "restore": {
+    "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\GameLib\\GameLib.csproj": {}
+  },
+  "projects": {
+    "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Characters\\Characters.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Characters\\Characters.csproj",
+        "projectName": "Characters",
+        "projectPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Characters\\Characters.csproj",
+        "packagesPath": "C:\\Users\\grune\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Characters\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\grune\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Databases\\Databases.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Databases\\Databases.csproj",
+        "projectName": "Databases",
+        "projectPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Databases\\Databases.csproj",
+        "packagesPath": "C:\\Users\\grune\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Databases\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\grune\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.123, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\GameLib\\GameLib.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\GameLib\\GameLib.csproj",
+        "projectName": "GameLib",
+        "projectPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\GameLib\\GameLib.csproj",
+        "packagesPath": "C:\\Users\\grune\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\GameLib\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\grune\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Characters\\Characters.csproj": {
+                "projectPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Characters\\Characters.csproj"
+              },
+              "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Databases\\Databases.csproj": {
+                "projectPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Databases\\Databases.csproj"
+              },
+              "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Items\\Items.csproj": {
+                "projectPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Items\\Items.csproj"
+              },
+              "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Loaders\\Loaders.csproj": {
+                "projectPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Loaders\\Loaders.csproj"
+              },
+              "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Rooms\\Rooms.csproj": {
+                "projectPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Rooms\\Rooms.csproj"
+              },
+              "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Savers\\Savers.csproj": {
+                "projectPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Savers\\Savers.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.123, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Items\\Items.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Items\\Items.csproj",
+        "projectName": "Items",
+        "projectPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Items\\Items.csproj",
+        "packagesPath": "C:\\Users\\grune\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Items\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\grune\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Loaders\\Loaders.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Loaders\\Loaders.csproj",
+        "projectName": "Loaders",
+        "projectPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Loaders\\Loaders.csproj",
+        "packagesPath": "C:\\Users\\grune\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Loaders\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\grune\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Rooms\\Rooms.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Rooms\\Rooms.csproj",
+        "projectName": "Rooms",
+        "projectPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Rooms\\Rooms.csproj",
+        "packagesPath": "C:\\Users\\grune\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Rooms\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\grune\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Savers\\Savers.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Savers\\Savers.csproj",
+        "projectName": "Savers",
+        "projectPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Savers\\Savers.csproj",
+        "packagesPath": "C:\\Users\\grune\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\grune\\OneDrive\\Skrivbord\\Mappar\\Skola\\OOP SUVNET21\\Grupparbeten\\MMORPG_OOP\\Savers\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\grune\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

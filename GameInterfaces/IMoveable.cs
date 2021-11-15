@@ -1,4 +1,4 @@
-namespace GameLib
+namespace GameInterfaces
 {
     internal interface IMoveable
     {
