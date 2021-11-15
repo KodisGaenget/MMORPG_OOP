@@ -59,3 +59,14 @@ $RECYCLE.BIN/
 /PlayerClasses/obj
 /ConsoleUI/bin
 /ConsoleUI/obj
+Website/obj/Debug/net5.0/Website.AssemblyInfoInputs.cache
+GameLib/obj/Debug/net5.0/GameLib.assets.cache
+Website/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
+Website/obj/Debug/net5.0/project.razor.json
+Website/obj/Debug/net5.0/Website.AssemblyInfo.cs
+Website/obj/Debug/net5.0/Website.csproj.AssemblyReference.cache
+Website/obj/Debug/net5.0/Website.GeneratedMSBuildEditorConfig.editorconfig
+Website/obj/Debug/net5.0/Website.RazorAssemblyInfo.cache
+Website/obj/Debug/net5.0/Website.RazorAssemblyInfo.cs
+GameLib/obj/Debug/net5.0/GameLib.assets.cache
+GameLib/obj/Debug/net5.0/GameLib.assets.cache
