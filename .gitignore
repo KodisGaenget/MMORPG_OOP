@@ -58,5 +58,5 @@ $RECYCLE.BIN/
 /PlayerClasses/obj
 /ConsoleUI/bin
 /ConsoleUI/obj
-/ConsoleUI/bin
-/ConsoleUI/obj
+/GameLib/bin
+/GameLib/obj
