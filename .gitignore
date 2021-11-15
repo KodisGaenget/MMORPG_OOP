@@ -59,6 +59,9 @@ $RECYCLE.BIN/
 /PlayerClasses/obj
 /ConsoleUI/bin
 /ConsoleUI/obj
+/Spells/bin/
+/spells/obj/
+
 Website/obj/Debug/net5.0/Website.AssemblyInfoInputs.cache
 GameLib/obj/Debug/net5.0/GameLib.assets.cache
 Website/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs

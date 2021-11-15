@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GameLib
+namespace Spells
 {
     public class OffensiveSpell : Spell
     {

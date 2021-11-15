@@ -1,4 +1,4 @@
-namespace GameLib
+namespace Spells
 {
     public abstract class Spell
     {
