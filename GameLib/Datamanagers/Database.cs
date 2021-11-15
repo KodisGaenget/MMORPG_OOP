@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace GameLib
 {
@@ -118,5 +119,17 @@ namespace GameLib
 
         #endregion
 
+        #region CreateFunctions
+
+        public void Add_NewItem(string newName, Nullable<int> newPrice, string newItemType, string newSlot, Nullable<int> newMinDmg, Nullable<int> newMaxDmg, string newWeaponType, Nullable<int> newDef, string newType, Nullable<int> newAmToRest, string newConsType, Nullable<int> newMaxStack)
+        {
+            string sql = "EXEC Add_NewItem @name, @price, @itemType, @slot, @mindmg, @maxdmg, @weapontype, @def, @type, @amtorest, @constype, @maxstack";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Execute(sql, new { @name = newName, @price = newPrice, @Itemtype = newItemType, @slot = newSlot, @mindmg = newMinDmg, @maxdmg = newMaxDmg, @weaponType = newWeaponType, @def = newDef, @type = newType, @amtorest = newAmToRest, @constype = newConsType, @maxstack = newMaxStack });
+            }
+        }
+
+        #endregion
     }
 }
