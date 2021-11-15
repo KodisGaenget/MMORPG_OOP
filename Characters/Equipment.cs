@@ -28,7 +28,7 @@ namespace Characters
             }
         }
 
-        internal IReadOnlyDictionary<string, int> GetEquipment()
+        public IReadOnlyDictionary<string, int> GetEquipment()
         {
             var readOnly = (IReadOnlyDictionary<string, int>)CurrentEquipped.ToDictionary(pair => pair.Key, pair => pair.Value);
             return readOnly;
@@ -39,7 +39,7 @@ namespace Characters
             CurrentEquipped[slot] = newItem;
         }
 
-        internal void RemoveItem(string slot, int item)
+        internal void UnequipItem(string slot, int item)
         {
             CurrentEquipped[slot] = item;
         }

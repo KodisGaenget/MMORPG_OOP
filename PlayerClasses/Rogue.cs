@@ -1,7 +1,7 @@
 ﻿using System;
 using GameInterfaces;
 
-namespace GameLib
+namespace PlayerClasses
 {
     public class Rogue : IClass
     {
