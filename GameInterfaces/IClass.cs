@@ -4,7 +4,7 @@ namespace GameInterfaces
 {
     public interface IClass : IMainAbility, ISecondaryAbility, IBlockable
     {
-        int health { get; }
+        float HealthMultiplier { get; }
         string Name { get; }
     }
 }

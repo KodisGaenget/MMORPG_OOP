@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GameInterfaces;
+using PlayerClasses;
 
 namespace Characters
 {
@@ -10,7 +11,6 @@ namespace Characters
         public Equipment Equipment { get; private set; }
         public int CurrentExp { get; private set; }
         public string Class { get; private set; }
-
         IClass charClass;
         public bool inDb = false;
 
@@ -23,6 +23,7 @@ namespace Characters
 
         public Player()
         {
+            charClass = CheckAndFind.GetClass(Class);
             Inventory = new();
             inDb = true;
         }
@@ -31,32 +32,6 @@ namespace Characters
         {
             throw new NotImplementedException();
         }
-
-        // public int GetDefense(ItemLoader itemLoader) //Inte här! Läggas i itemLoader?
-        // {
-        //     int FightDefence = this.Armor;
-        //     foreach (var item in Equipment.GetEquipment())
-        //     {
-        //         if (itemLoader.GetItemType(item.Value) == "Armor")
-        //         {
-        //             FightDefence += GetArmorDef(item.Value, itemLoader);
-        //         }
-        //     }
-        //     return FightDefence;
-        // }
-
-        //TODO Lägga någon annanstans!? itemLoader?
-        // private int GetArmorDef(int itemId, ItemLoader itemLoader)
-        // {
-        //     foreach (var item in itemLoader.armorList)
-        //     {
-        //         if (item.Id == itemId)
-        //         {
-        //             return item.Defense;
-        //         }
-        //     }
-        //     return 0;
-        // }
 
         public void Equip(string slot, int itemId)
         {
@@ -72,7 +47,7 @@ namespace Characters
             {
                 Inventory.AddItem(oldItem, 1);
             }
-            Equipment.RemoveItem(slot, -1);
+            Equipment.UnequipItem(slot, -1);
         }
 
         public void SetInventory(Inventory inv)
