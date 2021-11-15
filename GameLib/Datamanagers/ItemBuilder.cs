@@ -5,13 +5,17 @@ namespace GameLib
     public class BuildItem
     {
         Database db = new();
-        public void AddItem(string newName, Nullable<int> newPrice, string newItemType, string newSlot, Nullable<int> newMinDmg, Nullable<int> newMaxDmg, string newWeaponType, Nullable<int> newDef, string newType, Nullable<int> newAmToRest, string newConsType, Nullable<int> newMaxStack)
+        public void AddArmor(string newName, Nullable<int> newPrice, string newItemType, string newSlot, Nullable<int> newDef, string newMaterial, Nullable<int> newMaxStack)
         {
-            db.Add_NewItem(newName, newPrice, newItemType, newSlot, newMinDmg, newMaxDmg, newWeaponType, newDef, newType, newAmToRest, newConsType, newMaxStack);
+            db.Add_NewItem(newName, newPrice, newItemType, newSlot, null, null, null, newDef, newMaterial, null, null, 1);
         }
-
-        // string newName, int newPrice, string newItemType, string newSlot, int newMinDmg, int newMaxDmg, string newWeaponType, int newDef, string newType, int newAmToRest, string newConsType, int newMaxStack
-
-
+        public void AddWeapon(string newName, Nullable<int> newPrice, string newItemType, string newSlot, Nullable<int> newMinDmg, Nullable<int> newMaxDmg, string newWeaponType, Nullable<int> newMaxStack)
+        {
+            db.Add_NewItem(newName, newPrice, newItemType, newSlot, newMinDmg, newMaxDmg, newWeaponType, null, null, null, null, 1);
+        }
+        public void AddConsumable(string newName, Nullable<int> newPrice, string newItemType, Nullable<int> newAmToRest, string newConsType, Nullable<int> newMaxStack)
+        {
+            db.Add_NewItem(newName, newPrice, newItemType, null, null, null, null, null, null, newAmToRest, newConsType, newMaxStack);
+        }
     }
 }
