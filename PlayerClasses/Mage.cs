@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using GameInterfaces;
+using Spells;
 
 namespace PlayerClasses
 {
     public class Mage : PlayerClass, IClass
     {
-        public int health => 100;
+        public float HealthMultiplier => 1.06F;
         public string Name => "Mage";
+        private List<Spell> learnedSpells = new();
+        public Spell ChoosenMain { get; private set; }
+        public Spell ChoosenSecond { get; private set; }
 
-        // private List<Spell> learnedSpells = new();
 
         public int Block(int i)
         {
