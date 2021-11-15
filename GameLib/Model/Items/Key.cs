@@ -2,12 +2,9 @@ using System;
 
 namespace GameLib
 {
-    public class Key        // Miscellaneous
+    public class Key : Item      // Miscellaneous
     {
-        public int Id { get; init; }
-        public string Name { get; init; }
-
-        public Key(int id, string name, String itemType)
+        public Key(int id, string name, string itemType)
         {
             Id = id;
             Name = name;
