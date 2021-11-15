@@ -8,14 +8,14 @@ namespace GameLib
         public ConsumableType ConsumableType { get; set; }
         public int MaxStack { get; set; }
 
-        public Consumable(string name, int id, int price, int amountToRestore, ConsumableType consumableType)
+        public Consumable(string name, int id, int price, int amountToRestore, ConsumableType consumableType, String itemType)
         {
             Name = name;
             Id = id;
             Price = price;
             AmountToRestore = amountToRestore;
             ConsumableType = consumableType;
-            ItemType = this.GetType().ToString();
+            ItemType = itemType;
         }
     }
     public enum ConsumableType
