@@ -35,19 +35,22 @@ namespace GameLib
 
         void LoadItems()
         {
-            foreach (var item in itemList)
+            if (itemList.Count == 0)
             {
-                if (item.Value == "Armor")
+                foreach (var item in itemList)
                 {
-                    armorList.Add(db.GetArmorItem(item.Key));
-                }
-                else if (item.Value == "Weapon")
-                {
-                    weaponList.Add(db.GetWeaponItem(item.Key));
-                }
-                else if (item.Value == "Consumable")
-                {
-                    //consumableList.Add(db.GetConsumableItem(item.Key));
+                    if (item.Value == "Armor")
+                    {
+                        armorList.Add(db.GetArmorItem(item.Key));
+                    }
+                    else if (item.Value == "Weapon")
+                    {
+                        weaponList.Add(db.GetWeaponItem(item.Key));
+                    }
+                    else if (item.Value == "Consumable")
+                    {
+                        //consumableList.Add(db.GetConsumableItem(item.Key));
+                    }
                 }
             }
         }
