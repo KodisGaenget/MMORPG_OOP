@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Characters;
+using System;
+using GameInterfaces;
 
 namespace GameLib
 {
