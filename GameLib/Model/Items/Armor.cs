@@ -8,31 +8,21 @@ namespace GameLib
 
         public ArmorType Type { get; set; }
 
-        public Armor(string name, int id, int price, int value, Slot slot, ArmorType type)
+        public Armor(string name, int id, int price, int defense, Slot slot, ArmorType type, String itemType)
         {
             Name = name;
             Id = id;
             Price = price;
-            Defense = value;
+            Defense = defense;
             Slot = slot;
             Type = type;
-            ItemType = this.GetType().ToString();
+            ItemType = itemType;
         }
 
-        public Armor()
-        {
+        // public Armor()
+        // {
 
-        }
-    }
-
-    public enum Slot
-    {
-        Helmet,
-        Chest,
-        Gloves,
-        Legs,
-        Boots,
-        Weapon
+        // }
     }
 
     public enum ArmorType

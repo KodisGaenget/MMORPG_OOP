@@ -8,7 +8,7 @@ namespace GameLib
         public int MaxDamage { get; set; }
         public WeaponType WeaponType { get; set; }
 
-        public Weapon(string name, int id, int price, int minDamage, int maxDamage, WeaponType type)
+        public Weapon(string name, int id, int price, int minDamage, int maxDamage, WeaponType type, Slot slot, String itemType)
         {
             Name = name;
             Id = id;
@@ -16,14 +16,13 @@ namespace GameLib
             MinDamage = minDamage;
             MaxDamage = maxDamage;
             WeaponType = type;
-            ItemType = this.GetType().ToString();
+            ItemType = itemType;
         }
 
-        public Weapon()
-        {
+        // public Weapon()
+        // {
 
-        }
-
+        // }
     }
 
     public enum WeaponType
