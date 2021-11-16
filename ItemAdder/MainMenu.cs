@@ -33,7 +33,7 @@ namespace ItemAdder
                     break;
 
                 case 1:
-                    // Consumable
+                    ItemAdder.CreateConsumable.Run();
                     break;
 
                 case 2:
