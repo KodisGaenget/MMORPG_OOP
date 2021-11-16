@@ -50,7 +50,5 @@ namespace Characters
             }
             return null;
         }
-
-
     }
 }
