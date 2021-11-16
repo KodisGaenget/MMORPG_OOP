@@ -40,9 +40,10 @@ namespace ItemAdder
         public void CreateWeapon() // Flytta till egen klass med eller utan andra createfunktioner
         {
             Clear();
-            string name, minDmg, price, maxDmg, type = "";
+            string name, type = "";
+            int minDmg, price, maxDmg;
             string prompt = "Choose weapon type:";
-            string[] options = { "Dagger", "Throwing Star\n", "Spellbook", "Staff\n", "Warhammer", "Double Edged Axe\n", "Exit" };            
+            string[] options = { "Daggers", "Throwing Star\n", "Spellbook", "Staff\n", "Warhammer", "Double Edged Axe\n", "Exit" };            
             Menu menu = new Menu(prompt, options);
             int selectedIndex = menu.GetMenuIndex();
             switch (selectedIndex)
@@ -81,16 +82,19 @@ namespace ItemAdder
             name = ReadLine();
 
             Write("\nSet price: ");
-            price = ReadLine();
+            price = Convert.ToInt32(ReadLine());
 
             Write("\nSet minimum damage: ");
-            minDmg = ReadLine();
+            minDmg = Convert.ToInt32(ReadLine());
 
             Write("\nSet maximum damage: ");
-            maxDmg = ReadLine();
+            maxDmg = Convert.ToInt32(ReadLine());
 
             WriteLine($"{type} created with the following stats: "); // Add details
-            // builditem.AddWeapon(name, price, minDmg, maxDmg);
+            builditem.AddWeapon(name, price, "Weapon", "Weapon", minDmg, maxDmg, type, 1);
+            WriteLine("Weapon added.");
+            ReadKey();
+            Run();
         }
     }
 }
