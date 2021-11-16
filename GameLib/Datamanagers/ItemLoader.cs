@@ -35,7 +35,7 @@ namespace GameLib
             return true;
         }
 
-        void LoadItems()
+        private void LoadItems()
         {
             foreach (var item in itemList)
             {
@@ -57,6 +57,31 @@ namespace GameLib
                 }
             }
         }
+
+        public Weapon GetWeaponDetails(int id)
+        {
+            foreach (var item in weaponList)
+            {
+                if (item.Id == id)
+                {
+                    return item;
+                }
+            }
+            return new();
+        }
+
+        public Armor GetArmorDetails(int id)
+        {
+            foreach (var item in armorList)
+            {
+                if (item.Id == id)
+                {
+                    return item;
+                }
+            }
+            return new();
+        }
+
         public string GetItemType(int Id)
         {
             foreach (var item in itemList)
