@@ -70,18 +70,5 @@ namespace ItemAdder
 
             return SelectedIndex; // Returnera indexvärde
         }
-
-        public void Run()
-        {
-            string prompt = "";
-            string[] options = { "" };
-            Menu menu = new Menu(prompt, options);
-            int selectedIndex = menu.GetMenuIndex();
-            switch (selectedIndex)
-            {
-                case 0:
-                    break;
-            }
-        }
     }
 }
