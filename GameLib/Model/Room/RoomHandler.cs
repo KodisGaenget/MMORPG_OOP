@@ -10,21 +10,10 @@ namespace GameLib
         {
             CreateRooms();
         }
-        // public List<int> GetConnectedRooms(int _roomId)
-        // {
-        //     List<int> connectedRooms = new();
-        //     foreach (var room in allRooms)
-        //     {
-        //         if (room.RoomID == _roomId)
-        //         {
-        //             connectedRooms.AddRange(room.ConnectingRooms);
-        //         }
-        //     }
-        //     return connectedRooms;
-        // }
 
         public string ExamineRoom(int _roomID)
-        {
+        {            
+            GetRoom(_roomID).RoomExamined = true;
             return GetRoom(_roomID).ExamineRoom;
         }
 
@@ -50,14 +39,15 @@ namespace GameLib
 
         public Room GetRoom(int _roomID)
         {
+            Room getRoom = new();
             foreach (var item in allRooms)
             {
                 if (item.ID == _roomID)
                 {
-                    return item;
+                    getRoom = item;
                 }
             }
-            return null;
+            return getRoom;
         }
 
         private void CreateRooms()
