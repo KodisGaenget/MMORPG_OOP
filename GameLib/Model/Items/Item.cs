@@ -11,9 +11,10 @@ namespace GameLib
         public int DropChance { get; set; }     //DELETE HERE? GET IT'S OWN CLASS AND TABLE?
         public Slot Slot { get; set; }
     }
+
     public enum ItemType
     {
-        Consumable, 
+        Consumable,
         Armor,
         Weapon,
         Key,

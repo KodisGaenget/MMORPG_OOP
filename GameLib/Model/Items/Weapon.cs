@@ -19,10 +19,10 @@ namespace GameLib
             ItemType = itemType;
         }
 
-        // public Weapon()
-        // {
-
-        // }
+        public Weapon()
+        {
+            //Needed to load from database.
+        }
     }
 
     public enum WeaponType

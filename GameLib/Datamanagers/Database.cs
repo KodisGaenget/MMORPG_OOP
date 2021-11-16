@@ -92,7 +92,7 @@ namespace GameLib
 
         #region Recive functions
 
-        public Dictionary<int, string> GetAllItems()
+        internal Dictionary<int, string> GetAllItems()
         {
             string sql = "Exec GetAllItems";
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -101,7 +101,7 @@ namespace GameLib
             }
         }
 
-        public Armor GetArmorItem(int id)
+        internal Armor GetArmorItem(int id)
         {
             string sql = "Exec GetArmorItem @itemID;";
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -110,7 +110,7 @@ namespace GameLib
             }
         }
 
-        public Weapon GetWeaponItem(int id)
+        internal Weapon GetWeaponItem(int id)
         {
             string sql = "Exec GetWeaponItem @itemID;";
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -118,6 +118,25 @@ namespace GameLib
                 return connection.Query<Weapon>(sql, new { @itemID = id }).First();
             }
         }
+
+        internal Consumable GetConsumableItem(int id)
+        {
+            string sql = "Exec GetConsumableItem @itemID;";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                return connection.Query<Consumable>(sql, new { @itemID = id }).First();
+            }
+        }
+
+        internal Key GetKeyItem(int id)
+        {
+            string sql = "Exec GetKeyItem @itemID;";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                return connection.Query<Key>(sql, new { @itemID = id }).First();
+            }
+        }
+
 
         #endregion
 

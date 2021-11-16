@@ -17,6 +17,11 @@ namespace GameLib
             ConsumableType = consumableType;
             ItemType = itemType;
         }
+
+        public Consumable()
+        {
+            //Needed to load from database.
+        }
     }
     public enum ConsumableType
     {

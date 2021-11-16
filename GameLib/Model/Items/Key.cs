@@ -10,5 +10,10 @@ namespace GameLib
             Name = name;
             ItemType = itemType;
         }
+
+        public Key()
+        {
+            //Needed to load from database.
+        }
     }
 }
