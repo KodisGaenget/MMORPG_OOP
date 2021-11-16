@@ -19,6 +19,8 @@ namespace Characters
 
         public abstract int Attack();
 
+        public abstract int Block();
+
         public void ChangePosition(int newPos)
         {
             Position = newPos;
