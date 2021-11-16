@@ -1,17 +1,19 @@
 * Gör klart Enemy.cs
+ - Skapa uträkning för Combat.
+
 * Behöver vi NPC?
+* Skapa en level up plan
 * Skapa en Fight club : IFight
-    - tex. fightScene.fight(Player player, Enemy enemy)
-    - interface?
+    - tex.  new Combat(Player player, Enemy enemy, itemLoader) (Börjat skriva lite uträkningar.)
+    - interface? Olika sorters fights?
 * Skapa koppling till Room table i databasen.
 * RoomLoader
-* Gör klart Spells
-* Gör klart PlayerClasses
+* Gör klart Spells (Klar?)
+* Gör klart PlayerClasses (Saknas lite saker)
 
 * GameEngine
 
 * UI (Stort projekt)
-
 
 
 Kolla med Gustav:
