@@ -8,7 +8,13 @@ namespace Characters
 
         public override int Attack()
         {
-            return 0;
+            return Damage;
+        }
+
+        public override int Block()
+        {
+            //TODO Somehome return a blockprocentage.
+            throw new NotImplementedException();
         }
     }
 }
