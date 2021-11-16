@@ -14,12 +14,9 @@ namespace GameLib
 
     public enum ItemType
     {
-        Consumable,
         Armor,
-        Weapon,
+        Consumable,
         Key,
-        Michellangelo,
-        Kuk,
-        Hål
+        Weapon
     }
 }

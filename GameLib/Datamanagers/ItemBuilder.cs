@@ -17,5 +17,9 @@ namespace GameLib
         {
             db.Add_NewItem(newName, newPrice, newItemType, null, null, null, null, null, null, newAmToRest, newConsType, newMaxStack);
         }
+        public void AddKey(string newName, string newItemType, Nullable<int> newMaxStack)
+        {
+            db.Add_NewItem(newName, null, newItemType, null, null, null, null, null, null, null, null, newMaxStack);
+        }
     }
 }
