@@ -45,10 +45,11 @@ namespace ItemAdder
             Write("\nSet maximum damage: ");
             maxDmg = Convert.ToInt32(ReadLine());
 
-            WriteLine($"{type} created with the following stats: "); // Add details
+            WriteLine($"{type} created with the following stats:\nName: {name}\nPrice: {price}\nMinimum damage: {minDmg}\nMaximum damage: {maxDmg}"); // Add details
             builditem.AddWeapon(name, price, "Weapon", "Weapon", minDmg, maxDmg, type, 1);
             WriteLine("Weapon added. Press any key to return to the menu...");
             ReadKey();
+            ItemAdder.MainMenu.Run();
         }
     }
 }
