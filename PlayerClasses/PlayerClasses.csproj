@@ -6,6 +6,7 @@
 
     <ItemGroup>
     <ProjectReference Include="..\GameInterfaces\GameInterfaces.csproj" />
+    <ProjectReference Include="..\Spells\Spells.csproj" />
   </ItemGroup>
 
 </Project>

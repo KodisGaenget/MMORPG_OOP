@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using GameInterfaces;
+using PlayerClasses;
 
 namespace Characters
 {
@@ -32,22 +34,19 @@ namespace Characters
             return founded;
         }
 
-        // internal static KeyValuePair<string, int> FindItem(int searchedItem, string searchedSlot, IReadOnlyDictionary<string, int> items)
-        // {
-        //     KeyValuePair<string, int> founded = new();
+        public static IClass GetClass(string classToFind)
+        {
+            if (classToFind == "Mage")
+            {
+                return new Mage();
+            }
+            else if (classToFind == "Rogue")
+            {
+                return new Rogue();
+            }
+            return null;
+        }
 
-        //     foreach (KeyValuePair<string, int> item in items)
-        //     {
-        //         if (item.Key == searchedSlot)
-        //         {
-        //             founded = item;
-        //         }
-        //         if (item.Value == searchedItem)
-        //         {
-        //             founded = item;
-        //         }
-        //     }
-        //     return founded;
-        // }
+
     }
 }

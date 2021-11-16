@@ -25,6 +25,7 @@ namespace GameLib
 
         public void Start()
         {
+            System.Console.WriteLine(GetDefense(player));
             // playerLoader.GetDefense(itemLoader);
             // Console.WriteLine($"You are in {roomHandler.GetRoomName(player.Position)}");
             // player.Inventory.RemoveItem(1);
@@ -47,6 +48,31 @@ namespace GameLib
 
 
             //Console.Write($"1. Examine room\n2. Move to ");
+        }
+
+        public int GetDefense(Player player) //Inte här! Läggas i itemLoader?
+        {
+            int FightDefence = player.Armor;
+            foreach (var item in player.Equipment.GetEquipment())
+            {
+                if (itemLoader.GetItemType(item.Value) == "Armor")
+                {
+                    FightDefence += GetPlayerDef(item.Value);
+                }
+            }
+            return FightDefence;
+        }
+
+        private int GetPlayerDef(int itemId)
+        {
+            foreach (var item in itemLoader.armorList)
+            {
+                if (item.Id == itemId)
+                {
+                    return item.Defense;
+                }
+            }
+            return 0;
         }
     }
 }
