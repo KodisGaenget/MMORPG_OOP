@@ -59,3 +59,13 @@ $RECYCLE.BIN/
 /PlayerClasses/obj
 /ConsoleUI/bin
 /ConsoleUI/obj
+GameLib/obj/GameLib.csproj.nuget.dgspec.json
+GameLib/obj/GameLib.csproj.nuget.g.props
+GameLib/obj/project.assets.json
+GameLib/obj/project.nuget.cache
+GameLib/obj/Debug/net5.0/GameLib.assets.cache
+obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
+obj/Debug/net5.0/MMORPG_OOP.AssemblyInfo.cs
+obj/Debug/net5.0/MMORPG_OOP.AssemblyInfoInputs.cache
+obj/Debug/net5.0/MMORPG_OOP.csprojAssemblyReference.cache
+obj/Debug/net5.0/MMORPG_OOP.GeneratedMSBuildEditorConfig.editorconfig
