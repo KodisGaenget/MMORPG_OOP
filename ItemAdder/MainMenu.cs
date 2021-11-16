@@ -37,7 +37,7 @@ namespace ItemAdder
                     break;
 
                 case 2:
-                    // Key
+                    ItemAdder.CreateKey.Run();
                     break;
                 case 3:
                     ItemAdder.CreateWeapon.Run();
