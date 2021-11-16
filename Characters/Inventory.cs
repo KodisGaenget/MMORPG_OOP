@@ -27,12 +27,12 @@ namespace Characters
             }
         }
 
-        internal void AddItem(int newItem, int amount)
+        public void AddItem(int newItem, int amount)
         {
             items.Add(newItem, amount);
         }
 
-        internal void RemoveItem(int item, int amount = 1)
+        public void RemoveItem(int item, int amount = 1)
         {
             var itemToRemove = CheckAndFind.FindItem(item, GetInventory());
 

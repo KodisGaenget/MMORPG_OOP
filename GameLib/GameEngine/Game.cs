@@ -25,7 +25,7 @@ namespace GameLib
 
         public void Start()
         {
-            System.Console.WriteLine(GetDefense(player));
+
             // playerLoader.GetDefense(itemLoader);
             // Console.WriteLine($"You are in {roomHandler.GetRoomName(player.Position)}");
             // player.Inventory.RemoveItem(1);
@@ -48,6 +48,40 @@ namespace GameLib
 
 
             //Console.Write($"1. Examine room\n2. Move to ");
+        }
+
+        public void UseConsumable(int id)
+        {
+
+        }
+
+        private KeyValuePair<int, int> FindItemInInventory(int id)
+        {
+            foreach (var item in player.Inventory.GetInventory())
+            {
+                if (id == item.Key)
+                {
+                    return item;
+                }
+            }
+            return new();
+        }
+
+        private bool ConsumeItem(KeyValuePair<int, int> item)
+        {
+            foreach (var consumable in itemLoader.consumableList)
+            {
+                if (item.Key == consumable.Id)
+                {
+                    if (consumable.ConsumableType == ConsumableType.HealthPotion)
+                    {
+                        player.ChangeHealth(consumable.AmountToRestore);
+                        player.Inventory.RemoveItem(item.Key, 1);
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public int GetDefense(Player player) //Inte här! Läggas i itemLoader?
