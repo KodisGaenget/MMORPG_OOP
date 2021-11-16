@@ -80,11 +80,6 @@ namespace Characters
             return false;
         }
 
-        internal void ChangePosition(int newPos)
-        {
-            Position = newPos;
-        }
-
         public override string ToString()
         {
             return $"Id: {Id}, Name: {Name}, Class: {Class}, Original Hp: {OriginalHealth}, Current Hp: {CurrentHealth}, Power: {Power}, Armor: {Armor}, Damage: {Damage}, Level: {Level}, CurrentExp: {CurrentExp}";

@@ -1,0 +1,13 @@
+* Gör klart Enemy.cs
+* Behöver vi NPC?
+* Skapa en Fight club : IFight
+    - tex. fightScene.fight(Player player, Enemy enemy)
+    - interface?
+* Skapa koppling till Room table i databasen.
+* RoomLoader
+* Gör klart Spells
+* Gör klart PlayerClasses
+
+* GameEngine
+
+* UI (Stort projekt)
