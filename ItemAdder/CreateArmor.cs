@@ -17,33 +17,12 @@ namespace ItemAdder
         public override void Run()
         {
             Clear();
-            string name, slot, material = "";
+            string name;
             int price, def;
 
-            List<string> options = new();
+            string material = SetArmorType();
 
-            foreach (string item in Enum.GetNames(typeof(ArmorType)))
-            {
-                options.Add(item);
-            }
-
-            string prompt = "Choose armor type:";
-            Menu menu = new Menu(prompt, options);
-            int selectedIndex = menu.GetMenuIndex();
-            material = options[selectedIndex];
-
-            List<string> options1 = new();
-
-            foreach (string item in Enum.GetNames(typeof(Slot)))
-            {
-                if(item == "Weapon") { }
-                else options1.Add(item);
-            }
-
-            string prompt1 = "Choose armor slot:";
-            Menu menu1 = new Menu(prompt1, options1);
-            int selectedIndex1 = menu1.GetMenuIndex();
-            slot = options1[selectedIndex1];
+            string slot = SetArmorSlot();
 
             Write($"\nCreating {slot.ToLower()}.");
             Write("\nSet name: ");
@@ -60,6 +39,42 @@ namespace ItemAdder
             WriteLine("Armor added. Press any key to return to the menu...");
             ReadKey();
             ItemAdder.MainMenu.Run();
+        }
+        private string SetArmorSlot()
+        {
+            string slot;
+            List<string> options = new();
+
+            foreach (string item in Enum.GetNames(typeof(Slot)))
+            {
+                if (item == "Weapon") { }
+                else options.Add(item);
+            }
+
+            string prompt = "Choose armor slot:";
+            Menu menu1 = new Menu(prompt, options);
+            int selectedIndex1 = menu1.GetMenuIndex();
+            slot = options[selectedIndex1];
+
+            return slot;
+        }
+
+        private string SetArmorType()
+        {
+            string material;
+            List<string> options = new();
+
+            foreach (string item in Enum.GetNames(typeof(ArmorType)))
+            {
+                options.Add(item);
+            }
+
+            string prompt = "Choose armor type:";
+            Menu menu = new Menu(prompt, options);
+            int selectedIndex = menu.GetMenuIndex();
+            material = options[selectedIndex];
+
+            return material;
         }
     }
 }
