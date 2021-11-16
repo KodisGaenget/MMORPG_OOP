@@ -74,5 +74,33 @@ namespace GameLib
             }
             return 0;
         }
+
+
+        public Dictionary<string, int> GetAtkPower(Player player)
+        {
+
+            foreach (var item in player.Equipment.GetEquipment())
+            {
+                if (item.Key == "Weapon")
+                {
+                    return new(GetPlayerAtk(item.Value));
+                }
+            }
+            return new();
+        }
+
+        private Dictionary<string, int> GetPlayerAtk(int itemId)
+        {
+            Dictionary<string, int> FightAtk = new();
+            foreach (var item in itemLoader.weaponList)
+            {
+                if (item.Id == itemId)
+                {
+                    FightAtk.Add("Min", item.MinDamage);
+                    FightAtk.Add("Max", item.MaxDamage);
+                }
+            }
+            return FightAtk;
+        }
     }
 }
