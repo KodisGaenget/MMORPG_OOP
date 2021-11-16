@@ -27,6 +27,11 @@ namespace GameLib
             RoomExamined = false;
         }
 
+        public Room()
+        {
+
+        }
+
     }
 
 
