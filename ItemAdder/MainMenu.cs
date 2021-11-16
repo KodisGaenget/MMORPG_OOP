@@ -1,6 +1,8 @@
 using System;
 using static System.Console;
 using GameLib;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace ItemAdder
 {
@@ -15,7 +17,13 @@ namespace ItemAdder
         public override void Run()
         {
             string prompt = "Which item would you like to create?";
-            string[] options = { "Weapon", "Armor", "Consumable", "Key", "Exit" };
+            List<string> options = new();
+
+            foreach (string type in Enum.GetNames(typeof(ItemType)))
+            {
+                options.Add(type);
+            }
+
             Menu menu = new Menu(prompt, options);
             int selectedIndex = menu.GetMenuIndex();
             switch (selectedIndex)
@@ -43,38 +51,19 @@ namespace ItemAdder
             string name, type = "";
             int minDmg, price, maxDmg;
             string prompt = "Choose weapon type:";
-            string[] options = { "Daggers", "Throwing Star\n", "Spellbook", "Staff\n", "Warhammer", "Double Edged Axe\n", "Exit" };            
+
+            List<string> options = new();
+
+            foreach (string item in Enum.GetNames(typeof(WeaponType)))
+            {
+                options.Add(item);
+            }
+
             Menu menu = new Menu(prompt, options);
             int selectedIndex = menu.GetMenuIndex();
-            switch (selectedIndex)
+            for (int i = 0; i < options.Count; i++)
             {
-                case 0:
-                    type = options[0];
-                    break;
-
-                case 1:
-                    type = options[1];
-                    break;
-
-                case 2:
-                    type = options[2];
-                    break;
-
-                case 3:
-                     type = options[3];
-                    break;
-
-                case 4:
-                    type = options[4];
-                    break;
-
-                case 5:
-                     type = options[5];
-                    break;
-
-                case 6:
-                    type = options[6];
-                    break;
+                type = options[i];
             }
 
             Write($"\nYou chose to create a {type.ToLower()}.");
@@ -92,7 +81,7 @@ namespace ItemAdder
 
             WriteLine($"{type} created with the following stats: "); // Add details
             builditem.AddWeapon(name, price, "Weapon", "Weapon", minDmg, maxDmg, type, 1);
-            WriteLine("Weapon added.");
+            WriteLine("Weapon added. Press any key to return to the menu...");
             ReadKey();
             Run();
         }
