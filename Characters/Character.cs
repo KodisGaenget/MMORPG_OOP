@@ -14,6 +14,9 @@ namespace Characters
         public int Level { get; protected set; }
         public int Position { get; protected set; }
 
+        //TODO Lägg till i Databasen:
+        public int CoinPurse { get; set; }
+
         public abstract int Attack();
 
         public void ChangePosition(int newPos)

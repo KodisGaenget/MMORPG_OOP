@@ -10,6 +10,7 @@ namespace GameLib
         public List<Armor> armorList = new();
         public List<Weapon> weaponList = new();
         public List<Consumable> consumableList = new();
+        public List<Key> keyList = new();
         Database db;
 
         public ItemLoader(Database db)
@@ -27,7 +28,7 @@ namespace GameLib
             }
             catch (Exception e)
             {
-                System.Console.WriteLine("Databasfel", e);
+                System.Console.WriteLine("Database Error: ItemLoader-E0024", e);
                 return false;
             }
             return true;
@@ -47,7 +48,11 @@ namespace GameLib
                 }
                 else if (item.Value == "Consumable")
                 {
-                    //consumableList.Add(db.GetConsumableItem(item.Key));
+                    consumableList.Add(db.GetConsumableItem(item.Key));
+                }
+                else if (item.Value == "Key")
+                {
+                    //keyList.Add(db.GetKeyItem(item.Key));
                 }
             }
         }

@@ -30,7 +30,9 @@ namespace Characters
 
         public override int Attack()
         {
-            throw new NotImplementedException();
+            charClass.MainAbility();
+            charClass.SecondaryAbility();
+            return 0;
         }
 
         public void Equip(string slot, int itemId)

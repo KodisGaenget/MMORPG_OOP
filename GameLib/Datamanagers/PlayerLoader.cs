@@ -7,8 +7,6 @@ namespace GameLib
     {
         private Database db;
         private Player p;
-        private Inventory inv = new();
-        private Equipment eq = new();
         private int id;
 
 
@@ -21,6 +19,8 @@ namespace GameLib
 
         public bool Load()
         {
+            Inventory inv = new();
+            Equipment eq = new();
             p = db.LoadPlayer(id);
             inv.ImportInventory(db.LoadInventory(p.Id));
             eq.ImportEquipment(db.LoadEquipment(p.Id));

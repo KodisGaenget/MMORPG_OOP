@@ -2,11 +2,14 @@
 
 namespace Characters
 {
-    public abstract class Enemy
+    public class Enemy : Character
     {
-        public int BaseDamage { get; }
+        public int LootID { get; set; }
+        public int expValue { get; set; }
 
-        public abstract int Attack();
+        public override int Attack()
+        {
+            return 0;
+        }
     }
-
 }
