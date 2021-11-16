@@ -29,7 +29,7 @@ namespace ItemAdder
             switch (selectedIndex)
             {
                 case 0:
-                    // Armor
+                    ItemAdder.CreateArmor.Run();
                     break;
 
                 case 1:
