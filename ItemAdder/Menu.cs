@@ -1,13 +1,15 @@
 using System;
+using System.Collections.Generic;
 
 namespace ItemAdder
 {
     public class Menu
     {
         private int SelectedIndex;
-        private string[] Options;
+        // private string[] Options;
+        private List<string> Options = new();
         private string Prompt;
-        public Menu(string prompt, string[] options)
+        public Menu(string prompt, List<string> options)
         {
             Prompt = prompt;
             Options = options;
@@ -18,7 +20,7 @@ namespace ItemAdder
         {
             Console.WriteLine(Prompt);
 
-            for (int i = 0; i < Options.Length; i++)
+            for (int i = 0; i < Options.Count; i++)
             {
                 string currentOption = Options[i];
                 string prefix;
@@ -50,7 +52,7 @@ namespace ItemAdder
                 if (keyPressed == ConsoleKey.DownArrow)
                 {
                     SelectedIndex++;
-                    if (SelectedIndex == Options.Length)
+                    if (SelectedIndex == Options.Count)
                     {
                         SelectedIndex = 0;
                     }
@@ -61,7 +63,7 @@ namespace ItemAdder
                     SelectedIndex--;
                     if (SelectedIndex == -1)
                     {
-                        SelectedIndex = Options.Length - 1;
+                        SelectedIndex = Options.Count - 1;
                     }
                 }
                 // Hanterar piltangenter end

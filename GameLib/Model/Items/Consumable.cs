@@ -8,7 +8,7 @@ namespace GameLib
         public ConsumableType ConsumableType { get; set; }
         public int MaxStack { get; set; }
 
-        public Consumable(string name, int id, int price, int amountToRestore, ConsumableType consumableType, String itemType)
+        public Consumable(string name, int id, int price, int amountToRestore, ConsumableType consumableType, ItemType itemType)
         {
             Name = name;
             Id = id;

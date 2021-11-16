@@ -8,7 +8,7 @@ namespace GameLib
         public int MaxDamage { get; set; }
         public WeaponType WeaponType { get; set; }
 
-        public Weapon(string name, int id, int price, int minDamage, int maxDamage, WeaponType type, Slot slot, String itemType)
+        public Weapon(string name, int id, int price, int minDamage, int maxDamage, WeaponType type, Slot slot, ItemType itemType)
         {
             Name = name;
             Id = id;

@@ -8,7 +8,7 @@ namespace GameLib
 
         public ArmorType Material { get; set; }
 
-        public Armor(string name, int id, int price, int defense, Slot slot, ArmorType material, string itemType)
+        public Armor(string name, int id, int price, int defense, Slot slot, ArmorType material, ItemType itemType)
         {
             Name = name;
             Id = id;
