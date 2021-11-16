@@ -5,20 +5,25 @@ namespace GameLib
 {
     public class Room
     {
-        public int RoomID { get; set; }
-        public string RoomName { get; set; }
-        public string RoomDescription { get; set; }
-        public List<int> ConnectingRooms { get; set; }
-        public string ExamineRoomText { get; set; }
-        public bool RoomExamined { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string ExamineRoom { get; set; }
 
-        public Room(int _roomID, string _roomName, string _roomDescription, string _examineRoomText, List<int> _connectingRoomsID)
+        public bool RoomExamined { get; set; }
+        public Room North { get; set; }
+        public Room East { get; set; }
+        public Room South { get; set; }
+        public Room West { get; set; }
+        public int? ItemInRoomID { get; set; }
+        public int? EnemyInRoomID { get; set; }
+
+        public Room(int _Id, string _name, string _description, string _examineRoom)
         {
-            this.RoomID = _roomID;
-            this.RoomName = _roomName;
-            this.RoomDescription = _roomDescription;
-            this.ConnectingRooms = _connectingRoomsID;
-            this.ExamineRoomText = _examineRoomText;
+            ID = _Id;
+            Name = _name;
+            Description = _description;
+            ExamineRoom = _examineRoom;
             RoomExamined = false;
         }
 
