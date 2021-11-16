@@ -44,6 +44,10 @@ namespace Characters
             {
                 return new Rogue();
             }
+            else if (classToFind == "Warrior")
+            {
+                return new Warrior();
+            }
             return null;
         }
 
