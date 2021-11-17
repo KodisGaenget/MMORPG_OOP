@@ -11,15 +11,22 @@ namespace Combat
         Player player;
         Enemy enemy;
         ItemLoader itemLoader;
-        bool combatOver = false;
+        public bool combatOver = false;
+        Random r = new Random();
 
         public CombatSystem(Player player, Enemy enemy, ItemLoader itemLoader)
         {
             this.player = player;
             this.enemy = enemy;
             this.itemLoader = itemLoader;
+        }
+
+        void TurnHandler()
+        {
 
         }
+
+
 
         public string PlayerAttack(AttackType attackType)
         {
@@ -62,13 +69,14 @@ namespace Combat
         {
             int minDamage = 0;
             int maxDamage = 0;
-            Random r = new Random();
+
             foreach (var item in player.Equipment.GetEquipment())
             {
-                if (item.Value == itemLoader.GetWeaponDetails(item.Value).Id)
+                Weapon weapon = itemLoader.GetWeaponDetails(item.Value);
+                if (item.Value == weapon.Id)
                 {
-                    minDamage = itemLoader.GetWeaponDetails(item.Value).MinDamage;
-                    maxDamage = itemLoader.GetWeaponDetails(item.Value).MaxDamage;
+                    minDamage = weapon.MinDamage;
+                    maxDamage = weapon.MaxDamage;
                 }
             }
             return r.Next(minDamage, maxDamage);
