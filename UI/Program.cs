@@ -9,8 +9,11 @@ namespace UI
         {
             RoomHandler roomHandler = new();
             Game game = new(roomHandler);
-            GameScene myGameScene = new(game);
-            myGameScene.Start(game);
+            // GameScene myGameScene = new(game);
+            // myGameScene.Start(game);
+            game.SetChoosenPlayer(1);
+            TestMenu menu = new(game);
+            menu.Run();
         }
     }
 }
