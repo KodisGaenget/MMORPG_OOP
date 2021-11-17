@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using GameInterfaces;
-using PlayerClasses;
 
 namespace Characters
 {
@@ -26,6 +24,18 @@ namespace Characters
             charClass = CheckAndFind.GetClass(Class);
             Inventory = new();
             inDb = true;
+        }
+
+        public string UpdateLevel()
+        {
+            int oldLevel = Level;
+            Level level = new();
+            Level = level.GetLevel(CurrentExp);
+            if (oldLevel < Level)
+            {
+                return $"You advanved from level {oldLevel} to level {Level}";
+            }
+            return $"You are level {Level}";
         }
 
         public override int Attack()
