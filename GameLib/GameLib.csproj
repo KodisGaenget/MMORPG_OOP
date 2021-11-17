@@ -10,6 +10,7 @@
             <ProjectReference Include="..\DataManager\DataManager.csproj" />
             <ProjectReference Include="..\Items\Items.csproj" />
             <ProjectReference Include="..\GameEnums\GameEnums.csproj" />
+            <ProjectReference Include="..\Combat\Combat.csproj" />
   </ItemGroup>
 
 </Project>
