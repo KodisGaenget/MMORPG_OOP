@@ -83,6 +83,30 @@ namespace DataManager
             return new();
         }
 
+        public Consumable GetConsumableDetails(int id)
+        {
+            foreach (var item in consumableList)
+            {
+                if (item.Id == id)
+                {
+                    return item;
+                }
+            }
+            return new();
+        }
+
+        public Key GetKeyDetails(int id)
+        {
+            foreach (var item in keyList)
+            {
+                if (item.Id == id)
+                {
+                    return item;
+                }
+            }
+            return new();
+        }
+
         public string GetItemType(int Id)
         {
             foreach (var item in itemList)
