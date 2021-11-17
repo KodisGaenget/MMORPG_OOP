@@ -10,17 +10,15 @@ namespace GameLib
         public RoomHandler roomHandler;
         Database db = new();
         public Player player;
+        PlayerLoader playerLoader;
         public ItemLoader itemLoader;
 
 
         public Game(RoomHandler _roomHandler)
         {
             this.roomHandler = _roomHandler;
-            PlayerLoader playerLoader = new(db, 1);
+            playerLoader = new(db);
             itemLoader = new(db);
-            player = playerLoader.GetCharacter();
-            Start();
-            PlayerSaver playerSaver = new(db, player);
         }
 
         public void Start()
@@ -42,12 +40,23 @@ namespace GameLib
             //     Console.WriteLine(roomHandler.GetRoomName(room));
             // }
 
-            Console.WriteLine("Tryck Enter för att Spara och Avsluta");
-            Console.ReadLine();
-            PlayerSaver playerSaver = new(db, player); //När detta objektskapas, sparas players/inventory och eq.
+            //Console.WriteLine("Tryck Enter för att Spara och Avsluta");
+            //Console.ReadLine();
+            // PlayerSaver playerSaver = new(db, player); //När detta objektskapas, sparas players/inventory och eq.
 
 
             //Console.Write($"1. Examine room\n2. Move to ");
+        }
+
+
+        public void SavePlayer()
+        {
+            PlayerSaver playerSaver = new(db, player);
+        }
+
+        public void SetChoosenPlayer(int id)
+        {
+            player = playerLoader.LoadChoosenPlayer(id);
         }
 
         public void UseConsumable(int id)
