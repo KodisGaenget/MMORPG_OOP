@@ -10,11 +10,17 @@ namespace GameLib
         private int id;
 
 
-        public PlayerLoader(Database db, int id)
+        public PlayerLoader(Database db)
+        {
+            this.db = db;
+        }
+
+        public Player LoadChoosenPlayer(int id)
         {
             this.id = id;
-            this.db = db;
             Load();
+            return GetCharacter();
+
         }
 
         public bool Load()
@@ -30,7 +36,7 @@ namespace GameLib
             return true;
         }
 
-        public Player GetCharacter()
+        private Player GetCharacter()
         {
             return p;
         }
