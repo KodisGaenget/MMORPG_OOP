@@ -59,7 +59,14 @@ PlayerClasses/bin
 PlayerClasses/obj
 ConsoleUI/bin
 ConsoleUI/obj
-Website/obj/
+DataManager/obj/
+DataManager/bin/
+Items/obj/
+Items/bin/
+Experimental/obj/
+Experimental/bin/
+GameEnums/obj/
+GameEnums/bin/
 ItemAdder/obj
 ItemAdder/bin
 Spells/bin/

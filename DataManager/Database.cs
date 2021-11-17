@@ -3,10 +3,10 @@ using System.Data.SqlClient;
 using System.Collections.Generic;
 using System.Linq;
 using System;
-
+using Items;
 using Characters;
 
-namespace GameLib
+namespace DataManager
 {
     public class Database
     {

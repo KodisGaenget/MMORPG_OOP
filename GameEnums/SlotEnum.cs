@@ -1,6 +1,6 @@
 
 
-namespace GameLib
+namespace GameEnums
 {
     public enum Slot
     {

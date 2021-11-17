@@ -1,6 +1,6 @@
-using System;
+using GameEnums;
 
-namespace GameLib
+namespace Items
 {
     public class Weapon : Item
     {
@@ -25,13 +25,5 @@ namespace GameLib
         }
     }
 
-    public enum WeaponType
-    {
-        Daggers,
-        ThrowingStar,
-        DoubleEdgedAxe,
-        Warhammer,
-        Staff,
-        SpellBook
-    }
+
 }

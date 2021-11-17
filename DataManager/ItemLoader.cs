@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
-using GameInterfaces;
+using Items;
 
-namespace GameLib
+
+namespace DataManager
 {
-    public class ItemLoader : ILoadable
+    public class ItemLoader
     {
         public Dictionary<int, string> itemList;
         public List<Armor> armorList = new();

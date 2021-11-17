@@ -1,6 +1,6 @@
-using System;
+using GameEnums;
 
-namespace GameLib
+namespace Items
 {
     public abstract class Item
     {
@@ -12,11 +12,5 @@ namespace GameLib
         public Slot Slot { get; set; }
     }
 
-    public enum ItemType
-    {
-        Armor,
-        Consumable,
-        Key,
-        Weapon
-    }
+
 }

@@ -1,6 +1,6 @@
-using System;
+using GameEnums;
 
-namespace GameLib
+namespace Items
 {
     public class Armor : Item
     {
@@ -23,12 +23,5 @@ namespace GameLib
         {
             //Needed to load from database.
         }
-    }
-
-    public enum ArmorType
-    {
-        Cloth,
-        Leather,
-        Plate
     }
 }

@@ -1,6 +1,6 @@
-using System;
+using GameEnums;
 
-namespace GameLib
+namespace Items
 {
     public class Key : Item      // Miscellaneous
     {

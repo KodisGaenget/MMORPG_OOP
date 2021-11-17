@@ -1,10 +1,9 @@
 ﻿using Characters;
 using System;
-using GameInterfaces;
 
-namespace GameLib
+namespace DataManager
 {
-    internal class PlayerSaver : ISaveable
+    public class PlayerSaver
     {
         private Database db;
         private Player p;

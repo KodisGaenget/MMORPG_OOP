@@ -1,6 +1,6 @@
-using System;
+using GameEnums;
 
-namespace GameLib
+namespace Items
 {
     public class Consumable : Item
     {
@@ -23,12 +23,5 @@ namespace GameLib
             //Needed to load from database.
         }
     }
-    public enum ConsumableType
-    {
-        HealthPotion,
-        PowerPotion,
-        ArmorPotion,
-        DamagePotion,
-        CritPotion
-    }
+
 }

@@ -1,9 +1,9 @@
 ﻿using Characters;
 using GameInterfaces;
 
-namespace GameLib
+namespace DataManager
 {
-    internal class PlayerLoader : ILoadable
+    public class PlayerLoader
     {
         private Database db;
         private Player p;

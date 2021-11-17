@@ -4,12 +4,12 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Characters\Characters.csproj" />
+    <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+      <ProjectReference Include="..\Characters\Characters.csproj" />
         <ProjectReference Include="..\GameInterfaces\GameInterfaces.csproj" />
-            <ProjectReference Include="..\DataManager\DataManager.csproj" />
             <ProjectReference Include="..\Items\Items.csproj" />
-            <ProjectReference Include="..\GameEnums\GameEnums.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 using System;
 
-namespace GameLib
+namespace DataManager
 {
     public class BuildItem
     {

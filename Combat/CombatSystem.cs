@@ -1,6 +1,8 @@
 ﻿using System;
 using Characters;
-using GameLib;
+using DataManager;
+using Items;
+using GameEnums;
 
 namespace Combat
 {

@@ -1,8 +1,9 @@
 using System;
 using static System.Console;
-using GameLib;
-using System.Linq;
+using GameEnums;
 using System.Collections.Generic;
+using DataManager;
+
 
 namespace ItemAdder
 {

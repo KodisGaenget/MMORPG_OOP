@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Characters;
+using DataManager;
+using GameEnums;
 
 
 namespace GameLib
