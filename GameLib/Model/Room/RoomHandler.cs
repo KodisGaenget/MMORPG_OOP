@@ -62,6 +62,12 @@ namespace GameLib
             allRooms.Add(new Room(9, "Torture chamber", "Room description string", "Room Examine string", null, 10, null, 8));
             allRooms.Add(new Room(10, "Prison cells", "Room description string", "Room Examine string", null, null, null, 9));
             allRooms.Add(new Room(11, "Observatory", "Room description string", "Room Examine string", null, null, 8, null));
+            AddItemToRoom();
+        }
+
+        private void AddItemToRoom()
+        {
+            allRooms[8].ItemInRoomID = 31;
         }
     }
 }
