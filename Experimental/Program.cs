@@ -14,11 +14,6 @@ namespace Experimental
 
         public void DisplayInfo()
         {
-            Console.BackgroundColor = Color;
-            Console.Write($"--- {Characters.Player.} ---");
-            Console.ResetColor();
-            Console.ForegroundColor = Color;
-            // Console.WriteLine($"\n{TextArt}\n");
 
             //      public int Id { get; private init; }
             // public string Name { get; private init; }

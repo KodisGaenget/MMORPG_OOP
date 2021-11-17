@@ -1,4 +1,5 @@
 ﻿using System;
+using GameLib;
 
 namespace UI
 {
@@ -6,7 +7,10 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("");
+            RoomHandler roomHandler = new();
+            Game game = new(roomHandler);
+            GameScene myGameScene = new(game);
+            myGameScene.Start(game);
         }
     }
 }
