@@ -30,9 +30,15 @@ namespace Characters
 
         public override int Attack()
         {
-            charClass.MainAbility();
-            charClass.SecondaryAbility();
-            return 0;
+            // charClass.MainAbility(); //TODO Create method for MainAbility in Player
+            // charClass.SecondaryAbility(); //TODO Create method fot SecondAbility in Player.
+            return Damage;
+        }
+
+        public override int Block()
+        {
+            //TODO Somehow return a blockprocentage
+            throw new NotImplementedException();
         }
 
         public void Equip(string slot, int itemId)
