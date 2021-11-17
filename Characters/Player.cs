@@ -69,25 +69,6 @@ namespace Characters
         }
 
 
-        public bool ChangeHealth(int value)
-        {
-            int newHp = CurrentHealth + value;
-
-            if (newHp >= OriginalHealth)
-            {
-                CurrentHealth = OriginalHealth;
-            }
-            else if (newHp < OriginalHealth)
-            {
-                CurrentHealth = newHp;
-            }
-            if (CurrentHealth <= 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
         public override string ToString()
         {
             return $"Id: {Id}, Name: {Name}, Class: {Class}, Original Hp: {OriginalHealth}, Current Hp: {CurrentHealth}, Power: {Power}, Armor: {Armor}, Damage: {Damage}, Level: {Level}, CurrentExp: {CurrentExp}";

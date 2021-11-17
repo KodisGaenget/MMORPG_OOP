@@ -26,6 +26,25 @@ namespace Characters
             Position = newPos;
         }
 
+        public bool ChangeHealth(int value)
+        {
+            int newHp = CurrentHealth + value;
+
+            if (newHp >= OriginalHealth)
+            {
+                CurrentHealth = OriginalHealth;
+            }
+            else if (newHp < OriginalHealth)
+            {
+                CurrentHealth = newHp;
+            }
+            if (CurrentHealth <= 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
 
     }
 
