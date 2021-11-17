@@ -26,15 +26,13 @@ namespace Combat
 
         }
 
-
-
         public string PlayerAttack(AttackType attackType)
         {
             int dealtDmg = 0;
             string EndingMessage = "";
             if (attackType == AttackType.Attack)
             {
-                dealtDmg = CombatResult(CalcPlayerDmg() + player.Attack(), "player");
+                dealtDmg = CombatResult(CalcPlayerDmg() + player.Attack(), player, enemy, ArmorResist(player, enemy));
                 EndingMessage = CheckCombatOver();
             }
             else if (attackType == AttackType.MainAbility)
@@ -54,15 +52,24 @@ namespace Combat
                 return $"You dealt {dealtDmg} to {enemy.Name}.";
             }
         }
+        public int ArmorResist(Character dealer, Character taker)
+        {
+            //TODO Fixa legitresist
+            int leveldiff = 2 * (dealer.Level - taker.Level) / 100 + 1;
+            return leveldiff + 1 - (100) / (taker.Armor);
+        }
+
 
         public int EnemyAttack()
         {
             return enemy.Attack();
         }
-        private int CombatResult(int dmg, string dealer)
+        private int CombatResult(int dmg, Character dealer, Character taker, int resist)
         {
+            int realDmg = dmg * resist;
+            enemy.ChangeHealth(realDmg);
+            return realDmg;
             //TODO Räkna ut hur mycket skada som görs på motståndaren.
-            throw new NotImplementedException();
         }
 
         private int CalcPlayerDmg()
