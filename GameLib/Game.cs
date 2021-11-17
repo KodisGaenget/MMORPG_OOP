@@ -14,6 +14,7 @@ namespace GameLib
         public Player player;
         PlayerLoader playerLoader;
         public ItemLoader itemLoader;
+        public CombatSystem fight;
 
 
         public Game(RoomHandler _roomHandler)
@@ -25,12 +26,9 @@ namespace GameLib
 
         #region GameActions
 
-        public void StartCombat(Enemy enemy)
+        public void StartNewFight(Enemy enemy)
         {
-            CombatSystem fight = new(player, enemy, itemLoader);
-            while (!fight.combatOver)
-            {
-            }
+            fight = new(player, enemy, itemLoader);
         }
 
         #endregion
