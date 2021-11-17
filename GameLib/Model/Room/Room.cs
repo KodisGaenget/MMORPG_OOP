@@ -29,13 +29,5 @@ namespace GameLib
             West = _west;
             RoomExamined = false;
         }
-
-        public Room()
-        {
-
-        }
-
     }
-
-
 }
