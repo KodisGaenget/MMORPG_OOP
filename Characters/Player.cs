@@ -24,16 +24,16 @@ namespace Characters
             inDb = true;
         }
 
-        public string UpdateLevel()
+        public bool UpdateLevel()
         {
             int oldLevel = Level;
             Level level = new();
             Level = level.GetLevel(CurrentExp);
             if (oldLevel < Level)
             {
-                return $"You advanved from level {oldLevel} to level {Level}";
+                return true;
             }
-            return $"You are level {Level}";
+            return false;
         }
 
         public void Equip(string slot, int itemId)
