@@ -4,101 +4,146 @@ using DataManager;
 using Items;
 using GameEnums;
 using GameInterfaces;
+using System.Threading;
 
 namespace Combat
 {
     public class CombatSystem
     {
         IFightable fighter1;
-        int fighter1minDmg = 0;
-        int fighter1maxDmg = 0;
-        int fighter1Penetration = 0;
         int fighter1Armor = 0;
 
 
         IFightable fighter2;
-        int fighter2minDmg = 0;
-        int fighter2maxDmg = 0;
-        int fighter2Penetration = 0;
         int fighter2Armor = 0;
 
 
         ItemLoader itemLoader;
         public bool combatOver = false;
         Random r = new Random();
+        string combatLog = "";
         bool fighter1Turn = false;
+        string EndingMessage = "";
 
         public CombatSystem(IFightable fighter1, IFightable fighter2, ItemLoader itemLoader)
         {
             this.fighter1 = fighter1;
             this.fighter2 = fighter2;
             this.itemLoader = itemLoader;
+            SetFighterStats();
             fighter1Turn = r.Next(2) == 0;
         }
 
-        void Run()
+        public string Run()
         {
+            while (!combatOver)
+            {
+                if (fighter1Turn)
+                {
+                    Turn newTurn = new(fighter1, fighter2, CalcDmgDealt(fighter1, fighter2), Resist(fighter1, fighter2, fighter2Armor));
+                    combatLog += newTurn.Attack() + "\n";
 
+                }
+                else if (!fighter1Turn)
+                {
+                    Turn newTurn = new(fighter1, fighter2, CalcDmgDealt(fighter1, fighter2), Resist(fighter1, fighter2, fighter2Armor));
+                    combatLog += newTurn.Attack() + "\n";
+                }
+                EndingMessage = CheckCombatOver();
+                Thread.Sleep(100);
+            }
+            return EndingMessage;
         }
 
-        public int ArmorResist(Character dealer, Character taker)
+        private int CalcDmgDealt(IFightable dealer, IFightable taker)
         {
-            //TODO Fixa legitresist
+            int weaponDmg = r.Next(dealer.MinDamage, dealer.MaxDamage);
+            return dealer.Damage + weaponDmg;
+        }
+
+        private int Resist(IFightable dealer, IFightable taker, int takerArmor)
+        {
+            //TODO Fixa legitresist NÄSTAN KLAR!
             int leveldiff = 2 * (dealer.Level - taker.Level) / 100 + 1;
-            return leveldiff + 1 - (100) / (taker.Armor);
+            return leveldiff * 1 - (taker.Armor - dealer.Penetration) / 100;
         }
 
-        // private void GetMinMaxDmg()
-        // {
-        //     int minDamage = 0;
-        //     int maxDamage = 0;
+        private void SetFighterStats()
+        {
 
-        //     foreach (var item in fighter1.Equipment.GetEquipment())
-        //     {
-        //         Weapon weapon = itemLoader.GetWeaponDetails(item.Value);
-        //         if (item.Value == weapon.Id)
-        //         {
-        //             minDamage = weapon.MinDamage;
-        //             maxDamage = weapon.MaxDamage;
-        //         }
-        //     }
-        // }
+            GetArmorStats();
+            GetWeaponStats();
 
-        // private int CalcPlayerDef()
-        // {
-        //     int defence = 0;
-        //     foreach (var item in player.Equipment.GetEquipment())
-        //     {
-        //         if (item.Key == itemLoader.GetArmorDetails(item.Value).Slot.ToString())
-        //         {
-        //             defence += itemLoader.GetArmorDetails(item.Value).Defense;
-        //         }
-        //     }
-        //     return defence;
-        // }
+        }
 
-        //     private string CheckCombatOver()
-        //     {
-        //         if (enemy.CurrentHealth <= 0)
-        //         {
-        //             combatOver = true;
-        //             return "You won the combat!";
-        //         }
-        //         else if (player.CurrentHealth <= 0)
-        //         {
-        //             combatOver = true;
-        //             return "You died!";
-        //         }
-        //         //Om detta retuneras, fortsätt fighten.
-        //         return "";
-        // }
+        private void GetWeaponStats()
+        {
+            foreach (var item in fighter1.GetItemIdsFromEquipment())
+            {
+                Weapon weapon = itemLoader.GetWeaponDetails(item);
+                if (item == weapon.Id)
+                {
+                    fighter1.MinDamage = weapon.MinDamage;
+                    fighter1.MaxDamage = weapon.MaxDamage;
+                }
+            }
+
+            foreach (var item in fighter2.GetItemIdsFromEquipment())
+            {
+                Weapon weapon = itemLoader.GetWeaponDetails(item);
+                if (item == weapon.Id)
+                {
+                    fighter2.MinDamage = weapon.MinDamage;
+                    fighter2.MaxDamage = weapon.MaxDamage;
+                }
+            }
+        }
+
+        private void GetArmorStats()
+        {
+            foreach (var item in fighter1.GetItemIdsFromEquipment())
+            {
+                Armor armor = itemLoader.GetArmorDetails(item);
+                if (item == armor.Id)
+                {
+                    fighter1Armor += armor.Defense;
+                }
+            }
+            foreach (var item in fighter2.GetItemIdsFromEquipment())
+            {
+                Armor armor = itemLoader.GetArmorDetails(item);
+                if (item == armor.Id)
+                {
+                    fighter2Armor += armor.Defense;
+                }
+            }
+        }
+
+        private string CheckCombatOver()
+        {
+            if (fighter1.CurrentHealth == 0)
+            {
+                combatOver = true;
+                return "You won the combat!";
+            }
+            else if (fighter2.CurrentHealth == 0)
+            {
+                combatOver = true;
+                return "You died!";
+            }
+            //Om detta retuneras, fortsätt fighten.
+            return "";
+        }
     }
-
-    public enum AttackType
-    {
-        Attack,
-        MainAbility,
-        SecondaryAbility
-    }
-
 }
+
+
+
+// public enum AttackType
+// {
+//     Attack,
+//     MainAbility,
+//     SecondaryAbility
+// }
+
+
