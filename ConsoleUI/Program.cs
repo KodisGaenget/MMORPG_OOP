@@ -27,6 +27,10 @@ namespace ConsoleUI
             Enemy enemy = new();
             Game game = new(roomHandler);
 
+            game.SetChoosenPlayer(1, 1);
+            game.SetChoosenPlayer(2, 2);
+            game.StartNewFight(game.player2);
+
 
             //game.Start();
 
