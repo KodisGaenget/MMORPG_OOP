@@ -1,25 +1,42 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using GameInterfaces;
+
 
 namespace Characters
 {
-    public abstract class Character
+    public abstract class Character : IFightable
     {
         public int Id { get; private init; }
-        public string Name { get; private init; }
-        public int OriginalHealth { get; protected set; }
-        public int CurrentHealth { get; protected set; }
-        public int Power { get; protected set; }
-        public int Armor { get; protected set; }
-        public int Damage { get; protected set; }
-        public int Level { get; protected set; }
-        public int Position { get; protected set; }
-
-        //TODO Lägg till i Databasen:
+        public string Name { get; init; }
+        public int OriginalHealth { get; set; }
+        public int CurrentHealth { get; set; }
+        public int Power { get; set; }
+        public int Armor { get; set; }
+        public int Damage { get; set; }
+        public int Level { get; set; }
+        public int Position { get; set; }
+        public Equipment Equipment { get; protected set; }
         public int CoinPurse { get; set; }
 
-        public abstract int Attack();
+        public int Attack()
+        {
+            return Damage;
+        }
 
-        public abstract int Block();
+        public int Block()
+        {
+            return 0;
+        }
+
+        public List<int> GetItemFromEquipment()
+        {
+            List<int> idList = new();
+            foreach (var item in Equipment.GetEquipment())
+            {
+                idList.Add(item.Value);
+            }
+            return idList;
+        }
 
         public void ChangePosition(int newPos)
         {
@@ -40,9 +57,10 @@ namespace Characters
             }
             if (CurrentHealth <= 0)
             {
-                return true;
+                CurrentHealth = 0;
+                return false;
             }
-            return false;
+            return true;
         }
 
 
