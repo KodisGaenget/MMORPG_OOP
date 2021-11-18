@@ -3,7 +3,7 @@ using Characters;
 using DataManager;
 using GameEnums;
 using Combat;
-
+using GameInterfaces;
 
 namespace GameLib
 {
@@ -12,6 +12,7 @@ namespace GameLib
         public RoomHandler roomHandler;
         Database db = new();
         public Player player;
+        public Player player2;
         PlayerLoader playerLoader;
         public ItemLoader itemLoader;
         public CombatSystem fight;
@@ -26,9 +27,10 @@ namespace GameLib
 
         #region GameActions
 
-        public void StartNewFight(Enemy enemy)
+        public void StartNewFight(IFightable enemy)
         {
             fight = new(player, enemy, itemLoader);
+            System.Console.WriteLine(fight.Run());
         }
 
         #endregion
@@ -39,9 +41,17 @@ namespace GameLib
             PlayerSaver playerSaver = new(db, player);
         }
 
-        public void SetChoosenPlayer(int id)
+        public void SetChoosenPlayer(int id, int person)
         {
-            player = playerLoader.LoadChoosenPlayer(id);
+            if (person == 1)
+            {
+                player = playerLoader.LoadChoosenPlayer(id);
+            }
+            if (person == 2)
+            {
+                player2 = playerLoader.LoadChoosenPlayer(id);
+            }
+
         }
 
         public void UseConsumable(int id)
