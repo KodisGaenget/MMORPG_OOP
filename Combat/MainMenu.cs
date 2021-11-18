@@ -15,11 +15,12 @@ namespace Combat.UI
             // Constructor
         }
 
-        public string Run(IFightable player)
+        public string Run(IFightable player, IFightable enemy)
         {
+            string headerinfo = $"You have: {player.CurrentHealth}hp left -- Enemys has: {enemy.CurrentHealth}hp left\n";
             string prompt = combatLog;
             List<string> options = new List<string> { "Attack", "Inventory", "Escape fight" };
-            Menu menu = new Menu(prompt, options);
+            Menu menu = new Menu(prompt, options, headerinfo);
             int selectedIndex = menu.GetMenuIndex();
             switch (selectedIndex)
             {

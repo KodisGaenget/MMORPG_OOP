@@ -8,16 +8,18 @@ namespace Combat.UI
         private int SelectedIndex;
         private List<string> Options = new();
         private string Prompt;
-        public Menu(string prompt, List<string> options)
+        private string header;
+        public Menu(string prompt, List<string> options, string header)
         {
             Prompt = prompt;
             Options = options;
+            this.header = header;
             SelectedIndex = 0;
         }
 
         private void DisplayOptions()
         {
-
+            Console.Write(header);
             for (int i = 0; i < Options.Count; i++)
             {
                 string currentOption = Options[i];

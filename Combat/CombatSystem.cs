@@ -41,7 +41,7 @@ namespace Combat
                 if (fighter1Turn)
                 {
                     MainMenu newMenu = new(combatLog);
-                    string menuoption = newMenu.Run(fighter1);
+                    string menuoption = newMenu.Run(fighter1, fighter2);
                     if (menuoption == "Attack")
                     {
                         Turn newTurn = new(fighter1, fighter2, CalcDmgDealt(fighter1, fighter2), Resist(fighter1, fighter2, fighter2Armor));
