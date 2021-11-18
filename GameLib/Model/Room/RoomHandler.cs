@@ -49,6 +49,23 @@ namespace GameLib
             return null;
         }
 
+        public bool IsRoomLocked(int _roomID)
+        {
+            if (GetRoom(_roomID).ItemRequierdToEnter != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public int RequiredItem(int _RoomID)
+        {
+            return GetRoom(_RoomID).ItemRequierdToEnter.GetValueOrDefault();
+        }
+
         private void CreateRooms()
         {
             allRooms.Add(new Room(1, "Foyer", "You open the door to the castle and enter the foyer. It's moist and water is leaking in from every where. You notice a rack with 3 knobs on it on which there is one jacket hanging. 'Nice jacket, very modern. It looks brand new, only used a few times. I'm starting to get the feeling that I'm not alone in here'. {There is only one door right in front of you}.", "You came up short, there is nothing of value in this room.", 2, null, null, null));
@@ -63,11 +80,17 @@ namespace GameLib
             allRooms.Add(new Room(10, "Prison cells", "When you open the door to the prison cell, the scream for help gets clearer. As you rush to the prison cell you see a beautiful woman behind bars. You take a look around to see if there are any keys to unlock the prison cells. There's a table in the far side of the room you notice a keychain with keys. You grab it and run back to the cell to unlock it, imagining how when you save the beautiful woman she will give you a kiss. Maybe you'll get a house on the country side where you can farm your own vegetables, breed a couple of kids and get a dog. As the cell is unlocked she stands up and gives you a punch straight in the face. 'Ah shit, it's a godamn shapeshifter' you think as the creature takes the form of a handsome middle aged man. {Insert shapeshifter} ", "There is a mannequin with a full set of armour on it. You go to examine it and gain {one helmet, one chest armor, gloves, leg armor and boots}", null, null, null, 9));
             allRooms.Add(new Room(11, "Observatory", "You arrive at the top of the stairs, there is a door in front of you. You open the door and notice a desk and a chair, with its back turned towards you, in the middle of the room. As you enter, the door slams shut and the chair start spinning around: 'Well well well, if it isn't the hero of the story. You've come far, but this is where your journey and your life ends', The man in the chair cackles maniacally. 'Gustavo, you lunatic. Your reign of terror has been running rampant for too long. Prepear to meet your doom', you shout as you run towards him with your weapon held high, ready to kick some ass. {Insert Gustavo boss}  ", "Room Examine string", null, null, 8, null));
             AddItemToRoom();
+            LockRooms();
         }
 
         private void AddItemToRoom()
         {
             allRooms[8].ItemInRoomID = 31;
+        }
+
+        private void LockRooms()
+        {
+            allRooms[6].ItemRequierdToEnter = 31;
         }
     }
 }
