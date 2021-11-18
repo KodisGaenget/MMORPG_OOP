@@ -8,9 +8,9 @@
     - interface? Olika sorters fights?
 * Skapa koppling till Room table i databasen.
 * RoomLoader
-* Gör klart Spells (Klar?)
+* Gör klart Spells (Klar?) - Tar vi sist om vi hinner 
 * Gör klart PlayerClasses (Saknas lite saker)
-
+* Enemies- Toxic fart cloud, Goblin, Giant spider, Giant rats, Shapeshifter & Gustavo slut-BOSS
 * GameEngine
 
 * UI (Stort projekt)
