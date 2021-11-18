@@ -12,9 +12,9 @@ namespace Combat
         IFightable dealer;
         IFightable taker;
         int rawDmg = 0;
-        int resist = 0;
+        float resist = 0;
 
-        public Turn(IFightable dealer, IFightable taker, int rawDmg, int resistance)
+        public Turn(IFightable dealer, IFightable taker, int rawDmg, float resistance)
         {
             this.dealer = dealer;
             this.taker = taker;
@@ -26,15 +26,22 @@ namespace Combat
         {
             int dealtDmg = 0;
             dealtDmg = CombatResult(rawDmg, resist);
+            // System.Console.WriteLine(resist);
             return $"{dealer.Name} dealt {dealtDmg} to {taker.Name}.";
 
         }
 
-        private int CombatResult(int dmg, int resist)
+        private int CombatResult(int dmg, float resist)
         {
-            int realDmg = (dmg * resist);
-            taker.ChangeHealth(realDmg);
-            return realDmg;
+            float realDmg = dmg * (1 - resist);
+            // System.Console.WriteLine(realDmg);
+            taker.CurrentHealth += -(int)realDmg;
+            return (int)realDmg;
+        }
+
+        public IFightable GetTaker()
+        {
+            return taker;
         }
 
 
