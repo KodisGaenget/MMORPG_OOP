@@ -3,113 +3,130 @@ using Characters;
 using DataManager;
 using Items;
 using GameEnums;
+using GameInterfaces;
+using System.Threading;
 
 namespace Combat
 {
     public class CombatSystem
     {
-        Player player;
-        Enemy enemy;
+        IFightable fighter1;
+        int fighter1Armor = 0;
+
+
+        IFightable fighter2;
+        int fighter2Armor = 0;
+
+
         ItemLoader itemLoader;
         public bool combatOver = false;
         Random r = new Random();
+        string combatLog = "";
+        bool fighter1Turn = false;
+        string EndingMessage = "";
 
-        public CombatSystem(Player player, Enemy enemy, ItemLoader itemLoader)
+        public CombatSystem(IFightable fighter1, IFightable fighter2, ItemLoader itemLoader)
         {
-            this.player = player;
-            this.enemy = enemy;
+            this.fighter1 = fighter1;
+            this.fighter2 = fighter2;
             this.itemLoader = itemLoader;
+            SetFighterStats();
+            fighter1Turn = r.Next(2) == 0;
         }
 
-        void TurnHandler()
+        public string Run()
         {
-
-        }
-
-        public string PlayerAttack(AttackType attackType)
-        {
-            int dealtDmg = 0;
-            string EndingMessage = "";
-            if (attackType == AttackType.Attack)
+            while (!combatOver)
             {
-                dealtDmg = CombatResult(CalcPlayerDmg() + player.Attack(), player, enemy, ArmorResist(player, enemy));
+                if (fighter1Turn)
+                {
+                    Turn newTurn = new(fighter1, fighter2, CalcDmgDealt(fighter1, fighter2), Resist(fighter1, fighter2, fighter2Armor));
+                    combatLog += newTurn.Attack() + "\n";
+
+                }
+                else if (!fighter1Turn)
+                {
+                    Turn newTurn = new(fighter1, fighter2, CalcDmgDealt(fighter1, fighter2), Resist(fighter1, fighter2, fighter2Armor));
+                    combatLog += newTurn.Attack() + "\n";
+                }
                 EndingMessage = CheckCombatOver();
+                Thread.Sleep(100);
             }
-            else if (attackType == AttackType.MainAbility)
-            {
-                // dealtDmg = CombatResult(CalcPlayerDmg() + player.MainAbility()); //TODO Gör klart med metoden för MainAbility! 
-            }
-            else if (attackType == AttackType.SecondaryAbility)
-            {
-                //return CalcPlayerDmg() + player.SecondaryAbility(); //TODO Gör klart med metoden för SecondaryAbility! 
-            }
-            if (EndingMessage != "")
-            {
-                return EndingMessage;
-            }
-            else
-            {
-                return $"You dealt {dealtDmg} to {enemy.Name}.";
-            }
+            return EndingMessage;
         }
-        public int ArmorResist(Character dealer, Character taker)
+
+        private int CalcDmgDealt(IFightable dealer, IFightable taker)
         {
-            //TODO Fixa legitresist
+            int weaponDmg = r.Next(dealer.MinDamage, dealer.MaxDamage);
+            return dealer.Damage + weaponDmg;
+        }
+
+        private int Resist(IFightable dealer, IFightable taker, int takerArmor)
+        {
+            //TODO Fixa legitresist NÄSTAN KLAR!
             int leveldiff = 2 * (dealer.Level - taker.Level) / 100 + 1;
-            return leveldiff + 1 - (100) / (taker.Armor);
+            return leveldiff * 1 - (taker.Armor - dealer.Penetration) / 100;
         }
 
+        private void SetFighterStats()
+        {
 
-        public int EnemyAttack()
-        {
-            return enemy.Attack();
-        }
-        private int CombatResult(int dmg, Character dealer, Character taker, int resist)
-        {
-            int realDmg = dmg * resist;
-            enemy.ChangeHealth(realDmg);
-            return realDmg;
-            //TODO Räkna ut hur mycket skada som görs på motståndaren.
+            GetArmorStats();
+            GetWeaponStats();
+
         }
 
-        private int CalcPlayerDmg()
+        private void GetWeaponStats()
         {
-            int minDamage = 0;
-            int maxDamage = 0;
-
-            foreach (var item in player.Equipment.GetEquipment())
+            foreach (var item in fighter1.GetItemIdsFromEquipment())
             {
-                Weapon weapon = itemLoader.GetWeaponDetails(item.Value);
-                if (item.Value == weapon.Id)
+                Weapon weapon = itemLoader.GetWeaponDetails(item);
+                if (item == weapon.Id)
                 {
-                    minDamage = weapon.MinDamage;
-                    maxDamage = weapon.MaxDamage;
+                    fighter1.MinDamage = weapon.MinDamage;
+                    fighter1.MaxDamage = weapon.MaxDamage;
                 }
             }
-            return r.Next(minDamage, maxDamage);
-        }
 
-        private int CalcPlayerDef()
-        {
-            int defence = 0;
-            foreach (var item in player.Equipment.GetEquipment())
+            foreach (var item in fighter2.GetItemIdsFromEquipment())
             {
-                if (item.Key == itemLoader.GetArmorDetails(item.Value).Slot.ToString())
+                Weapon weapon = itemLoader.GetWeaponDetails(item);
+                if (item == weapon.Id)
                 {
-                    defence += itemLoader.GetArmorDetails(item.Value).Defense;
+                    fighter2.MinDamage = weapon.MinDamage;
+                    fighter2.MaxDamage = weapon.MaxDamage;
                 }
             }
-            return defence;
+        }
+
+        private void GetArmorStats()
+        {
+            foreach (var item in fighter1.GetItemIdsFromEquipment())
+            {
+                Armor armor = itemLoader.GetArmorDetails(item);
+                if (item == armor.Id)
+                {
+                    fighter1Armor += armor.Defense;
+                }
+            }
+            foreach (var item in fighter2.GetItemIdsFromEquipment())
+            {
+                Armor armor = itemLoader.GetArmorDetails(item);
+                if (item == armor.Id)
+                {
+                    fighter2Armor += armor.Defense;
+                }
+            }
         }
 
         private string CheckCombatOver()
         {
-            if (enemy.CurrentHealth <= 0)
+            if (fighter1.CurrentHealth == 0)
             {
                 combatOver = true;
                 return "You won the combat!";
             }
-            else if (player.CurrentHealth <= 0)
+            else if (fighter2.CurrentHealth == 0)
             {
                 combatOver = true;
                 return "You died!";
@@ -118,12 +135,15 @@ namespace Combat
             return "";
         }
     }
-
-    public enum AttackType
-    {
-        Attack,
-        MainAbility,
-        SecondaryAbility
-    }
-
 }
+
+
+
+// public enum AttackType
+// {
+//     Attack,
+//     MainAbility,
+//     SecondaryAbility
+// }
+
+
