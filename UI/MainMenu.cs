@@ -27,7 +27,7 @@ namespace UI
                     // Create/choose player
                     // Load room 1
                     game.SetChoosenPlayer(1);
-                    game.player.ChangePosition(1); 
+                    game.player.ChangePosition(1);
                     Clear();
                     WriteLine($"{game.player}");
                     WriteLine($"{game.roomHandler.GetRoomName(game.player.Position)}");

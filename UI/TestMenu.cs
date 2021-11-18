@@ -1,6 +1,5 @@
 using System;
 using GameLib;
-using Characters;
 
 namespace UI
 {
