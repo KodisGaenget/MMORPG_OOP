@@ -71,21 +71,30 @@ namespace DataManager
             }
         }
 
-        public Dictionary<int, int> LoadInventory(int Id)
+        internal Enemy LoadEnemy(int id)
         {
-            string sql = "SELECT ItemId, Amount FROM Character as p inner join Inventory as inv on inv.PlayerID = p.Id  WHERE p.Id = @playerID";
+            string sql = "SELECT Id, Name, OriginalHealth, CurrentHealth, Power, Armor, BaseDamage, Level, CoinPurse, ExpValue FROM Character WHERE Id = @charId";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                return connection.Query(sql, new { @playerID = Id }).ToDictionary(p => (int)p.ItemId, p => (int)p.Amount);
+                return connection.Query<Enemy>(sql, new { @charId = id }).First();
             }
         }
 
-        public Dictionary<string, int> LoadEquipment(int playerId)
+        public Dictionary<int, int> LoadInventory(int id)
         {
-            string sql = "EXEC LoadEquipped @playerID;";
+            string sql = "SELECT ItemId, Amount FROM Character as p inner join Inventory as inv on inv.PlayerID = p.Id  WHERE p.Id = @charId";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                return connection.Query(sql, new { @playerID = playerId }).ToDictionary(p => (string)p.Slot, p => (int)p.Id);
+                return connection.Query(sql, new { @charId = id }).ToDictionary(p => (int)p.ItemId, p => (int)p.Amount);
+            }
+        }
+
+        public Dictionary<string, int> LoadEquipment(int charId)
+        {
+            string sql = "EXEC LoadEquipped @charId;";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                return connection.Query(sql, new { @charId = charId }).ToDictionary(p => (string)p.Slot, p => (int)p.Id);
             }
         }
         #endregion
