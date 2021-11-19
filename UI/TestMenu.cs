@@ -6,12 +6,16 @@ namespace UI
     public class TestMenu
     {
         Game game;
-        Room currentRoom;
+
 
         public TestMenu(Game game)
         {
             this.game = game;
-            currentRoom = game.roomHandler.GetRoom(game.player.Position);
+            Console.WriteLine(game.roomHandler.GetRoom(game.player.Position).West.GetValueOrDefault());
+            Console.ReadKey(true);
+            // gameEquals.player.ChangePosition(2);
+            // Get
+            // GetCurrentRoom() roomHandler.GetRoom(game.player.Position);
         }
 
         public void Run()
@@ -25,26 +29,22 @@ namespace UI
                 //      if room is locked check if key is in inventory
                 // move player
 
-
-
                 Console.Clear();
                 Print();
                 keyPressed = Console.ReadKey(true);
 
-
                 // move north
                 if (keyPressed.Key == ConsoleKey.UpArrow)
                 {
-                    if (currentRoom.North != null)
+                    if (game.roomHandler.CheckNorth(game.player.Position))
                     {
-                        if (game.roomHandler.IsRoomLocked(currentRoom.North.GetValueOrDefault()))
+                        if (game.roomHandler.IsRoomLocked(game.roomHandler.GetRoom(game.player.Penetration).North.GetValueOrDefault()))
                         {
                             foreach (var item in game.player.Inventory.GetInventory())
                             {
-                                if (item.Key == game.roomHandler.RequiredItem(currentRoom.North.GetValueOrDefault()))
+                                if (item.Key == game.roomHandler.RequiredItem(game.roomHandler.GetRoom(game.player.Penetration).North.GetValueOrDefault()))
                                 {
-                                    game.player.ChangePosition(currentRoom.North.GetValueOrDefault());
-                                    currentRoom = game.roomHandler.GetRoom(game.player.Position);
+                                    game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Penetration).North.GetValueOrDefault());
                                 }
                                 else
                                 {
@@ -55,8 +55,7 @@ namespace UI
                         }
                         else
                         {
-                            game.player.ChangePosition(currentRoom.North.GetValueOrDefault());
-                            currentRoom = game.roomHandler.GetRoom(game.player.Position);
+                            game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Penetration).North.GetValueOrDefault());
                         }
                     }
                     else
@@ -68,22 +67,18 @@ namespace UI
                     }
                 }
 
-
-
-
                 // move east
                 if (keyPressed.Key == ConsoleKey.RightArrow)
                 {
-                    if (currentRoom.East != null)
+                    if (game.roomHandler.CheckEast(game.player.Position))
                     {
-                        if (game.roomHandler.IsRoomLocked(currentRoom.East.GetValueOrDefault()))
+                        if (game.roomHandler.IsRoomLocked(game.roomHandler.GetRoom(game.player.Penetration).East.GetValueOrDefault()))
                         {
                             Console.WriteLine("Room is locked");
                         }
                         else
                         {
-                            game.player.ChangePosition(currentRoom.East.GetValueOrDefault());
-                            currentRoom = game.roomHandler.GetRoom(game.player.Position);
+                            game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Penetration).East.GetValueOrDefault());
                         }
                     }
                     else
@@ -94,22 +89,18 @@ namespace UI
                     }
                 }
 
-
-
-
                 // move south
                 if (keyPressed.Key == ConsoleKey.DownArrow)
                 {
-                    if (currentRoom.South != null)
+                    if (game.roomHandler.CheckSouth(game.player.Position))
                     {
-                        if (game.roomHandler.IsRoomLocked(currentRoom.South.GetValueOrDefault()))
+                        if (game.roomHandler.IsRoomLocked(game.roomHandler.GetRoom(game.player.Penetration).South.GetValueOrDefault()))
                         {
                             Console.WriteLine("Room is locked");
                         }
                         else
                         {
-                            game.player.ChangePosition(currentRoom.South.GetValueOrDefault());
-                            currentRoom = game.roomHandler.GetRoom(game.player.Position);
+                            game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Penetration).South.GetValueOrDefault());
                         }
                     }
                     else
@@ -120,33 +111,29 @@ namespace UI
                     }
                 }
 
-
-
                 // move west
                 if (keyPressed.Key == ConsoleKey.LeftArrow)
                 {
                     // check if there is a room to the west
-                    if (currentRoom.West != null)
+                    if (game.roomHandler.CheckWest(game.player.Position))
                     {
                         // check if the room is locked
-                        if (game.roomHandler.IsRoomLocked(currentRoom.West.GetValueOrDefault()))
+                        if (game.roomHandler.IsRoomLocked(game.roomHandler.GetRoom(game.player.Penetration).West.GetValueOrDefault()))
                         {
                             // check if the player has the required item in inventory
-                            if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(currentRoom.West.GetValueOrDefault())))
+                            if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetRoom(game.player.Penetration).West.GetValueOrDefault())))
                             {
-                                game.player.ChangePosition(currentRoom.West.GetValueOrDefault());
-                                currentRoom = game.roomHandler.GetRoom(game.player.Position);
+                                game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Penetration).West.GetValueOrDefault());
                             }
                             else
                             {
-                                Console.WriteLine($"The door to the {game.roomHandler.GetRoomName(currentRoom.West.GetValueOrDefault())} is locked. You need to find a key");
+                                Console.WriteLine($"The door to the {game.roomHandler.GetRoomName(game.roomHandler.GetRoom(game.player.Penetration).West.GetValueOrDefault())} is locked. You need to find a key");
                                 Console.ReadKey(true);
                             }
                         }
                         else
                         {
-                            game.player.ChangePosition(currentRoom.West.GetValueOrDefault());
-                            currentRoom = game.roomHandler.GetRoom(game.player.Position);
+                            game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Penetration).West.GetValueOrDefault());
                         }
                     }
                     // if there is no room to the west, prompt message
@@ -172,10 +159,10 @@ namespace UI
                 // take item in room
                 if (keyPressed.Key == ConsoleKey.T)
                 {
-                    if (game.roomHandler.IsRoomExaminated(game.player.Position) && currentRoom.ItemInRoomID != null)
+                    if (game.roomHandler.IsRoomExaminated(game.player.Position) && game.roomHandler.GetRoom(game.player.Penetration).ItemInRoomId != null)
                     {
-                        game.player.Inventory.AddItem(currentRoom.ItemInRoomID.GetValueOrDefault(), 1);
-                        currentRoom.ItemInRoomID = null;
+                        game.player.Inventory.AddItem(game.roomHandler.GetRoom(game.player.Penetration).ItemInRoomId.GetValueOrDefault(), 1);
+                        game.roomHandler.GetRoom(game.player.Penetration).ItemInRoomId = null;
                     }
                 }
 
@@ -209,9 +196,9 @@ namespace UI
             }
             else
             {
-                if (game.roomHandler.GetRoom(game.player.Position).ItemInRoomID != null)
+                if (game.roomHandler.GetRoom(game.player.Position).ItemInRoomId != null)
                 {
-                    Console.WriteLine($"[T]ake {game.itemLoader.GetKeyDetails(game.roomHandler.GetRoom(game.player.Position).ItemInRoomID.GetValueOrDefault()).Name}");
+                    Console.WriteLine($"[T]ake {game.itemLoader.GetKeyDetails(game.roomHandler.GetRoom(game.player.Position).ItemInRoomId.GetValueOrDefault()).Name}");
                 }
                 else
                 {
