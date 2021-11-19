@@ -175,6 +175,7 @@ namespace UI
                     if (game.roomHandler.IsRoomExaminated(game.player.Position) && currentRoom.ItemInRoomID != null)
                     {
                         game.player.Inventory.AddItem(currentRoom.ItemInRoomID.GetValueOrDefault(), 1);
+                        currentRoom.ItemInRoomID = null;
                     }
                 }
 
