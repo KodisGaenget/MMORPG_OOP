@@ -46,7 +46,17 @@ namespace Characters
             }
         }
 
-
+        public bool IsItemIDInInventory(int itemID)
+        {
+            foreach (var item in items)
+            {
+                if (item.Key == itemID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
     }
 
