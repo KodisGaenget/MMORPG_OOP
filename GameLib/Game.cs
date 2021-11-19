@@ -2,38 +2,28 @@ using System.Collections.Generic;
 using Characters;
 using DataManager;
 using GameEnums;
-using Combat;
-using GameInterfaces;
 
 namespace GameLib
 {
     public class Game
     {
         public RoomHandler roomHandler;
+        public CombatHandler combatHandler;
         Database db = new();
         public Player player;
-        public Player player2;
+        public Spawner spawner;
         PlayerLoader playerLoader;
         public ItemLoader itemLoader;
-        public CombatSystem fight;
 
 
-        public Game(RoomHandler _roomHandler)
+        public Game(int id)
         {
-            this.roomHandler = _roomHandler;
+            this.roomHandler = new();
             playerLoader = new(db);
             itemLoader = new(db);
+            spawner = new(db);
+            SetChoosenPlayer(id);
         }
-
-        #region GameActions
-
-        public void StartNewFight(IFightable enemy)
-        {
-            fight = new(player, enemy, itemLoader);
-            System.Console.WriteLine(fight.Run());
-        }
-
-        #endregion
 
         #region PlayerMethods
         public void SavePlayer()
@@ -41,25 +31,12 @@ namespace GameLib
             PlayerSaver playerSaver = new(db, player);
         }
 
-        public void SetChoosenPlayer(int id, int person)
+        public void SetChoosenPlayer(int id)
         {
-            if (person == 1)
-            {
-                player = playerLoader.LoadChoosenPlayer(id);
-            }
-            if (person == 2)
-            {
-                player2 = playerLoader.LoadChoosenPlayer(id);
-            }
-
+            player = playerLoader.GetPlayer(id);
         }
 
-        public void UseConsumable(int id)
-        {
-
-        }
-
-        public int GetDefense(Player player) //Inte här! Läggas i itemLoader?
+        public int GetDefense(Player player)
         {
             int FightDefence = player.Armor;
             foreach (var item in player.Equipment.GetEquipment())
