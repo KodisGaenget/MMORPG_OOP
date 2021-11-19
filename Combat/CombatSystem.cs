@@ -3,26 +3,25 @@ using DataManager;
 using Items;
 using GameInterfaces;
 using System.Threading;
-using Combat.UI;
 
 namespace Combat
 {
     public class CombatSystem
     {
-        IFightable fighter1;
+        internal IFightable fighter1;
         int fighter1Armor = 0;
 
 
-        IFightable fighter2;
+        internal IFightable fighter2;
         int fighter2Armor = 0;
 
 
         ItemLoader itemLoader;
         public bool combatOver = false;
         Random r = new Random();
-        string combatLog = "";
+        internal string combatLog = "";
         bool fighter1Turn = false;
-        string EndingMessage = "";
+        internal string endingMessage = "";
 
         public CombatSystem(IFightable fighter1, IFightable fighter2, ItemLoader itemLoader)
         {
@@ -33,39 +32,24 @@ namespace Combat
             fighter1Turn = r.Next(2) == 0;
         }
 
-        public string Run()
+        internal bool Run()
         {
-            while (!combatOver)
+            if (fighter1Turn)
             {
-                // System.Console.WriteLine(fighter1.CurrentHealth);
-                if (fighter1Turn)
-                {
-                    MainMenu newMenu = new(combatLog);
-                    string menuoption = newMenu.Run(fighter1, fighter2);
-                    if (menuoption == "Attack")
-                    {
-                        Turn newTurn = new(fighter1, fighter2, CalcDmgDealt(fighter1, fighter2), Resist(fighter1, fighter2, fighter2Armor));
-                        combatLog += newTurn.Attack() + "\n";
-                        fighter2 = newTurn.GetTaker();
-                    }
-                    else if (menuoption == "Escape")
-                    {
-                        break;
-                    }
-
-                }
-                else if (!fighter1Turn)
-                {
-                    Turn newTurn = new(fighter2, fighter1, CalcDmgDealt(fighter2, fighter1), Resist(fighter2, fighter1, fighter1Armor));
-                    combatLog += newTurn.Attack() + "\n";
-                    fighter1 = newTurn.GetTaker();
-
-                }
-                fighter1Turn = !fighter1Turn;
-                EndingMessage = CheckCombatOver();
-                Thread.Sleep(500);
+                Turn newTurn = new(fighter1, fighter2, CalcDmgDealt(fighter1, fighter2), Resist(fighter1, fighter2, fighter2Armor));
+                combatLog += newTurn.Attack() + "\n";
+                fighter2 = newTurn.GetTaker();
             }
-            return EndingMessage + "\n" + combatLog;
+            else if (!fighter1Turn)
+            {
+                Turn newTurn = new(fighter2, fighter1, CalcDmgDealt(fighter2, fighter1), Resist(fighter2, fighter1, fighter1Armor));
+                combatLog += newTurn.Attack() + "\n";
+                fighter1 = newTurn.GetTaker();
+            }
+            fighter1Turn = !fighter1Turn;
+            endingMessage = CheckCombatOver();
+            Thread.Sleep(500);
+            return fighter1Turn;
         }
 
         private int CalcDmgDealt(IFightable dealer, IFightable taker)
