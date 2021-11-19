@@ -64,7 +64,7 @@ namespace DataManager
 
         public Player LoadPlayer(int Id)
         {
-            string sql = "SELECT Id, Name, OriginalHealth, CurrentHealth, Power, Armor, Damage, Level, CurrentExp, Position, Class FROM Player WHERE Id = @playerID";
+            string sql = "SELECT Id, Name, OriginalHealth, CurrentHealth, Power, Armor, BaseDamage, Level, CurrentExp, Position, Class, CoinPurse FROM Character WHERE Id = @playerID";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 return connection.Query<Player>(sql, new { @playerID = Id }).First();
@@ -73,7 +73,7 @@ namespace DataManager
 
         public Dictionary<int, int> LoadInventory(int Id)
         {
-            string sql = "SELECT ItemId, Amount FROM Player as p inner join Inventory as inv on inv.PlayerID = p.Id  WHERE p.Id = @playerID";
+            string sql = "SELECT ItemId, Amount FROM Character as p inner join Inventory as inv on inv.PlayerID = p.Id  WHERE p.Id = @playerID";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 return connection.Query(sql, new { @playerID = Id }).ToDictionary(p => (int)p.ItemId, p => (int)p.Amount);
