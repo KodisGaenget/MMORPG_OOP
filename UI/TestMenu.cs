@@ -20,6 +20,13 @@ namespace UI
 
             while (true)
             {
+                // check if room exists
+                // check if room is locked
+                //      if room is locked check if key is in inventory
+                // move player
+
+
+
                 Console.Clear();
                 Print();
                 keyPressed = Console.ReadKey(true);
@@ -54,6 +61,7 @@ namespace UI
                     }
                     else
                     {
+
                         Console.Clear();
                         Console.WriteLine("You charge face first into the northen wall almost breaking your nose, you see stars");
                         Console.ReadKey(true);
@@ -117,22 +125,22 @@ namespace UI
                 // move west
                 if (keyPressed.Key == ConsoleKey.LeftArrow)
                 {
+                    // check if there is a room to the west
                     if (currentRoom.West != null)
                     {
+                        // check if the room is locked
                         if (game.roomHandler.IsRoomLocked(currentRoom.West.GetValueOrDefault()))
                         {
-                            foreach (var item in game.player.Inventory.GetInventory())
+                            // check if the player has the required item in inventory
+                            if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(currentRoom.West.GetValueOrDefault())))
                             {
-                                if (item.Key == game.roomHandler.RequiredItem(currentRoom.West.GetValueOrDefault()))
-                                {
-                                    game.player.ChangePosition(currentRoom.West.GetValueOrDefault());
-                                    currentRoom = game.roomHandler.GetRoom(game.player.Position);
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Room is locked");
-                                    Console.ReadKey(true);
-                                }
+                                game.player.ChangePosition(currentRoom.West.GetValueOrDefault());
+                                currentRoom = game.roomHandler.GetRoom(game.player.Position);
+                            }
+                            else
+                            {
+                                Console.WriteLine($"The door to the {game.roomHandler.GetRoomName(currentRoom.West.GetValueOrDefault())} is locked. You need to find a key");
+                                Console.ReadKey(true);
                             }
                         }
                         else
@@ -141,6 +149,7 @@ namespace UI
                             currentRoom = game.roomHandler.GetRoom(game.player.Position);
                         }
                     }
+                    // if there is no room to the west, prompt message
                     else
                     {
                         Console.Clear();
@@ -163,10 +172,22 @@ namespace UI
                 // take item in room
                 if (keyPressed.Key == ConsoleKey.T)
                 {
-                    if (game.roomHandler.IsRoomExaminated(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomID != null)
+                    if (game.roomHandler.IsRoomExaminated(game.player.Position) && currentRoom.ItemInRoomID != null)
                     {
-                        game.player.Inventory.AddItem(game.roomHandler.GetRoom(game.player.Position).ItemInRoomID.GetValueOrDefault(), 1);
+                        game.player.Inventory.AddItem(currentRoom.ItemInRoomID.GetValueOrDefault(), 1);
                     }
+                }
+
+                // show inventory
+                if (keyPressed.Key == ConsoleKey.I)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Inventory:");
+                    foreach (var item in game.player.Inventory.GetInventory())
+                    {
+                        Console.WriteLine(game.itemLoader.GetKeyDetails(item.Key).Name);
+                    }
+                    Console.ReadKey(true);
                 }
 
             }
