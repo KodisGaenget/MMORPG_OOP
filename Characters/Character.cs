@@ -11,9 +11,10 @@ namespace Characters
         public int OriginalHealth { get; protected set; }
         public int CurrentHealth { get; set; }
         public int Power { get; protected set; }
+        public int CurrentPower { get; set; }
         public int Armor { get; protected set; }
         public int Penetration { get; protected set; }
-        public int Damage { get; protected set; }
+        public int BaseDamage { get; protected set; }
         public int Level { get; protected set; }
         public int Position { get; protected set; }
         public Equipment Equipment { get; protected set; }
@@ -23,7 +24,7 @@ namespace Characters
 
         public int Attack()
         {
-            return Damage;
+            return BaseDamage;
         }
 
         public int Block()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using GameInterfaces;
 
 namespace Characters
@@ -9,6 +10,7 @@ namespace Characters
 
         public int CurrentExp { get; private set; }
         public string Class { get; private set; }
+        private List<int> Examined;
 
         public bool inDb = false;
 
@@ -52,15 +54,11 @@ namespace Characters
             }
             Equipment.UnequipItem(slot, -1);
         }
-
-        public void SetInventory(Inventory inv)
-        {
-            Inventory = inv;
-        }
-
-        public void SetEquipment(Equipment eq)
+        public void Load(Inventory inv, Equipment eq, List<int> examined)
         {
             Equipment = eq;
+            Inventory = inv;
+            Examined = examined;
         }
 
         public void GainExp(int amount)

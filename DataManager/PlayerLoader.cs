@@ -30,8 +30,7 @@ namespace DataManager
             p = db.LoadPlayer(id);
             inv.ImportInventory(db.LoadInventory(p.Id));
             eq.ImportEquipment(db.LoadEquipment(p.Id));
-            p.SetInventory(inv);
-            p.SetEquipment(eq);
+            p.Load(inv, eq, new());
 
             return true;
         }

@@ -9,9 +9,10 @@ namespace GameInterfaces
         public int OriginalHealth { get; }
         public int CurrentHealth { get; set; }
         public int Power { get; }
+        public int CurrentPower { get; set; }
         public int Armor { get; }
         public int Penetration { get; }
-        public int Damage { get; }
+        public int BaseDamage { get; }
         public int Level { get; }
         public int Position { get; }
         public int MinDamage { get; set; }
