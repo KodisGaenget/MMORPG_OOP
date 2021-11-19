@@ -5,6 +5,7 @@ namespace GameLib
 {
     public class Room
     {
+        // kommentar
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
