@@ -17,6 +17,7 @@ namespace GameLib
         public int? West { get; set; }
         public int? ItemInRoomID { get; set; }
         public int? ItemRequierdToEnter { get; set; }
+        public int? EnemyInRoom { get; set; }
 
         public Room(int _Id, string _name, string _description, string _examineText, int? _north, int? _east, int? _south, int? _west)
         {
