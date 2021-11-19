@@ -11,7 +11,7 @@ namespace UI
             Game game = new(roomHandler);
             // GameScene myGameScene = new(game);
             // myGameScene.Start(game);
-            game.SetChoosenPlayer(1);
+            game.SetChoosenPlayer(1, 1);
             TestMenu menu = new(game);
             menu.Run();
         }
