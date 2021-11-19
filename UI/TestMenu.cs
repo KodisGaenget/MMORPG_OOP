@@ -11,8 +11,6 @@ namespace UI
         public TestMenu(Game game)
         {
             this.game = game;
-            Console.WriteLine(game.roomHandler.GetRoom(game.player.Position).West.GetValueOrDefault());
-            Console.ReadKey(true);
             // gameEquals.player.ChangePosition(2);
             // Get
             // GetCurrentRoom() roomHandler.GetRoom(game.player.Position);

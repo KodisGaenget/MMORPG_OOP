@@ -11,7 +11,6 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            RoomHandler roomHandler = new();
 
             // List<Room> allRooms = new()
             // {
@@ -25,11 +24,7 @@ namespace ConsoleUI
 
             // roomHandler.AddRooms(allRooms);
             Enemy enemy = new();
-            Game game = new(roomHandler);
-
-            game.SetChoosenPlayer(1, 1);
-            game.SetChoosenPlayer(2, 2);
-            game.StartNewFight(game.player2);
+            Game game = new(1); //1 = Spelarens id;
 
 
             //game.Start();

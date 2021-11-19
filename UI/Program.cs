@@ -8,10 +8,9 @@ namespace UI
         static void Main(string[] args)
         {
             RoomHandler roomHandler = new();
-            Game game = new(roomHandler);
+            Game game = new(1); // 1 = Spelarens id
             // GameScene myGameScene = new(game);
             // myGameScene.Start(game);
-            game.SetChoosenPlayer(1, 1);
             TestMenu menu = new(game);
             menu.Run();
         }

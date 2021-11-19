@@ -14,11 +14,11 @@ namespace DataManager
             this.db = db;
         }
 
-        public Player LoadChoosenPlayer(int id)
+        public Player GetPlayer(int id)
         {
             this.id = id;
             Load();
-            return GetCharacter();
+            return p;
 
         }
 
@@ -30,13 +30,7 @@ namespace DataManager
             inv.ImportInventory(db.LoadInventory(p.Id));
             eq.ImportEquipment(db.LoadEquipment(p.Id));
             p.Load(inv, eq, new());
-
             return true;
-        }
-
-        private Player GetCharacter()
-        {
-            return p;
         }
     }
 }
