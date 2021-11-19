@@ -34,7 +34,7 @@ namespace Characters
 
         public void RemoveItem(int item, int amount = 1)
         {
-            var itemToRemove = CheckAndFind.FindItem(item, GetInventory());
+            var itemToRemove = FindItem(item, GetInventory());
 
             if (itemToRemove.Value == 1)
             {
@@ -56,6 +56,20 @@ namespace Characters
                 }
             }
             return false;
+        }
+
+        private KeyValuePair<int, int> FindItem(int searched, IReadOnlyDictionary<int, int> items)
+        {
+            KeyValuePair<int, int> founded = new();
+
+            foreach (KeyValuePair<int, int> item in items)
+            {
+                if (item.Key == searched)
+                {
+                    founded = item;
+                }
+            }
+            return founded;
         }
 
     }
