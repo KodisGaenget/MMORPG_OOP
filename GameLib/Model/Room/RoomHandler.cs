@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace GameLib
@@ -51,7 +52,7 @@ namespace GameLib
 
         public bool IsRoomLocked(int _roomID)
         {
-            if (GetRoom(_roomID).ItemRequierdToEnter != null)
+            if (GetRoom(_roomID).ItemRequiredToEnter != null)
             {
                 return true;
             }
@@ -63,8 +64,102 @@ namespace GameLib
 
         public int RequiredItem(int _RoomID)
         {
-            return GetRoom(_RoomID).ItemRequierdToEnter.GetValueOrDefault();
+            return GetRoom(_RoomID).ItemRequiredToEnter.GetValueOrDefault();
         }
+
+        public bool CheckNorth(int _roomID)
+        {
+            if (GetRoom(_roomID).North == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool CheckEast(int _roomID)
+        {
+            if (GetRoom(_roomID).East == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool CheckSouth(int _roomID)
+        {
+            if (GetRoom(_roomID).South == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        public bool CheckWest(int _roomID)
+        {
+            if (GetRoom(_roomID).West == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        // public bool CheckIfDestinationExists(ConsoleKeyInfo _keyPressed, int _roomID)
+        // {
+        //     if (_keyPressed.Key == ConsoleKey.UpArrow)
+        //     {
+        //         if (GetRoom(_roomID).North == null)
+        //         {
+        //             return false;
+        //         }
+        //         else
+        //         {
+        //             return true;
+        //         }
+        //     }
+        //     if (_keyPressed.Key == ConsoleKey.RightArrow)
+        //     {
+        //         if (GetRoom(_roomID).East == null)
+        //         {
+        //             return false;
+        //         }
+        //         else
+        //         {
+        //             return true;
+        //         }
+        //     }
+        //     if (_keyPressed.Key == ConsoleKey.DownArrow)
+        //     {
+        //         if (GetRoom(_roomID).South == null)
+        //         {
+        //             return false;
+        //         }
+        //         else
+        //         {
+        //             return true;
+        //         }
+        //     }
+        //     if (_keyPressed.Key == ConsoleKey.LeftArrow)
+        //     {
+        //         if (GetRoom(_roomID).West == null)
+        //         {
+        //             return false;
+        //         }
+        //         else
+        //         {
+        //             return true;
+        //         }
+        //     }
+
+        // }
 
         private void CreateRooms()
         {
@@ -85,12 +180,12 @@ namespace GameLib
 
         private void AddItemToRoom()
         {
-            allRooms[8].ItemInRoomID = 31;
+            allRooms[8].ItemInRoomId = 31;
         }
 
         private void LockRooms()
         {
-            allRooms[6].ItemRequierdToEnter = 31;
+            allRooms[6].ItemRequiredToEnter = 31;
         }
     }
 }
