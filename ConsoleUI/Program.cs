@@ -23,14 +23,19 @@ namespace ConsoleUI
             // };
 
             // roomHandler.AddRooms(allRooms);
-            Enemy enemy = new();
             Game game = new(1); //1 = Spelarens id;
 
-            game.combatHandler.StartNewCombat(game.player, game.player, game.itemLoader);
+            game.combatHandler.StartNewCombat(game.player, game.player2, game.itemLoader);
             string choise = "";
-            while (game.combatHandler.com))
-            MainMenu combatMenu = new(game.combatHandler.combatLog);
-            choise = combatMenu.Run(game.combatHandler.);
+            while (!game.combatHandler.combatOver)
+            {
+                MainMenu combatMenu = new(game.combatHandler.combatLog);
+                choise = combatMenu.Run(game.combatHandler.playerHealth, game.combatHandler.enemyHealth);
+                if (choise == "Attack")
+                {
+                    game.combatHandler.ContinueCombat();
+                }
+            }
 
 
             //game.Start();

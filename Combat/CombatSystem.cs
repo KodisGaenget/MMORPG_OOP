@@ -17,7 +17,7 @@ namespace Combat
 
 
         ItemLoader itemLoader;
-        public bool combatOver = false;
+        internal bool combatOver = false;
         Random r = new Random();
         internal string combatLog = "";
         bool fighter1Turn = false;

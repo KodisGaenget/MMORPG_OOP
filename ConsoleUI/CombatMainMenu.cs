@@ -15,9 +15,9 @@ namespace ConsoleUI
             // Constructor
         }
 
-        public string Run(IFightable player, IFightable enemy)
+        public string Run(int playerHealth, int enemyHealth)
         {
-            string headerinfo = $"You have: {player.CurrentHealth}hp left -- Enemys has: {enemy.CurrentHealth}hp left\n";
+            string headerinfo = $"You have: {playerHealth}hp left -- Enemys has: {enemyHealth}hp left\n";
             string prompt = combatLog;
             List<string> options = new List<string> { "Attack", "Inventory", "Escape fight" };
             Menu menu = new Menu(prompt, options, headerinfo);

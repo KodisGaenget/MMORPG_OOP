@@ -8,9 +8,10 @@ namespace GameLib
     public class Game
     {
         public RoomHandler roomHandler;
-        public CombatHandler combatHandler;
+        public CombatHandler combatHandler = new();
         Database db = new();
         public Player player;
+        public Player player2;
         public Spawner spawner;
         PlayerLoader playerLoader;
         public ItemLoader itemLoader;
@@ -22,7 +23,8 @@ namespace GameLib
             playerLoader = new(db);
             itemLoader = new(db);
             spawner = new(db);
-            SetChoosenPlayer(id);
+            player = SetChoosenPlayer(id);
+            player2 = SetChoosenPlayer(2);
         }
 
         #region PlayerMethods
@@ -31,9 +33,9 @@ namespace GameLib
             PlayerSaver playerSaver = new(db, player);
         }
 
-        public void SetChoosenPlayer(int id)
+        public Player SetChoosenPlayer(int id)
         {
-            player = playerLoader.GetPlayer(id);
+            return playerLoader.GetPlayer(id);
         }
 
         public int GetDefense(Player player)

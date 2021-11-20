@@ -9,6 +9,7 @@ namespace DataManager
         public string combatLog = "";
         public string result = "";
         public int playerHealth = 0;
+        public int enemyHealth = 0;
         public bool combatOver = false;
 
         public CombatHandler()
@@ -30,6 +31,8 @@ namespace DataManager
 
         public void UpdateCombatStatus()
         {
+            playerHealth = combat.fighter1.CurrentHealth;
+            enemyHealth = combat.fighter2.CurrentHealth;
             combatLog = combat.combatLog;
             result = combat.endingMessage;
             combatOver = combat.combatOver;
