@@ -6,13 +6,12 @@ namespace UI
     public class TestMenu
     {
         Game game;
+
+
         public TestMenu(Game game)
         {
             this.game = game;
-            Console.CursorVisible = false;
-            // gameEquals.player.ChangePosition(2);
-            // Get
-            // GetCurrentRoom() roomHandler.GetRoom(game.player.Position);
+            game.player.ChangePosition(1);
         }
 
         public void Run()
@@ -21,11 +20,6 @@ namespace UI
 
             while (true)
             {
-                // check if room exists
-                // check if room is locked
-                //      if room is locked check if key is in inventory
-                // move player
-
                 Console.Clear();
                 Print();
                 keyPressed = Console.ReadKey(true);
@@ -33,181 +27,225 @@ namespace UI
                 // move north
                 if (keyPressed.Key == ConsoleKey.UpArrow)
                 {
-                    if (game.roomHandler.CheckNorth(game.player.Position))
+                    if (game.roomHandler.CheckDirection(game.player.Position, Direction.North))
                     {
-                        if (game.roomHandler.IsRoomLocked(game.roomHandler.GetRoom(game.player.Position).North.GetValueOrDefault()))
+                        if (game.roomHandler.GetRoom(game.roomHandler.GetDirectionId(game.player.Position, Direction.North)).ItemRequiredToEnter != 0)
                         {
-                            foreach (var item in game.player.Inventory.GetInventory())
+                            if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetDirectionId(game.player.Position, Direction.North))))
                             {
-                                if (item.Key == game.roomHandler.RequiredItem(game.roomHandler.GetRoom(game.player.Position).North.GetValueOrDefault()))
-                                {
-                                    game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Position).North.GetValueOrDefault());
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Room is locked");
-                                    Console.ReadKey(true);
-                                }
-                            }
-                        }
-                        else game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Position).North.GetValueOrDefault());
-                    }
-
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine("You charge face first into the northen wall almost breaking your nose, you see stars");
-                        game.player.CurrentHealth -= 5;
-                        Console.ReadKey(true);
-                    }
-                }
-
-                // move east
-                if (keyPressed.Key == ConsoleKey.RightArrow)
-                {
-                    if (game.roomHandler.CheckEast(game.player.Position))
-                    {
-                        if (game.roomHandler.IsRoomLocked(game.roomHandler.GetRoom(game.player.Position).East.GetValueOrDefault())) Console.WriteLine("Room is locked");
-                        else game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Position).East.GetValueOrDefault());
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine("You charge face first into the eastern wall almost breaking your nose, you see stars");
-                        game.player.CurrentHealth -= 5;
-                        Console.ReadKey(true);
-                    }
-                }
-
-                // move south
-                if (keyPressed.Key == ConsoleKey.DownArrow)
-                {
-                    if (game.roomHandler.CheckSouth(game.player.Position))
-                    {
-                        if (game.roomHandler.IsRoomLocked(game.roomHandler.GetRoom(game.player.Position).South.GetValueOrDefault())) Console.WriteLine("Room is locked.");
-                        else game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Position).South.GetValueOrDefault());
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine("You charge face first into the southern wall almost breaking your nose, you see stars");
-                        game.player.CurrentHealth -= 5;
-                        Console.ReadKey(true);
-                    }
-                }
-
-                // move west
-                if (keyPressed.Key == ConsoleKey.LeftArrow)
-                {
-                    // check if there is a room to the west<
-                    if (game.roomHandler.CheckWest(game.player.Position))
-                    {
-                        // check if the room is locked
-                        if (game.roomHandler.IsRoomLocked(game.roomHandler.GetRoom(game.player.Position).West.GetValueOrDefault()))
-                        {
-                            // check if the player has the required item in inventory
-                            if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetRoom(game.player.Position).West.GetValueOrDefault())))
-                            {
-                                game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Position).West.GetValueOrDefault());
+                                game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.North));
                             }
                             else
                             {
-                                Console.WriteLine($"\nThe door to the {game.roomHandler.GetRoomName(game.roomHandler.GetRoom(game.player.Position).West.GetValueOrDefault())} appears to be locked.\nMaybe there's a key around here somewhere?");
-                                Console.ReadKey(true);
+                                RoomIsLocked(game.roomHandler.GetDirectionId(game.player.Position, Direction.North));
                             }
                         }
                         else
                         {
-                            game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Position).West.GetValueOrDefault());
+                            game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.North));
                         }
                     }
-
-                    // if there is no room to the west, prompt message
                     else
                     {
-                        Console.Clear();
-                        Console.WriteLine("You charge face first into the western wall almost breaking your nose, you see stars");
-                        game.player.CurrentHealth -= 5;
-                        Console.ReadKey(true);
+                        NoRoom("north");
                     }
                 }
-
-                // examine room
-                if (keyPressed.Key == ConsoleKey.E)
+                // move east
+                if (keyPressed.Key == ConsoleKey.RightArrow)
                 {
-                    if (!game.player.IsRoomExamined(game.player.Position))
+                    if (game.roomHandler.CheckDirection(game.player.Position, Direction.East))
                     {
-                        Console.WriteLine("\n" + game.roomHandler.ExamineRoom(game.player.Position));
-                        Console.ReadKey(true);
+                        if (game.roomHandler.GetRoom(game.roomHandler.GetDirectionId(game.player.Position, Direction.East)).ItemRequiredToEnter != 0)
+                        {
+                            if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetDirectionId(game.player.Position, Direction.East))))
+                            {
+                                game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.East));
+                            }
+                            else
+                            {
+                                RoomIsLocked(game.roomHandler.GetDirectionId(game.player.Position, Direction.East));
+                            }
+                        }
+                        else
+                        {
+                            game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.East));
+                        }
                     }
                     else
                     {
-                        Console.WriteLine("\nRoom has already been examined.");
-                        Console.ReadKey(true);
+                        NoRoom("east");
                     }
                 }
-
-                // take item in room
-                if (keyPressed.Key == ConsoleKey.T)
+                // move south
+                if (keyPressed.Key == ConsoleKey.DownArrow)
                 {
-                    if (game.player.IsRoomExamined(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId != null)
+                    if (game.roomHandler.CheckDirection(game.player.Position, Direction.South))
                     {
-                        game.player.Inventory.AddItem(game.roomHandler.GetRoom(game.player.Position).ItemInRoomId.GetValueOrDefault(), 1);
-                        game.roomHandler.GetRoom(game.player.Position).ItemInRoomId = null;
-                        Console.WriteLine("\n{item} has been added to your inventory.");
-                        Console.ReadKey(true);
+                        if (game.roomHandler.GetRoom(game.roomHandler.GetDirectionId(game.player.Position, Direction.South)).ItemRequiredToEnter != 0)
+                        {
+                            if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetDirectionId(game.player.Position, Direction.South))))
+                            {
+                                game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.South));
+                            }
+                            else
+                            {
+                                RoomIsLocked(game.roomHandler.GetDirectionId(game.player.Position, Direction.South));
+                            }
+                        }
+                        else
+                        {
+                            game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.South));
+                        }
+                    }
+                    else
+                    {
+                        NoRoom("south");
+                    }
+                }
+                // move west
+                if (keyPressed.Key == ConsoleKey.LeftArrow)
+                {
+                    if (game.roomHandler.CheckDirection(game.player.Position, Direction.West))
+                    {
+                        if (game.roomHandler.GetRoom(game.roomHandler.GetDirectionId(game.player.Position, Direction.West)).ItemRequiredToEnter != 0)
+                        {
+                            if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetDirectionId(game.player.Position, Direction.West))))
+                            {
+                                game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.West));
+                            }
+                            else
+                            {
+                                RoomIsLocked(game.roomHandler.GetDirectionId(game.player.Position, Direction.West));
+                            }
+                        }
+                        else
+                        {
+                            game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.West));
+                        }
+                    }
+                    else
+                    {
+                        NoRoom("west");
                     }
                 }
 
-                // show inventory
                 if (keyPressed.Key == ConsoleKey.I)
                 {
-                    Console.Clear();
-                    Console.WriteLine("Inventory:");
-                    foreach (var item in game.player.Inventory.GetInventory())
-                    {
-                        Console.WriteLine(game.itemLoader.GetKeyDetails(item.Key).Name);
-                    }
-                    Console.ReadKey(true);
+                    Inventory();
                 }
+
+                if (keyPressed.Key == ConsoleKey.H)
+                {
+                    Help();
+                }
+
             }
+
         }
 
-        public void Print()
+        private void Help()
         {
-            // Print room name
-            Console.WriteLine($"{game.roomHandler.GetRoomName(game.player.Position).ToUpper()}\n\n");
+            Console.Clear();
+            ConsoleUtils.Yellow("\u25bc");
+            Console.Write(" - Current position\n");
+            ConsoleUtils.Red("\u2764");
+            Console.Write(" - Current health\n");
+            ConsoleUtils.Yellow("\u2315");
+            Console.Write(" - Search room\n");
+            ConsoleUtils.Green("\u2191");
+            Console.Write(" - Room to the North. Use up arrow key to navigate there.\n");
+            ConsoleUtils.Green("\u2192");
+            Console.Write(" - Room to the East. Use right arrow key to navigate there.\n");
+            ConsoleUtils.Green("\u2193");
+            Console.Write(" - Room to the South. Use down arrow key to navigate there.\n");
+            ConsoleUtils.Green("\u2190");
+            Console.Write(" - Room to the West. Use left arrow key to navigate there.\n");
+            ConsoleUtils.Yellow("\u25a3");
+            Console.Write(" - Inventory. Press \"I\" to open.\n");
+            Console.ReadKey(true);
 
-            // Print room description
-            Console.WriteLine($"{game.roomHandler.DescribeRoom(game.player.Position)}\n");
 
+        }
+
+        private void NoRoom(string s)
+        {
+            Console.Clear();
+            Console.WriteLine($"You charge face first into the {s}ern wall almost breaking your nose, you see stars.\n");
+            ConsoleUtils.Red("You loose 5 hp");
+            Console.ReadKey(true);
+            game.player.CurrentHealth -= 5;
+
+        }
+
+        private void RoomIsLocked(int _roomID)
+        {
+            Console.WriteLine($"{game.roomHandler.GetRoomName(_roomID)} is locked. You will need to find a the {game.roomHandler.GetRoomName(_roomID)} key to unlock it.");
+        }
+
+        private void Inventory()
+        {
+            Console.Clear();
+            ConsoleUtils.Yellow("\u25a3");
+            Console.Write(" Inventory \n");
+            foreach (var item in game.player.Inventory.GetInventory())
+            {
+                Console.WriteLine($"{game.itemLoader.GetKeyDetails(item.Key).Name}");
+            }
+            Console.ReadKey(true);
+        }
+
+        private void Print()
+        {
+            InfoBar();
+            RoomDescription();
+        }
+
+        private void InfoBar()
+        {
+            Console.Write("| ");
+            ConsoleUtils.Yellow("\u25bc");
+            Console.Write($" {game.roomHandler.GetRoomName(game.player.Position)} | ");
+            ConsoleUtils.Red("\u2764 ");
+            Console.Write($" {game.player.CurrentHealth} | ");
             if (!game.player.IsRoomExamined(game.player.Position))
             {
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("[E]xamine Room");
-                Console.ResetColor();
+                ConsoleUtils.Yellow("\u2315");
+                Console.Write(" [S]earch | ");
             }
-            else
+            if (game.roomHandler.CheckDirection(game.player.Position, Direction.North))
             {
-                if (game.roomHandler.GetRoom(game.player.Position).ItemInRoomId != null) Console.WriteLine($"[T]ake {game.itemLoader.GetKeyDetails(game.roomHandler.GetRoom(game.player.Position).ItemInRoomId.GetValueOrDefault()).Name}");
-
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.DarkGray;
-                    Console.WriteLine("[E]xamine Room");
-                    Console.ResetColor();
-                    // Console.WriteLine($"You have searched through the {game.roomHandler.GetRoomName(game.player.Position)} but you have found nothing of value. What a waste of time.");
-                }
+                ConsoleUtils.Green("\u2191 ");
+                Console.Write($"{game.roomHandler.GetRoomName(game.roomHandler.GetDirectionId(game.player.Position, Direction.North))} ");
             }
+            if (game.roomHandler.CheckDirection(game.player.Position, Direction.East))
+            {
+                ConsoleUtils.Green("\u2192 ");
+                Console.Write($"{game.roomHandler.GetRoomName(game.roomHandler.GetDirectionId(game.player.Position, Direction.East))} ");
+            }
+            if (game.roomHandler.CheckDirection(game.player.Position, Direction.South))
+            {
+                ConsoleUtils.Green("\u2193 ");
+                Console.Write($"{game.roomHandler.GetRoomName(game.roomHandler.GetDirectionId(game.player.Position, Direction.South))} ");
+            }
+            if (game.roomHandler.CheckDirection(game.player.Position, Direction.West))
+            {
+                ConsoleUtils.Green("\u2190 ");
+                Console.Write($"{game.roomHandler.GetRoomName(game.roomHandler.GetDirectionId(game.player.Position, Direction.West))} ");
+            }
+            Console.Write("| ");
+            ConsoleUtils.Yellow("\u25a3");
+            Console.Write(" [I]nventory | ");
+            ConsoleUtils.Yellow("?");
+            Console.Write(" [H]elp |\n\n");
 
-            Console.WriteLine("\n-- Move --");
+        }
 
-            if (game.roomHandler.GetRoom(game.player.Position).North != null) Console.WriteLine($"\u2191 {game.roomHandler.GetRoomName(game.roomHandler.GetRoom(game.player.Position).North.GetValueOrDefault())}");
-            if (game.roomHandler.GetRoom(game.player.Position).East != null) Console.WriteLine($"\u2192 {game.roomHandler.GetRoomName(game.roomHandler.GetRoom(game.player.Position).East.GetValueOrDefault())}");
-            if (game.roomHandler.GetRoom(game.player.Position).South != null) Console.WriteLine($"\u2193 {game.roomHandler.GetRoomName(game.roomHandler.GetRoom(game.player.Position).South.GetValueOrDefault())}");
-            if (game.roomHandler.GetRoom(game.player.Position).West != null) Console.WriteLine($"<- {game.roomHandler.GetRoomName(game.roomHandler.GetRoom(game.player.Position).West.GetValueOrDefault())}");
-
-
+        private void RoomDescription()
+        {
+            ConsoleUtils.BreakLine(game.roomHandler.DescribeRoom(game.player.Position));
+        }
+    }
+}
             // Försökte få till någon form av dynamisk keypress som byter ut ..roomHandler.Check{Compass} mot den knapp användaren trycker på, provade även konvertera string -> bool
             // string Compass;
             // if (keyPressed.Key == ConsoleKey.LeftArrow) Compass = "West";
@@ -249,6 +287,3 @@ namespace UI
             //         Console.ReadKey(true);
             //     }
             // }
-        }
-    }
-}
