@@ -66,6 +66,24 @@ namespace Characters
             CurrentExp += amount;
         }
 
+        public void ExamineRoom(int _RoomID)
+        {
+            Examined.Add(_RoomID);
+        }
+
+        public bool IsRoomExamined(int _RoomID)
+        {
+            foreach (var roomID in Examined)
+            {
+                if (roomID == _RoomID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
         // public override string ToString()
         // {
         //     return $"Id: {Id}, Name: {Name}, Class: {Class}, Original Hp: {OriginalHealth}, Current Hp: {CurrentHealth}, Power: {Power}, Armor: {Armor}, Damage: {Damage}, Level: {Level}, CurrentExp: {CurrentExp}";
