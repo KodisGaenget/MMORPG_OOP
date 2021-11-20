@@ -11,6 +11,7 @@ namespace DataManager
         public int playerHealth = 0;
         public int enemyHealth = 0;
         public bool combatOver = false;
+        public bool playersTurn;
 
         public CombatHandler()
         {
@@ -40,13 +41,14 @@ namespace DataManager
 
         public bool ContinueCombat()
         {
-            bool playersTurn = combat.Run();
+            playersTurn = combat.Run();
             UpdateCombatStatus();
-            if (!playersTurn && combat.fighter2.CurrentHealth! <= 0)
+            if (!playersTurn)
             {
                 ContinueCombat();
+                UpdateCombatStatus();
             }
-            else if (combat.fighter2.CurrentHealth! <= 0)
+            if (combat.fighter2.CurrentHealth! <= 0)
             {
                 return true;
             }
