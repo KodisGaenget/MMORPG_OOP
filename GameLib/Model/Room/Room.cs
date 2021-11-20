@@ -5,31 +5,38 @@ namespace GameLib
 {
     public class Room
     {
-        // kommentar
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string ExamineText { get; set; }
+        public Dictionary<Direction, int> Directions { get; set; }
+        public int ItemInRoomId { get; set; }
+        public int ItemRequiredToEnter { get; set; }
+        public int EnemyInRoom { get; set; }
 
-
-        public int? North { get; set; }
-        public int? East { get; set; }
-        public int? South { get; set; }
-        public int? West { get; set; }
-        public int? ItemInRoomId { get; set; }
-        public int? ItemRequiredToEnter { get; set; }
-        public int? EnemyInRoom { get; set; }
-
-        public Room(int _Id, string _name, string _description, string _examineText, int? _north, int? _east, int? _south, int? _west)
+        public Room(int _Id, string _name, string _description, string _examineText, int _north, int _east, int _south, int _west)
         {
             ID = _Id;
             Name = _name;
             Description = _description;
             ExamineText = _examineText;
-            North = _north;
-            East = _east;
-            South = _south;
-            West = _west;
+            Directions = new();
+            Directions.Add(Direction.North, _north);
+            Directions.Add(Direction.East, _east);
+            Directions.Add(Direction.South, _south);
+            Directions.Add(Direction.West, _west);
+            ItemInRoomId = 0;
+            ItemRequiredToEnter = 0;
+            EnemyInRoom = 0;
         }
+    }
+
+    // move enum? where?
+    public enum Direction
+    {
+        North,
+        East,
+        South,
+        West
     }
 }
