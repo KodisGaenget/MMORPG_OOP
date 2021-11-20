@@ -14,13 +14,7 @@ namespace GameLib
 
         public string ExamineRoom(int _roomID)
         {
-            GetRoom(_roomID).RoomExamined = true;
             return GetRoom(_roomID).ExamineText;
-        }
-
-        public bool IsRoomExaminated(int _roomID)
-        {
-            return GetRoom(_roomID).RoomExamined;
         }
 
         public string GetRoomName(int _roomID)
@@ -112,6 +106,39 @@ namespace GameLib
             }
         }
 
+        public bool CheckDirection(int _playerPosition, string _direction)
+        {
+            if (_direction == "north")
+            {
+                if (GetRoom(_playerPosition).North != null)
+                {
+                    return true;
+                }
+            }
+            if (_direction == "east")
+            {
+                if (GetRoom(_playerPosition).East != null)
+                {
+                    return true;
+                }
+            }
+            if (_direction == "south")
+            {
+                if (GetRoom(_playerPosition).South != null)
+                {
+                    return true;
+                }
+            }
+            if (_direction == "west")
+            {
+                if (GetRoom(_playerPosition).West != null)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         // public bool CheckIfDestinationExists(ConsoleKeyInfo _keyPressed, int _roomID)
         // {
         //     if (_keyPressed.Key == ConsoleKey.UpArrow)
@@ -187,5 +214,13 @@ namespace GameLib
         {
             allRooms[6].ItemRequiredToEnter = 31;
         }
+    }
+
+    public enum Direction
+    {
+        North,
+        East,
+        South,
+        West
     }
 }
