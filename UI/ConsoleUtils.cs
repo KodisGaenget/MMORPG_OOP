@@ -25,13 +25,12 @@ namespace UI
             Console.ResetColor();
         }
 
-        public static void TypeWrite(string s)
+        public static void BreakLine(string s)
         {
             int charCount = 0;
             for (int i = 0; i < s.Length; i++)
             {
                 Console.Write(s[i]);
-                // System.Threading.Thread.Sleep(60);
                 charCount++;
                 if (charCount > 100 && s[i] == ' ')
                 {
