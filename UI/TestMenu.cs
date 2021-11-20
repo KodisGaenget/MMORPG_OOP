@@ -101,7 +101,7 @@ namespace UI
                 {
                     // check if there is a room to the west<
                     if (game.roomHandler.CheckWest(game.player.Position))
-                    {                
+                    {
                         // check if the room is locked
                         if (game.roomHandler.IsRoomLocked(game.roomHandler.GetRoom(game.player.Position).West.GetValueOrDefault()))
                         {
@@ -135,14 +135,14 @@ namespace UI
                 // examine room
                 if (keyPressed.Key == ConsoleKey.E)
                 {
-                    if (!game.roomHandler.IsRoomExaminated(game.player.Position))
+                    if (!game.player.IsRoomExamined(game.player.Position))
                     {
                         Console.WriteLine("\n" + game.roomHandler.ExamineRoom(game.player.Position));
                         Console.ReadKey(true);
                     }
                     else
                     {
-                        Console.WriteLine("\nRoom has already been examined."); 
+                        Console.WriteLine("\nRoom has already been examined.");
                         Console.ReadKey(true);
                     }
                 }
@@ -150,7 +150,7 @@ namespace UI
                 // take item in room
                 if (keyPressed.Key == ConsoleKey.T)
                 {
-                    if (game.roomHandler.IsRoomExaminated(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId != null)
+                    if (game.player.IsRoomExamined(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId != null)
                     {
                         game.player.Inventory.AddItem(game.roomHandler.GetRoom(game.player.Position).ItemInRoomId.GetValueOrDefault(), 1);
                         game.roomHandler.GetRoom(game.player.Position).ItemInRoomId = null;
@@ -181,7 +181,7 @@ namespace UI
             // Print room description
             Console.WriteLine($"{game.roomHandler.DescribeRoom(game.player.Position)}\n");
 
-            if (!game.roomHandler.IsRoomExaminated(game.player.Position))
+            if (!game.player.IsRoomExamined(game.player.Position))
             {
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("[E]xamine Room");
@@ -207,48 +207,48 @@ namespace UI
             if (game.roomHandler.GetRoom(game.player.Position).South != null) Console.WriteLine($"\u2193 {game.roomHandler.GetRoomName(game.roomHandler.GetRoom(game.player.Position).South.GetValueOrDefault())}");
             if (game.roomHandler.GetRoom(game.player.Position).West != null) Console.WriteLine($"<- {game.roomHandler.GetRoomName(game.roomHandler.GetRoom(game.player.Position).West.GetValueOrDefault())}");
 
-                    
-                // Försökte få till någon form av dynamisk keypress som byter ut ..roomHandler.Check{Compass} mot den knapp användaren trycker på, provade även konvertera string -> bool
-                // string Compass;
-                // if (keyPressed.Key == ConsoleKey.LeftArrow) Compass = "West";
-                // if (keyPressed.Key == ConsoleKey.UpArrow) Compass = "North";
-                // if (keyPressed.Key == ConsoleKey.RightArrow) Compass = "East";
-                // if (keyPressed.Key == ConsoleKey.DownArrow) Compass = "South";
-                // // move west
-                // if (keyPressed.Key == ConsoleKey.LeftArrow || keyPressed.Key == ConsoleKey.RightArrow || keyPressed.Key == ConsoleKey.DownArrow || keyPressed.Key == ConsoleKey.UpArrow )
-                // {
-                //     // check if there is a room to the west<
-                //     if (game.roomHandler.Check{Compass}(game.player.Position))
-                //     {                
-                //         // check if the room is locked
-                //         if (game.roomHandler.IsRoomLocked(game.roomHandler.GetRoom(game.player.Position).{Compass}.GetValueOrDefault()))
-                //         {
-                //             // check if the player has the required item in inventory
-                //             if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetRoom(game.player.Position).{Compass}.GetValueOrDefault())))
-                //             {
-                //                 game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Position).{Compass}.GetValueOrDefault());
-                //             }
-                //             else
-                //             {
-                //                 Console.WriteLine($"\nThe door to the {game.roomHandler.GetRoomName(game.roomHandler.GetRoom(game.player.Position).{Compass}.GetValueOrDefault())} appears to be locked.\nMaybe there's a key around here somewhere?");
-                //                 Console.ReadKey(true);
-                //             }
-                //         }
-                //         else
-                //         {
-                //             game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Position).{Compass}.GetValueOrDefault());
-                //         }
-                //     }
 
-                //     // if there is no room in x direction, prompt message
-                //     else
-                //     {
-                //         Console.Clear();
-                //         Console.WriteLine($"You charge face first into the {Compass}ern wall almost breaking your nose, you see stars");
-                //         game.player.CurrentHealth -= 5;
-                //         Console.ReadKey(true);
-                //     }
-                // }
+            // Försökte få till någon form av dynamisk keypress som byter ut ..roomHandler.Check{Compass} mot den knapp användaren trycker på, provade även konvertera string -> bool
+            // string Compass;
+            // if (keyPressed.Key == ConsoleKey.LeftArrow) Compass = "West";
+            // if (keyPressed.Key == ConsoleKey.UpArrow) Compass = "North";
+            // if (keyPressed.Key == ConsoleKey.RightArrow) Compass = "East";
+            // if (keyPressed.Key == ConsoleKey.DownArrow) Compass = "South";
+            // // move west
+            // if (keyPressed.Key == ConsoleKey.LeftArrow || keyPressed.Key == ConsoleKey.RightArrow || keyPressed.Key == ConsoleKey.DownArrow || keyPressed.Key == ConsoleKey.UpArrow )
+            // {
+            //     // check if there is a room to the west<
+            //     if (game.roomHandler.Check{Compass}(game.player.Position))
+            //     {                
+            //         // check if the room is locked
+            //         if (game.roomHandler.IsRoomLocked(game.roomHandler.GetRoom(game.player.Position).{Compass}.GetValueOrDefault()))
+            //         {
+            //             // check if the player has the required item in inventory
+            //             if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetRoom(game.player.Position).{Compass}.GetValueOrDefault())))
+            //             {
+            //                 game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Position).{Compass}.GetValueOrDefault());
+            //             }
+            //             else
+            //             {
+            //                 Console.WriteLine($"\nThe door to the {game.roomHandler.GetRoomName(game.roomHandler.GetRoom(game.player.Position).{Compass}.GetValueOrDefault())} appears to be locked.\nMaybe there's a key around here somewhere?");
+            //                 Console.ReadKey(true);
+            //             }
+            //         }
+            //         else
+            //         {
+            //             game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Position).{Compass}.GetValueOrDefault());
+            //         }
+            //     }
+
+            //     // if there is no room in x direction, prompt message
+            //     else
+            //     {
+            //         Console.Clear();
+            //         Console.WriteLine($"You charge face first into the {Compass}ern wall almost breaking your nose, you see stars");
+            //         game.player.CurrentHealth -= 5;
+            //         Console.ReadKey(true);
+            //     }
+            // }
         }
     }
 }
