@@ -11,7 +11,7 @@ namespace GameLib
         public string Description { get; set; }
         public string ExamineText { get; set; }
 
-        public bool RoomExamined { get; set; }
+
         public int? North { get; set; }
         public int? East { get; set; }
         public int? South { get; set; }
@@ -30,7 +30,6 @@ namespace GameLib
             East = _east;
             South = _south;
             West = _west;
-            RoomExamined = false;
         }
     }
 }
