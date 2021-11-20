@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Combat.UI
+namespace ConsoleUI
 {
     public class Menu
     {

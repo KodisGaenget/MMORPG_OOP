@@ -26,6 +26,12 @@ namespace ConsoleUI
             Enemy enemy = new();
             Game game = new(1); //1 = Spelarens id;
 
+            game.combatHandler.StartNewCombat(game.player, game.player, game.itemLoader);
+            string choise = "";
+            while (game.combatHandler.com))
+            MainMenu combatMenu = new(game.combatHandler.combatLog);
+            choise = combatMenu.Run(game.combatHandler.);
+
 
             //game.Start();
 

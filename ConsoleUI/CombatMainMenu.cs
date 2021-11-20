@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using GameInterfaces;
 
-namespace Combat.UI
+namespace ConsoleUI
 {
 
     class MainMenu

@@ -6,16 +6,17 @@ namespace DataManager
     public class CombatHandler
     {
         CombatSystem combat;
-        string combatLog = "";
-        string result = "";
-        int playerHealth = 0;
+        public string combatLog = "";
+        public string result = "";
+        public int playerHealth = 0;
+        public bool combatOver = false;
 
         public CombatHandler()
         {
 
         }
 
-        public bool StartNewCombat(Player player, Enemy enemy, ItemLoader itemLoader)
+        public bool StartNewCombat(Player player, Player enemy, ItemLoader itemLoader)
         {
             combat = new(player, enemy, itemLoader);
             bool playersTurn = combat.Run();
@@ -31,6 +32,7 @@ namespace DataManager
         {
             combatLog = combat.combatLog;
             result = combat.endingMessage;
+            combatOver = combat.combatOver;
         }
 
         public bool ContinueCombat()
