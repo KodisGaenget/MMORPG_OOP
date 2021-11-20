@@ -66,16 +66,16 @@ namespace Characters
             CurrentExp += amount;
         }
 
-        public void ExamineRoom(int _RoomID)
+        public void ExamineRoom(int roomId)
         {
-            Examined.Add(_RoomID);
+            Examined.Add(roomId);
         }
 
-        public bool IsRoomExamined(int _RoomID)
+        public bool IsRoomExamined(int room_Id)
         {
-            foreach (var roomID in Examined)
+            foreach (var roomId in Examined)
             {
-                if (roomID == _RoomID)
+                if (room_Id == roomId)
                 {
                     return true;
                 }
