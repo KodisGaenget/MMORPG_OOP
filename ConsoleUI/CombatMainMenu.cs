@@ -25,15 +25,15 @@ namespace ConsoleUI
             switch (selectedIndex)
             {
                 case 0:
-                    Console.Write("Attack");
+                    //Console.Write("Attack");
                     return "Attack";
 
                 case 1:
-                    Console.Write("Inventory");
+                    //Console.Write("Inventory");
                     return "Inventory";
 
                 case 2:
-                    Console.Write("Escape fight");
+                    // Console.Write("Escape fight");
                     return "Escape";
             }
             return "";

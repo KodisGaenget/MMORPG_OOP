@@ -11,6 +11,7 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            Game game = new(1); //1 = Spelarens id;
 
             // List<Room> allRooms = new()
             // {
@@ -23,7 +24,6 @@ namespace ConsoleUI
             // };
 
             // roomHandler.AddRooms(allRooms);
-            Game game = new(1); //1 = Spelarens id;
 
             game.combatHandler.StartNewCombat(game.player, game.player2, game.itemLoader);
             string choise = "";
@@ -34,6 +34,15 @@ namespace ConsoleUI
                 if (choise == "Attack")
                 {
                     game.combatHandler.ContinueCombat();
+                }
+                if (choise == "Inventory")
+                {
+                    InventoryMenu inventoryMenu = new(game);
+                }
+                if (choise == "Escape")
+                {
+                    System.Console.WriteLine("You escaped the fight!");
+                    break;
                 }
             }
 
