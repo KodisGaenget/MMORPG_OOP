@@ -44,19 +44,19 @@ namespace DataManager
                 {
                     if (item.Value == "Armor")
                     {
-                        return (new(), GetArmorDetails(id), new(), new());
+                        return (null, GetArmorDetails(id), null, null);
                     }
                     else if (item.Value == "Weapon")
                     {
-                        return (GetWeaponDetails(id), new(), new(), new());
+                        return (GetWeaponDetails(id), null, null, null);
                     }
                     else if (item.Value == "Consumable")
                     {
-                        return (new(), new(), GetConsumableDetails(id), new());
+                        return (null, null, GetConsumableDetails(id), null);
                     }
                     else if (item.Value == "Key")
                     {
-                        return (new(), new(), new(), GetKeyDetails(id));
+                        return (null, null, null, GetKeyDetails(id));
                     }
                 }
             }
