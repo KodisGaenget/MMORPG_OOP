@@ -1,9 +1,8 @@
 ﻿using System;
 using DataManager;
-using Items;
 using GameInterfaces;
 using System.Threading;
-using GameEnums;
+
 
 namespace Combat
 {
@@ -115,12 +114,12 @@ namespace Combat
 
         private string CheckCombatOver()
         {
-            if (fighter1.CurrentHealth <= 0)
+            if (fighter2.CurrentHealth <= 0)
             {
                 combatOver = true;
                 return "You won the combat!";
             }
-            else if (fighter2.CurrentHealth <= 0)
+            else if (fighter1.CurrentHealth <= 0)
             {
                 combatOver = true;
                 return "You died!";
