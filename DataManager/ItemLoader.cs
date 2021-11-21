@@ -36,6 +36,33 @@ namespace DataManager
             return true;
         }
 
+        public (Weapon weapon, Armor armor, Consumable consumable, Key key) FindItem(int id)
+        {
+            foreach (var item in itemList)
+            {
+                if (item.Key == id)
+                {
+                    if (item.Value == "Armor")
+                    {
+                        return (new(), GetArmorDetails(id), new(), new());
+                    }
+                    else if (item.Value == "Weapon")
+                    {
+                        return (GetWeaponDetails(id), new(), new(), new());
+                    }
+                    else if (item.Value == "Consumable")
+                    {
+                        return (new(), new(), GetConsumableDetails(id), new());
+                    }
+                    else if (item.Value == "Key")
+                    {
+                        return (new(), new(), new(), GetKeyDetails(id));
+                    }
+                }
+            }
+            return (new(), new(), new(), new());
+        }
+
         private void LoadItems()
         {
             foreach (var item in itemList)
