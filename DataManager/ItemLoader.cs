@@ -9,10 +9,10 @@ namespace DataManager
     {
         public Dictionary<int, string> itemIdList;
         public List<Item> itemList = new();
-        public List<Armor> armorList = new();
-        public List<Weapon> weaponList = new();
-        public List<Consumable> consumableList = new();
-        public List<Key> keyList = new();
+        // public List<Armor> armorList = new();
+        // public List<Weapon> weaponList = new();
+        // public List<Consumable> consumableList = new();
+        // public List<Key> keyList = new();
 
         Database db;
 
@@ -43,22 +43,22 @@ namespace DataManager
             {
                 if (item.Value == "Armor")
                 {
-                    armorList.Add(db.GetArmorItem(item.Key));
+                    // armorList.Add(db.GetArmorItem(item.Key));
                     itemList.Add(db.GetArmorItem(item.Key));
                 }
                 else if (item.Value == "Weapon")
                 {
-                    weaponList.Add(db.GetWeaponItem(item.Key));
+                    // weaponList.Add(db.GetWeaponItem(item.Key));
                     itemList.Add(db.GetWeaponItem(item.Key));
                 }
                 else if (item.Value == "Consumable")
                 {
-                    consumableList.Add(db.GetConsumableItem(item.Key));
+                    // consumableList.Add(db.GetConsumableItem(item.Key));
                     itemList.Add(db.GetConsumableItem(item.Key));
                 }
                 else if (item.Value == "Key")
                 {
-                    keyList.Add(db.GetKeyItem(item.Key));
+                    // keyList.Add(db.GetKeyItem(item.Key));
                     itemList.Add(db.GetKeyItem(item.Key));
                 }
             }
@@ -66,11 +66,11 @@ namespace DataManager
 
         public Weapon GetWeaponDetails(int id)
         {
-            foreach (var item in weaponList)
+            foreach (var item in itemList)
             {
                 if (item.Id == id)
                 {
-                    return item;
+                    return item as Weapon;
                 }
             }
             return new();
@@ -78,11 +78,11 @@ namespace DataManager
 
         public Armor GetArmorDetails(int id)
         {
-            foreach (var item in armorList)
+            foreach (var item in itemList)
             {
                 if (item.Id == id)
                 {
-                    return item;
+                    return item as Armor;
                 }
             }
             return new();
@@ -90,26 +90,26 @@ namespace DataManager
 
         public Consumable GetConsumableDetails(int id)
         {
-            foreach (var item in consumableList)
+            foreach (var item in itemList)
             {
                 if (item.Id == id)
                 {
-                    return item;
+                    return item as Consumable;
                 }
             }
-            return new();
+            return null;
         }
 
         public Key GetKeyDetails(int id)
         {
-            foreach (var item in keyList)
+            foreach (var item in itemList)
             {
                 if (item.Id == id)
                 {
-                    return item;
+                    return item as Key;
                 }
             }
-            return new();
+            return null;
         }
 
         public string GetItemType(int Id)

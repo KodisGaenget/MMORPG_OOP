@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Characters;
 using DataManager;
 using GameEnums;
+using Items;
 
 namespace GameLib
 {
@@ -66,11 +67,12 @@ namespace GameLib
 
         private int GetPlayerDef(int itemId)
         {
-            foreach (var item in itemLoader.armorList)
+            foreach (var item in itemLoader.itemList)
             {
                 if (item.Id == itemId)
                 {
-                    return item.Defense;
+                    var armor = item as Armor;
+                    return armor.Defense;
                 }
             }
             return 0;
@@ -92,12 +94,13 @@ namespace GameLib
         private Dictionary<string, int> GetPlayerAtk(int itemId)
         {
             Dictionary<string, int> FightAtk = new();
-            foreach (var item in itemLoader.weaponList)
+            foreach (var item in itemLoader.itemList)
             {
                 if (item.Id == itemId)
                 {
-                    FightAtk.Add("Min", item.MinDamage);
-                    FightAtk.Add("Max", item.MaxDamage);
+                    var weapon = item as Weapon;
+                    FightAtk.Add("Min", weapon.MinDamage);
+                    FightAtk.Add("Max", weapon.MaxDamage);
                 }
             }
             return FightAtk;
@@ -120,8 +123,9 @@ namespace GameLib
 
         private bool ConsumeItem(KeyValuePair<int, int> item)
         {
-            foreach (var consumable in itemLoader.consumableList)
+            foreach (var item2 in itemLoader.itemList)
             {
+                var consumable = item2 as Consumable;
                 if (item.Key == consumable.Id)
                 {
                     if (consumable.ConsumableType == ConsumableType.HealthPotion)
