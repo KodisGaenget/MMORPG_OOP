@@ -43,11 +43,6 @@ namespace DataManager
         {
             playersTurn = combat.Run();
             UpdateCombatStatus();
-            if (!playersTurn)
-            {
-                ContinueCombat();
-                UpdateCombatStatus();
-            }
             if (combat.fighter2.CurrentHealth! <= 0)
             {
                 return true;

@@ -17,6 +17,13 @@ namespace ConsoleUI
             SelectedIndex = 0;
         }
 
+        public void UpdateLogAndHeader(string combatLog, string header)
+        {
+            Prompt = combatLog;
+            this.header = header;
+        }
+
+
         private void DisplayOptions()
         {
             Console.Write(header);

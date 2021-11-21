@@ -30,19 +30,27 @@ namespace ConsoleUI
             while (!game.combatHandler.combatOver)
             {
                 MainMenu combatMenu = new(game.combatHandler.combatLog);
-                choise = combatMenu.Run(game.combatHandler.playerHealth, game.combatHandler.enemyHealth);
-                if (choise == "Attack")
+                if (!game.combatHandler.playersTurn)
                 {
                     game.combatHandler.ContinueCombat();
+                    combatMenu.Update(game.combatHandler.combatLog, game.combatHandler.playerHealth, game.combatHandler.enemyHealth);
                 }
-                if (choise == "Inventory")
+                else
                 {
-                    InventoryMenu inventoryMenu = new(game);
-                }
-                if (choise == "Escape")
-                {
-                    System.Console.WriteLine("You escaped the fight!");
-                    break;
+                    choise = combatMenu.Run(game.combatHandler.playerHealth, game.combatHandler.enemyHealth);
+                    if (choise == "Attack")
+                    {
+                        game.combatHandler.ContinueCombat();
+                    }
+                    if (choise == "Inventory")
+                    {
+                        InventoryMenu inventoryMenu = new(game);
+                    }
+                    if (choise == "Escape")
+                    {
+                        System.Console.WriteLine("You escaped the fight!");
+                        break;
+                    }
                 }
             }
 
