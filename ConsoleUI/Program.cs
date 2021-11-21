@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using GameLib;
 using Characters;
+using System.Threading;
 
 namespace ConsoleUI
 {
@@ -34,6 +35,7 @@ namespace ConsoleUI
                 {
                     game.combatHandler.ContinueCombat();
                     combatMenu.Update(game.combatHandler.combatLog, game.combatHandler.playerHealth, game.combatHandler.enemyHealth);
+                    Thread.Sleep(200);
                 }
                 else
                 {
