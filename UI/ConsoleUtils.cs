@@ -25,6 +25,24 @@ namespace UI
             Console.ResetColor();
         }
 
+        public static string ChangeColor(string n, string s, ConsoleColor consoleColor)
+        {
+            Console.ForegroundColor = consoleColor;
+
+            if (n == "Write")
+            {
+                Console.Write(s);
+            }
+
+            if (n == "WriteLine")
+            {
+                Console.WriteLine(s);
+            }
+
+            Console.ResetColor();
+            return string.Empty;
+        }
+
         public static void BreakLine(string s)
         {
             int charCount = 0;
@@ -37,7 +55,6 @@ namespace UI
                     Console.WriteLine();
                     charCount = 0;
                 }
-
             }
         }
     }
