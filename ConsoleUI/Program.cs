@@ -34,8 +34,7 @@ namespace ConsoleUI
                 if (!game.combatHandler.playersTurn)
                 {
                     game.combatHandler.ContinueCombat();
-                    combatMenu.Update(game.combatHandler.combatLog, game.combatHandler.playerHealth, game.combatHandler.enemyHealth);
-                    Thread.Sleep(200);
+                    Thread.Sleep(100);
                 }
                 else
                 {
@@ -54,6 +53,11 @@ namespace ConsoleUI
                         break;
                     }
                 }
+                if (game.combatHandler.combatOver)
+                {
+                    System.Console.WriteLine(game.combatHandler.result);
+                }
+
             }
 
 
