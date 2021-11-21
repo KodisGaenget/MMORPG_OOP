@@ -1,8 +1,8 @@
 ﻿using System;
 using DataManager;
-using Items;
 using GameInterfaces;
 using System.Threading;
+
 
 namespace Combat
 {
@@ -75,23 +75,22 @@ namespace Combat
         {
             foreach (var item in fighter1.GetItemIdsFromEquipment())
             {
-                Weapon weapon = itemLoader.GetWeaponDetails(item);
-                if (item == weapon.Id)
+                if (itemLoader.GetItemType(item) == "Weapon")
                 {
-                    fighter1.MinDamage = weapon.MinDamage;
-                    fighter1.MaxDamage = weapon.MaxDamage;
+                    fighter1.MinDamage = itemLoader.GetWeaponDetails(item).MinDamage;
+                    fighter1.MaxDamage = itemLoader.GetWeaponDetails(item).MaxDamage;
                 }
             }
 
             foreach (var item in fighter2.GetItemIdsFromEquipment())
             {
-                Weapon weapon = itemLoader.GetWeaponDetails(item);
-                if (item == weapon.Id)
+                if (itemLoader.GetItemType(item) == "Weapon")
                 {
-                    fighter2.MinDamage = weapon.MinDamage;
-                    fighter2.MaxDamage = weapon.MaxDamage;
+                    fighter2.MinDamage = itemLoader.GetWeaponDetails(item).MinDamage;
+                    fighter2.MaxDamage = itemLoader.GetWeaponDetails(item).MaxDamage;
                 }
             }
+
         }
 
 
@@ -99,30 +98,28 @@ namespace Combat
         {
             foreach (var item in fighter1.GetItemIdsFromEquipment())
             {
-                Armor armor = itemLoader.GetArmorDetails(item);
-                if (item == armor.Id)
+                if (itemLoader.GetItemType(item) == "Armor")
                 {
-                    fighter1Armor += armor.Defense;
+                    fighter1Armor += itemLoader.GetArmorDetails(item).Defense;
                 }
             }
             foreach (var item in fighter2.GetItemIdsFromEquipment())
             {
-                Armor armor = itemLoader.GetArmorDetails(item);
-                if (item == armor.Id)
+                if (itemLoader.GetItemType(item) == "Armor")
                 {
-                    fighter2Armor += armor.Defense;
+                    fighter2Armor += itemLoader.GetArmorDetails(item).Defense;
                 }
             }
         }
 
         private string CheckCombatOver()
         {
-            if (fighter1.CurrentHealth <= 0)
+            if (fighter2.CurrentHealth <= 0)
             {
                 combatOver = true;
                 return "You won the combat!";
             }
-            else if (fighter2.CurrentHealth <= 0)
+            else if (fighter1.CurrentHealth <= 0)
             {
                 combatOver = true;
                 return "You died!";

@@ -38,8 +38,9 @@ namespace ConsoleUI
             List<string> consumablesAvailable = new();
             foreach (var item in game.player.GetItemIdsFromEquipment())
             {
-                if (game.itemLoader.GetConsumableDetails(item).Id == item)
+                if (game.itemLoader.GetItemType(item) == "Consumable")
                 {
+
                     consumablesAvailable.Add(game.itemLoader.GetConsumableDetails(item).ConsumableType.ToString());
                 }
             }

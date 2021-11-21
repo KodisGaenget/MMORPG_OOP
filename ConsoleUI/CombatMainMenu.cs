@@ -39,11 +39,6 @@ namespace ConsoleUI
             }
             return "";
         }
-        public void Update(string combatLog, int playerHealth, int enemyHealth)
-        {
-            string headerinfo = $"You have: {playerHealth}hp left -- Enemys has: {enemyHealth}hp left\n";
-            menu.UpdateLogAndHeader(combatLog, headerinfo);
-        }
 
     }
 }
