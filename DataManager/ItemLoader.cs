@@ -7,7 +7,8 @@ namespace DataManager
 {
     public class ItemLoader
     {
-        public Dictionary<int, string> itemList;
+        public Dictionary<int, string> itemIdList;
+        public List<Item> itemList = new();
         public List<Armor> armorList = new();
         public List<Weapon> weaponList = new();
         public List<Consumable> consumableList = new();
@@ -18,7 +19,7 @@ namespace DataManager
         public ItemLoader(Database db)
         {
             this.db = db;
-            itemList = db.GetAllItems();
+            itemIdList = db.GetAllItems();
             Load();
         }
 
@@ -36,52 +37,29 @@ namespace DataManager
             return true;
         }
 
-        public (Weapon weapon, Armor armor, Consumable consumable, Key key) FindItem(int id)
-        {
-            foreach (var item in itemList)
-            {
-                if (item.Key == id)
-                {
-                    if (item.Value == "Armor")
-                    {
-                        return (null, GetArmorDetails(id), null, null);
-                    }
-                    else if (item.Value == "Weapon")
-                    {
-                        return (GetWeaponDetails(id), null, null, null);
-                    }
-                    else if (item.Value == "Consumable")
-                    {
-                        return (null, null, GetConsumableDetails(id), null);
-                    }
-                    else if (item.Value == "Key")
-                    {
-                        return (null, null, null, GetKeyDetails(id));
-                    }
-                }
-            }
-            return (new(), new(), new(), new());
-        }
-
         private void LoadItems()
         {
-            foreach (var item in itemList)
+            foreach (var item in itemIdList)
             {
                 if (item.Value == "Armor")
                 {
                     armorList.Add(db.GetArmorItem(item.Key));
+                    itemList.Add(db.GetArmorItem(item.Key));
                 }
                 else if (item.Value == "Weapon")
                 {
                     weaponList.Add(db.GetWeaponItem(item.Key));
+                    itemList.Add(db.GetWeaponItem(item.Key));
                 }
                 else if (item.Value == "Consumable")
                 {
                     consumableList.Add(db.GetConsumableItem(item.Key));
+                    itemList.Add(db.GetConsumableItem(item.Key));
                 }
                 else if (item.Value == "Key")
                 {
                     keyList.Add(db.GetKeyItem(item.Key));
+                    itemList.Add(db.GetKeyItem(item.Key));
                 }
             }
         }
@@ -136,7 +114,7 @@ namespace DataManager
 
         public string GetItemType(int Id)
         {
-            foreach (var item in itemList)
+            foreach (var item in itemIdList)
             {
                 if (item.Key == Id)
                 {

@@ -38,6 +38,19 @@ namespace GameLib
             return playerLoader.GetPlayer(id);
         }
 
+        public List<string> GetInventoryList()
+        {
+            List<string> InventoryList = new();
+            foreach (var item in player.Inventory.GetInventory())
+            {
+                foreach (var item2 in itemLoader.itemList)
+                {
+                    InventoryList.Add(item2.Name);
+                }
+            }
+            return InventoryList;
+        }
+
         public int GetDefense(Player player)
         {
             int FightDefence = player.Armor;
