@@ -29,7 +29,7 @@ namespace Characters
 
         public int Block()
         {
-            return 0;
+            return Armor;
         }
 
         public List<int> GetItemIdsFromEquipment()
@@ -59,6 +59,7 @@ namespace Characters
             {
                 CurrentHealth = newHp;
             }
+
             if (CurrentHealth <= 0)
             {
                 CurrentHealth = 0;
