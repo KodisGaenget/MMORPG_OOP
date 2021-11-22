@@ -55,7 +55,7 @@ namespace Combat
         private int CalcDmgDealt(IFightable dealer, IFightable taker)
         {
             int weaponDmg = r.Next(dealer.MinDamage, dealer.MaxDamage);
-            return dealer.BaseDamage + weaponDmg;
+            return dealer.Attack() + weaponDmg;
         }
 
         private float Resist(IFightable dealer, IFightable taker, int takerArmor)
