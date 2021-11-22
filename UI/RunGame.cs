@@ -162,7 +162,17 @@ namespace UI
                     }
                     if (game.combatHandler.combatOver)
                     {
-                        System.Console.WriteLine(game.combatHandler.result);
+                        if (game.combatHandler.playerWinner)
+                        {
+                            System.Console.WriteLine("You won!");
+                            game.player.GainExp(game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).expValue);
+                            game.roomHandler.GetRoom(_roomID).EnemyInRoom = 0;
+                        }
+                        else
+                        {
+                            Console.WriteLine("You suck and died");
+                            Environment.Exit(0);
+                        }
                     }
 
                 }
