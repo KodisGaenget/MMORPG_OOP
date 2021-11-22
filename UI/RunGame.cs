@@ -46,7 +46,6 @@ namespace UI
         private void GameLoop()
         {
             ConsoleKeyInfo keyPressed;
-
             while (true)
             {
                 Console.Clear();
@@ -54,112 +53,29 @@ namespace UI
                 keyPressed = Console.ReadKey(true);
 
                 #region Movement
-                // move north
+                // Move North
                 if (keyPressed.Key == ConsoleKey.UpArrow)
                 {
-                    if (game.roomHandler.CheckDirection(game.player.Position, Direction.North))
-                    {
-                        if (game.roomHandler.GetRoom(game.roomHandler.GetDirectionId(game.player.Position, Direction.North)).ItemRequiredToEnter != 0)
-                        {
-                            if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetDirectionId(game.player.Position, Direction.North))))
-                            {
-                                MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.North));
-                            }
-                            else
-                            {
-                                RoomIsLocked(game.roomHandler.GetDirectionId(game.player.Position, Direction.North));
-                            }
-                        }
-                        else
-                        {
-                            MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.North));
-                        }
-                    }
-                    else
-                    {
-                        NoRoom("north");
-                    }
+                    Movement(Direction.North);
                 }
-                // move east
+                // Move East
                 if (keyPressed.Key == ConsoleKey.RightArrow)
                 {
-                    if (game.roomHandler.CheckDirection(game.player.Position, Direction.East))
-                    {
-                        if (game.roomHandler.GetRoom(game.roomHandler.GetDirectionId(game.player.Position, Direction.East)).ItemRequiredToEnter != 0)
-                        {
-                            if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetDirectionId(game.player.Position, Direction.East))))
-                            {
-                                MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.East));
-                            }
-                            else
-                            {
-                                RoomIsLocked(game.roomHandler.GetDirectionId(game.player.Position, Direction.East));
-                            }
-                        }
-                        else
-                        {
-                            MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.East));
-                        }
-                    }
-                    else
-                    {
-                        NoRoom("east");
-                    }
+                    Movement(Direction.East);
                 }
-                // move south
+                // Move South
                 if (keyPressed.Key == ConsoleKey.DownArrow)
                 {
-                    if (game.roomHandler.CheckDirection(game.player.Position, Direction.South))
-                    {
-                        if (game.roomHandler.GetRoom(game.roomHandler.GetDirectionId(game.player.Position, Direction.South)).ItemRequiredToEnter != 0)
-                        {
-                            if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetDirectionId(game.player.Position, Direction.South))))
-                            {
-                                MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.South));
-                            }
-                            else
-                            {
-                                RoomIsLocked(game.roomHandler.GetDirectionId(game.player.Position, Direction.South));
-                            }
-                        }
-                        else
-                        {
-                            MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.South));
-                        }
-                    }
-                    else
-                    {
-                        NoRoom("south");
-                    }
+                    Movement(Direction.South);
                 }
-                // move west
+                // Move West
                 if (keyPressed.Key == ConsoleKey.LeftArrow)
                 {
-                    if (game.roomHandler.CheckDirection(game.player.Position, Direction.West))
-                    {
-                        if (game.roomHandler.GetRoom(game.roomHandler.GetDirectionId(game.player.Position, Direction.West)).ItemRequiredToEnter != 0)
-                        {
-                            if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetDirectionId(game.player.Position, Direction.West))))
-                            {
-                                MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.West));
-                            }
-                            else
-                            {
-                                RoomIsLocked(game.roomHandler.GetDirectionId(game.player.Position, Direction.West));
-                            }
-                        }
-                        else
-                        {
-                            MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.West));
-                        }
-                    }
-                    else
-                    {
-                        NoRoom("west");
-                    }
+                    Movement(Direction.West);
                 }
                 #endregion 
 
+                #region UIbar
                 if (keyPressed.Key == ConsoleKey.I)
                 {
                     Inventory();
@@ -169,10 +85,12 @@ namespace UI
                 {
                     Help();
                 }
+
                 if (keyPressed.Key == ConsoleKey.S)
                 {
-                    game.player.AddExamineRoom(game.player.Position); //Lade till Add i metodnamnet...
+                    game.player.AddExamineRoom(game.player.Position);
                 }
+
                 if (keyPressed.Key == ConsoleKey.T)
                 {
                     if (game.player.IsRoomExamined(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId != 0)
@@ -180,7 +98,33 @@ namespace UI
                         game.player.Inventory.AddItem(game.roomHandler.TakeItem(game.player.Position), 1);
                     }
                 }
+                #endregion 
+            }
+        }
 
+        private void Movement(Direction direction)
+        {
+            if (game.roomHandler.CheckDirection(game.player.Position, direction))
+            {
+                if (game.roomHandler.GetRoom(game.roomHandler.GetDirectionId(game.player.Position, direction)).ItemRequiredToEnter != 0)
+                {
+                    if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetDirectionId(game.player.Position, direction))))
+                    {
+                        MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, direction));
+                    }
+                    else
+                    {
+                        RoomIsLocked(game.roomHandler.GetDirectionId(game.player.Position, direction));
+                    }
+                }
+                else
+                {
+                    MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, direction));
+                }
+            }
+            else
+            {
+                NoRoom(direction.ToString());
             }
         }
 
@@ -201,6 +145,8 @@ namespace UI
             Console.Write(" - Current position\n");
             ConsoleUtils.Red("\u2764");
             Console.Write(" - Current health\n");
+            ConsoleUtils.Blue("\u2726");
+            Console.Write(" - Current power\n");
             ConsoleUtils.Yellow("\u2315");
             Console.Write(" - Search room\n");
             ConsoleUtils.Green("\u2191");
@@ -261,9 +207,9 @@ namespace UI
             else if (game.player.CurrentHealth < game.player.OriginalHealth / 1.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White));
             else Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White));
 
-            if (game.player.CurrentPower < game.player.Power / 2.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White));
-            else if (game.player.CurrentPower < game.player.Power / 1.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White));
-            else Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White));
+            if (game.player.CurrentPower < game.player.Power / 2.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2726  ", ConsoleColor.Blue) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White));
+            else if (game.player.CurrentPower < game.player.Power / 1.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2726  ", ConsoleColor.Blue) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White));
+            else Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2726  ", ConsoleColor.Blue) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White));
 
             if (!game.player.IsRoomExamined(game.player.Position))
             {

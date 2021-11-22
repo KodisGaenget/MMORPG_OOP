@@ -25,6 +25,13 @@ namespace UI
             Console.ResetColor();
         }
 
+        public static void Blue(string s)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write(s);
+            Console.ResetColor();
+        }
+
         public static string ChangeColor(string n, string s, ConsoleColor consoleColor)
         {
             Console.ForegroundColor = consoleColor;
