@@ -119,6 +119,11 @@ namespace GameLib
         {
             allRooms[6].ItemRequiredToEnter = 10;
         }
+
+        private void AddEnemies()
+        {
+            
+        }
     }
 
 }
