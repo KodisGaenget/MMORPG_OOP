@@ -61,7 +61,7 @@ namespace Combat
         private float Resist(IFightable dealer, IFightable taker, int takerArmor)
         {
             //TODO Fixa legitresist NÄSTAN KLAR!
-            float leveldiff = 2 * (dealer.CharLevel - taker.CharLevel) / 100 + 1;
+            float leveldiff = 2 * (dealer.Level - taker.Level) / 100 + 1;
             return (leveldiff * 1 - (taker.Armor - dealer.Penetration) / 100);
         }
 
