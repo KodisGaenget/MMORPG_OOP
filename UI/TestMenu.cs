@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using GameLib;
 
 namespace UI
@@ -15,6 +16,34 @@ namespace UI
         }
 
         public void Run()
+        {
+            string prompt = "Welcome to Wörld of Virgincraft: The Saga of the Poopy Pants in the Basement!";
+            List<string> options = new List<string> { "Play the game", "Settings", "Credits", "Exit" };
+            Menu menu = new Menu(prompt, options);
+            int selectedIndex = menu.GetMenuIndex();
+            switch (selectedIndex)
+            {
+                case 0:
+                    Console.Clear();
+                    GameLoop();
+                    break;
+
+                case 1:
+                    Console.Write("Settings");   // Settings
+                    break;
+
+                case 2:
+                    Console.Write("Credits");    // Credits
+                    break;
+
+                case 3:
+                    Console.Write("Exit");
+                    Environment.Exit(0);
+                    break;
+            }
+        }
+
+        private void GameLoop()
         {
             ConsoleKeyInfo keyPressed;
 
@@ -153,7 +182,6 @@ namespace UI
                 }
 
             }
-
         }
 
         private void MovePlayer(int _roomID)
@@ -225,10 +253,17 @@ namespace UI
         private void InfoBar()
         {
             ConsoleUtils.ChangeColor("Write", "| ", ConsoleColor.White);
-
+            // Console.Write(game.player.CurrentPower);
+            // Console.Write(game.player.Power);
+            // Console.Write(game.player.Armor);
+            // Console.Write(game.player.BaseDamage);
             if (game.player.CurrentHealth < game.player.OriginalHealth / 2.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White));
             else if (game.player.CurrentHealth < game.player.OriginalHealth / 1.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White));
             else Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White));
+
+            if (game.player.CurrentPower < game.player.Power / 2.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White));
+            else if (game.player.CurrentPower < game.player.Power / 1.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White));
+            else Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White));
 
             if (!game.player.IsRoomExamined(game.player.Position))
             {
