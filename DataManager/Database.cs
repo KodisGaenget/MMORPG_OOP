@@ -21,7 +21,7 @@ namespace DataManager
             string sql = "EXEC Add_NewPlayer @name, @ohp, @chp, @power, @armor, @dmg, @lvl, @cexp, @pos, @class";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                newId = connection.Query(sql, new { @name = p.Name, @ohp = p.OriginalHealth, @chp = p.CurrentHealth, @power = p.Power, @armor = p.Armor, @dmg = p.BaseDamage, @lvl = p.Level, @cexp = p.CurrentExp, @pos = p.Position, @class = p.Class }).First();
+                newId = connection.Query(sql, new { @name = p.Name, @ohp = p.OriginalHealth, @chp = p.CurrentHealth, @power = p.Power, @armor = p.Armor, @dmg = p.BaseDamage, @lvl = p.CharLevel, @cexp = p.CurrentExp, @pos = p.Position, @class = p.Class }).First();
             }
             return newId;
         }
@@ -31,7 +31,7 @@ namespace DataManager
             string sql = "EXEC UpdatePlayer = @playerID, @ohp, @chp, @power, @armor, @dmg, @lvl, @cexp, @pos, @class";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Execute(sql, new { @playerID = p.Id, @ohp = p.OriginalHealth, @chp = p.CurrentHealth, @power = p.Power, @armor = p.Armor, @dmg = p.BaseDamage, @lvl = p.Level, @cexp = p.CurrentExp, @pos = p.Position, @class = p.Class });
+                connection.Execute(sql, new { @playerID = p.Id, @ohp = p.OriginalHealth, @chp = p.CurrentHealth, @power = p.Power, @armor = p.Armor, @dmg = p.BaseDamage, @lvl = p.CharLevel, @cexp = p.CurrentExp, @pos = p.Position, @class = p.Class });
             }
         }
 

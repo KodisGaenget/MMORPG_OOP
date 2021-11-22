@@ -13,7 +13,7 @@ namespace GameInterfaces
         public int Armor { get; }
         public int Penetration { get; }
         public int BaseDamage { get; }
-        public int Level { get; }
+        public int CharLevel { get; }
         public int Position { get; }
         public int MinDamage { get; set; }
         public int MaxDamage { get; set; }
