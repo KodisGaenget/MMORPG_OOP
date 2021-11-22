@@ -144,6 +144,10 @@ namespace GameLib
                         player.Inventory.RemoveItem(item.Key, 1);
                         return true;
                     }
+                    else if (consumable.ConsumableType == ConsumableType.PowerPotion)
+                    {
+                        player.CurrentPower = player.Power;
+                    }
                 }
             }
             return false;
