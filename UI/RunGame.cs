@@ -140,25 +140,22 @@ namespace UI
         private void Help()
         {
             Console.Clear();
-            Console.WriteLine("Help");
-            ConsoleUtils.Yellow("\u25bc");
-            Console.Write(" - Current position\n");
-            ConsoleUtils.Red("\u2764");
-            Console.Write(" - Current health\n");
-            ConsoleUtils.Blue("\u2726");
-            Console.Write(" - Current power\n");
-            ConsoleUtils.Yellow("\u2315");
-            Console.Write(" - Search room\n");
-            ConsoleUtils.Green("\u2191");
-            Console.Write(" - Room to the North. Use up arrow key to navigate there.\n");
-            ConsoleUtils.Green("\u2192");
-            Console.Write(" - Room to the East. Use right arrow key to navigate there.\n");
-            ConsoleUtils.Green("\u2193");
-            Console.Write(" - Room to the South. Use down arrow key to navigate there.\n");
-            ConsoleUtils.Green("\u2190");
-            Console.Write(" - Room to the West. Use left arrow key to navigate there.\n");
-            ConsoleUtils.Yellow("\u25a3");
-            Console.Write(" - Inventory. Press \"I\" to open.\n");
+            ConsoleUtils.ChangeColor("WriteLine", "HELP", ConsoleColor.White);
+
+            ConsoleUtils.ChangeColor("WriteLine", "\nICONS", ConsoleColor.White);
+            Console.Write(ConsoleUtils.ChangeColor("Write", $"\u25bc ", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", " - Current position.\n", ConsoleColor.White));
+            Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764 ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", " - Current health.\n", ConsoleColor.White));
+            Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2726 ", ConsoleColor.Blue) + ConsoleUtils.ChangeColor("Write", " - Current power.\n", ConsoleColor.White));
+            Console.Write(ConsoleUtils.ChangeColor("Write", $"\u16e5 ", ConsoleColor.Magenta) + ConsoleUtils.ChangeColor("Write", " - Current armor.\n", ConsoleColor.White));
+            Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2315 ", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", " - Search room. Press \"S\" to search.\n", ConsoleColor.White));
+            Console.Write(ConsoleUtils.ChangeColor("Write", $"\u25a3 ", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", " - Inventory. Press \"I\" to open.\n", ConsoleColor.White));
+
+            ConsoleUtils.ChangeColor("WriteLine", "\nNAVIGATION", ConsoleColor.White);
+            Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2191 ", ConsoleColor.Green) + ConsoleUtils.ChangeColor("Write", " - Room to the North. Use arrow key up to navigate there.\n", ConsoleColor.White));
+            Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2192 ", ConsoleColor.Green) + ConsoleUtils.ChangeColor("Write", " - Room to the East. Use arrow key right to navigate there.\n", ConsoleColor.White));
+            Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2193 ", ConsoleColor.Green) + ConsoleUtils.ChangeColor("Write", " - Room to the South. Use arrow key down to navigate there.\n", ConsoleColor.White));
+            Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2190 ", ConsoleColor.Green) + ConsoleUtils.ChangeColor("Write", " - Room to the West. Use arrow key left to navigate there.\n", ConsoleColor.White));
+            
             Console.ReadKey(true);
         }
 
@@ -199,10 +196,10 @@ namespace UI
         private void InfoBar()
         {
             ConsoleUtils.ChangeColor("Write", "| ", ConsoleColor.White);
-            // Console.Write(game.player.CurrentPower);
-            // Console.Write(game.player.Power);
-            // Console.Write(game.player.Armor);
-            // Console.Write(game.player.BaseDamage);
+            ConsoleUtils.ChangeColor("Write", $"XP to next level: {game.player.CurrentExp} {game.player.ExpToNextLevel()} | ", ConsoleColor.White);
+            ConsoleUtils.ChangeColor("Write", $"Level: {game.player.Level} | ", ConsoleColor.White);
+            Console.Write(ConsoleUtils.ChangeColor("Write", "\u20AB ", ConsoleColor.Green) + ConsoleUtils.ChangeColor("Write", $"{game.player.CoinPurse} | ", ConsoleColor.White));
+
             if (game.player.CurrentHealth < game.player.OriginalHealth / 2.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White));
             else if (game.player.CurrentHealth < game.player.OriginalHealth / 1.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White));
             else Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White));
@@ -211,6 +208,7 @@ namespace UI
             else if (game.player.CurrentPower < game.player.Power / 1.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2726  ", ConsoleColor.Blue) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White));
             else Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2726  ", ConsoleColor.Blue) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White));
 
+            Console.Write(ConsoleUtils.ChangeColor("Write", "\u16e5  ", ConsoleColor.Magenta) + ConsoleUtils.ChangeColor("Write", $"{game.GetDefense()} | ", ConsoleColor.White));
             if (!game.player.IsRoomExamined(game.player.Position))
             {
                 ConsoleUtils.ChangeColor("Write", $"\u2315 S", ConsoleColor.Yellow);

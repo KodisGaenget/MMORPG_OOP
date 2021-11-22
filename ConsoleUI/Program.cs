@@ -26,7 +26,7 @@ namespace ConsoleUI
 
             // roomHandler.AddRooms(allRooms);
 
-            game.combatHandler.StartNewCombat(game.player, game.player2, game.itemLoader);
+            game.combatHandler.StartNewCombat(game.player, game.spawner.GetEnemy(4), game.itemLoader);
             string choise = "";
             while (!game.combatHandler.combatOver)
             {

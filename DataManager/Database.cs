@@ -64,7 +64,7 @@ namespace DataManager
 
         public Player LoadPlayer(int Id)
         {
-            string sql = "SELECT Id, Name, OriginalHealth, CurrentHealth, Power, Armor, BaseDamage, Level, CurrentExp, Position, Class, CoinPurse FROM Character WHERE Id = @playerID";
+            string sql = "SELECT Id, Name, OriginalHealth, CurrentHealth, Power, CurrentPower, Armor, BaseDamage, Level, CurrentExp, Position, Class, CoinPurse FROM Character WHERE Id = @playerID";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 return connection.Query<Player>(sql, new { @playerID = Id }).First();
@@ -73,7 +73,7 @@ namespace DataManager
 
         internal Enemy LoadEnemy(int id)
         {
-            string sql = "SELECT Id, Name, OriginalHealth, CurrentHealth, Power, Armor, BaseDamage, Level, CoinPurse, ExpValue FROM Character WHERE Id = @charId";
+            string sql = "SELECT Id, Name, OriginalHealth, CurrentHealth, Power, CurrentPower, Armor, BaseDamage, Level, CoinPurse, ExpValue FROM Character WHERE Id = @charId";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 return connection.Query<Enemy>(sql, new { @charId = id }).First();

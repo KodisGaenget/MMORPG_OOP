@@ -17,7 +17,6 @@ namespace GameLib
         public Spawner spawner;
         public ItemLoader itemLoader;
 
-
         public Game(int id)
         {
             this.roomHandler = new();
@@ -63,7 +62,7 @@ namespace GameLib
             return InventoryList;
         }
 
-        public int GetDefense(Player player)
+        public int GetDefense()
         {
             int FightDefence = player.Armor;
             foreach (var item in player.Equipment.GetEquipment())

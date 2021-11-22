@@ -24,6 +24,7 @@ namespace Characters
 
         public int Attack()
         {
+            CurrentPower = (int)(CurrentPower - (float)(Power * 0.1f));
             return BaseDamage;
         }
 

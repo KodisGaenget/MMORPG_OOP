@@ -55,7 +55,7 @@ namespace Characters
 
             if (level <= 11)
             {
-                expToLevelUp = (10 * (level * level) - (5 * level) + 8) - currentExp;
+                expToLevelUp = (10 * (level + 1 * level + 1) - (5 * level + 1) + 8) - currentExp;
 
             }
             else if (level >= 12)
