@@ -53,14 +53,14 @@ namespace Characters
         {
             int expToLevelUp = 0;
 
-            if (level <= 11)
+            if (level <= 10)
             {
-                expToLevelUp = (10 * (level + 1 * level + 1) - (5 * level + 1) + 8) - currentExp;
+                expToLevelUp = (10 * (level + 1 * level + 1) - (5 * level + 1) + 8);
 
             }
-            else if (level >= 12)
+            else if (level >= 11)
             {
-                expToLevelUp = (int)((65 * (level + 1 * level + 1) - 165 * (level + 1) - 6750) * 0.82F) - currentExp;
+                expToLevelUp = (int)((65 * (level + 1 * level + 1) - 165 * (level + 1) - 6750) * 0.82F);
             }
             return expToLevelUp;
         }
