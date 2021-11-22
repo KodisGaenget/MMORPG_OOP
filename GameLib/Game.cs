@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Characters;
 using DataManager;
 using GameEnums;
+using GameInterfaces;
 using Items;
 
 namespace GameLib
@@ -26,6 +27,17 @@ namespace GameLib
             spawner = new(db);
             player = SetChoosenPlayer(id);
             player2 = SetChoosenPlayer(2);
+        }
+
+        public void UpdateGame()
+        {
+            player.UpdateLevel();
+        }
+
+        public void GameOver()
+        {
+            player.ChangeHealth(player.OriginalHealth);
+            player.ChangePosition(1);
         }
 
         #region PlayerMethods
