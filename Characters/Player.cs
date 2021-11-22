@@ -28,14 +28,20 @@ namespace Characters
 
         public bool UpdateLevel()
         {
-            int oldLevel = Level;
+            int oldLevel = CharLevel;
             Level level = new();
-            Level = level.GetLevel(CurrentExp);
-            if (oldLevel < Level)
+            CharLevel = level.GetLevel(CurrentExp);
+            if (oldLevel < CharLevel)
             {
                 return true;
             }
             return false;
+        }
+
+        public float ExpToNextLevel()
+        {
+            Level level = new();
+            return level.ExpToNextLevel(CurrentExp, CharLevel);
         }
 
         public void Equip(string slot, int itemId)
@@ -66,7 +72,7 @@ namespace Characters
             CurrentExp += amount;
         }
 
-        public void ExamineRoom(int roomId)
+        public void AddExamineRoom(int roomId)
         {
             Examined.Add(roomId);
         }

@@ -15,7 +15,7 @@ namespace Characters
         public int Armor { get; protected set; }
         public int Penetration { get; protected set; }
         public int BaseDamage { get; protected set; }
-        public int Level { get; protected set; }
+        public int CharLevel { get; protected set; }
         public int Position { get; protected set; }
         public Equipment Equipment { get; protected set; }
         public int CoinPurse { get; protected set; }

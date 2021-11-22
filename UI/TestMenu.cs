@@ -142,7 +142,7 @@ namespace UI
                 }
                 if (keyPressed.Key == ConsoleKey.S)
                 {
-                    game.player.ExamineRoom(game.player.Position);
+                    game.player.AddExamineRoom(game.player.Position); //Lade till Add i metodnamnet...
                 }
                 if (keyPressed.Key == ConsoleKey.T)
                 {

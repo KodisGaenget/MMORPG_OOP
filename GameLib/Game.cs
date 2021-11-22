@@ -2,20 +2,19 @@ using System.Collections.Generic;
 using Characters;
 using DataManager;
 using GameEnums;
-using GameInterfaces;
 using Items;
 
 namespace GameLib
 {
     public class Game
     {
+        private PlayerLoader playerLoader;
+        private Database db = new();
         public RoomHandler roomHandler;
         public CombatHandler combatHandler = new();
-        Database db = new();
         public Player player;
         public Player player2;
         public Spawner spawner;
-        PlayerLoader playerLoader;
         public ItemLoader itemLoader;
 
 
