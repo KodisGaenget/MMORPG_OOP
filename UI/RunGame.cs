@@ -29,7 +29,9 @@ namespace UI
                     break;
 
                 case 1:
-                    Console.Write("Settings");   // Settings
+                    Console.Clear();
+                    ConsoleUtils.TypeWriter("Welcome to Wörld of Virgincraft: The Saga of the Poopy Pants in the Basement!");
+                    Console.ReadKey();
                     break;
 
                 case 2:
