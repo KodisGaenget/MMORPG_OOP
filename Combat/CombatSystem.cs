@@ -48,7 +48,6 @@ namespace Combat
             }
             fighter1Turn = !fighter1Turn;
             endingMessage = CheckCombatOver();
-            Thread.Sleep(500);
             return fighter1Turn;
         }
 
@@ -91,7 +90,6 @@ namespace Combat
             }
 
         }
-
 
         private void GetArmorStats()
         {
