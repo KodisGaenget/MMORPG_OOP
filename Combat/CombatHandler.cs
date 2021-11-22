@@ -7,7 +7,7 @@ namespace DataManager
     {
         CombatSystem combat;
         public string combatLog = "";
-        public string result = "";
+        public bool playerWinner;
         public int playerHealth = 0;
         public int enemyHealth = 0;
         public bool combatOver = false;
@@ -47,7 +47,7 @@ namespace DataManager
             playerHealth = combat.fighter1.CurrentHealth;
             enemyHealth = combat.fighter2.CurrentHealth;
             combatLog = combat.combatLog;
-            result = combat.endingMessage;
+            playerWinner = combat.playerWinner;
             combatOver = combat.combatOver;
         }
 

@@ -1,15 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-namespace ConsoleUI
+namespace UI
 {
-    public class Menu
+    public class CMenu
     {
         private int SelectedIndex;
         private List<string> Options = new();
         private string Prompt;
         private string header;
-        public Menu(string prompt, List<string> options, string header)
+        public CMenu(string prompt, List<string> options, string header)
         {
             Prompt = prompt;
             Options = options;

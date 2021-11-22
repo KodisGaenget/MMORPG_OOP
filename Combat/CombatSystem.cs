@@ -21,7 +21,7 @@ namespace Combat
         Random r = new Random();
         internal string combatLog = "";
         bool fighter1Turn = false;
-        internal string endingMessage = "";
+        internal bool playerWinner;
 
         public CombatSystem(IFightable fighter1, IFightable fighter2, ItemLoader itemLoader)
         {
@@ -36,18 +36,36 @@ namespace Combat
         {
             if (fighter1Turn)
             {
-                Turn newTurn = new(fighter1, fighter2, CalcDmgDealt(fighter1, fighter2), Resist(fighter1, fighter2, fighter2Armor));
-                combatLog += newTurn.Attack() + "\n";
-                fighter2 = newTurn.GetTaker();
+                if (fighter1.CurrentPower < fighter1.Power * 0.1F)
+                {
+                    combatLog += "Not enough power!";
+                }
+                else
+                {
+                    Turn newTurn = new(fighter1, fighter2, CalcDmgDealt(fighter1, fighter2), Resist(fighter1, fighter2, fighter2Armor));
+                    combatLog += newTurn.Attack() + "\n";
+                    fighter2 = newTurn.GetTaker(); //Vad gör detta? Undersök
+                    fighter2.CurrentPower += 5;
+                    fighter1Turn = !fighter1Turn;
+                }
             }
             else if (!fighter1Turn)
             {
-                Turn newTurn = new(fighter2, fighter1, CalcDmgDealt(fighter2, fighter1), Resist(fighter2, fighter1, fighter1Armor));
-                combatLog += newTurn.Attack() + "\n";
-                fighter1 = newTurn.GetTaker();
+                if (fighter2.CurrentPower < fighter2.Power * 0.1F)
+                {
+                    combatLog += $"{fighter2.Name} do not have enough power!";
+                }
+                else
+                {
+                    Turn newTurn = new(fighter2, fighter1, CalcDmgDealt(fighter2, fighter1), Resist(fighter2, fighter1, fighter1Armor));
+                    combatLog += newTurn.Attack() + "\n";
+                    fighter1 = newTurn.GetTaker(); //Vad gör detta? Undersök
+                    fighter1.CurrentPower += 5;
+                    fighter1Turn = !fighter1Turn;
+                }
             }
-            fighter1Turn = !fighter1Turn;
-            endingMessage = CheckCombatOver();
+
+            playerWinner = CheckCombatOver();
             return fighter1Turn;
         }
 
@@ -109,19 +127,19 @@ namespace Combat
             }
         }
 
-        private string CheckCombatOver()
+        private bool CheckCombatOver()
         {
             if (fighter2.CurrentHealth <= 0)
             {
                 combatOver = true;
-                return "You won the combat!";
+                return true;
             }
             else if (fighter1.CurrentHealth <= 0)
             {
                 combatOver = true;
-                return "You died!";
+                return false;
             }
-            return "";
+            return false;
         }
     }
 }

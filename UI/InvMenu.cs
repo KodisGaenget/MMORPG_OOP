@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using GameLib;
 
-namespace ConsoleUI
+namespace UI
 {
-    class InventoryMenu
+    class InvMenu
     {
         Game game;
-        public InventoryMenu(Game game)
+        public InvMenu(Game game)
         {
             this.game = game;
             CreateConsumableMenu();
@@ -21,7 +21,7 @@ namespace ConsoleUI
             string headerinfo = $"Inventory:\n";
             string prompt = "";
             List<string> options = CreateConsumableMenu();
-            Menu menu = new Menu(prompt, options, headerinfo);
+            CMenu menu = new CMenu(prompt, options, headerinfo);
             int selectedIndex = menu.GetMenuIndex();
 
             foreach (var item in options)

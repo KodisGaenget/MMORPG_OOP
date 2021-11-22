@@ -1,0 +1,17 @@
+----FOYER----
+NOTHING
+
+----DANK HALLWAY----
+To be updated
+
+----PRISON CELLS----
+Item Id:                 Item Name:                         In Room Id:         Room Name:          Enemy ID + Name:
+11                       Helmet of Gustavo's bane           10                  Prison cells        9          Succubus   
+12                       Chest of Gustavo's bane            10                  Prison cells
+13                       Gloves of Gustavo's bane           10                  Prison cells
+14                       Legs of Gustavo's bane             10                  Prison cells
+15                       Boots of Gustavo's bane            10                  Prison cells
+16                       Warhammer of Gustavo's bane        10                  Prison cells
+
+
+
