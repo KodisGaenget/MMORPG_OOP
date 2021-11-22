@@ -196,7 +196,7 @@ namespace UI
         private void InfoBar()
         {
             ConsoleUtils.ChangeColor("Write", "| ", ConsoleColor.White);
-            ConsoleUtils.ChangeColor("Write", $"XP to next level: {game.player.CurrentExp} {game.player.ExpToNextLevel()} | ", ConsoleColor.White);
+            ConsoleUtils.ChangeColor("Write", $"XP to next level: {game.player.ExpToNextLevel()} | ", ConsoleColor.White);
             ConsoleUtils.ChangeColor("Write", $"Level: {game.player.Level} | ", ConsoleColor.White);
             Console.Write(ConsoleUtils.ChangeColor("Write", "\u20AB ", ConsoleColor.Green) + ConsoleUtils.ChangeColor("Write", $"{game.player.CoinPurse} | ", ConsoleColor.White));
 
