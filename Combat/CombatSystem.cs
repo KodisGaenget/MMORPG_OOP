@@ -60,9 +60,8 @@ namespace Combat
 
         private float Resist(IFightable dealer, IFightable taker, int takerArmor)
         {
-            //TODO Fixa legitresist NÄSTAN KLAR!
-            float leveldiff = 2 * (dealer.Level - taker.Level) / 100 + 1;
-            return (leveldiff * 1 - (taker.Armor - dealer.Penetration) / 100);
+            float leveldiff = 2 * (dealer.Level - taker.Level) / 100f;
+            return leveldiff + ((taker.Armor - dealer.Penetration) / 100f);
         }
 
         private void SetFighterStats()
@@ -124,19 +123,7 @@ namespace Combat
                 combatOver = true;
                 return "You died!";
             }
-            //Om detta retuneras, fortsätt fighten.
             return "";
         }
     }
 }
-
-
-
-// public enum AttackType
-// {
-//     Attack,
-//     MainAbility,
-//     SecondaryAbility
-// }
-
-

@@ -22,15 +22,13 @@ namespace Combat
         {
             int dealtDmg = 0;
             dealtDmg = CombatResult(rawDmg, resist);
-            // System.Console.WriteLine(resist);
             return $"{dealer.Name} dealt {dealtDmg} to {taker.Name}.";
 
         }
 
         private int CombatResult(int dmg, float resist)
         {
-            float realDmg = dmg * (1 - resist);
-            // System.Console.WriteLine(realDmg);
+            float realDmg = (float)dmg - (dmg * (resist - 1));
             taker.CurrentHealth += -(int)realDmg;
             return (int)realDmg;
         }
