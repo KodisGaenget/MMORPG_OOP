@@ -30,6 +30,18 @@ namespace DataManager
             return true;
         }
 
+        public bool StartNewCombat(Player player, Enemy enemy, ItemLoader itemLoader)
+        {
+            combat = new(player, enemy, itemLoader);
+            bool playersTurn = combat.Run();
+            UpdateCombatStatus();
+            if (!playersTurn && combat.fighter2.CurrentHealth! <= 0)
+            {
+                ContinueCombat();
+            }
+            return true;
+        }
+
         public void UpdateCombatStatus()
         {
             playerHealth = combat.fighter1.CurrentHealth;
