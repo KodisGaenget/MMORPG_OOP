@@ -24,6 +24,7 @@ namespace UI
                 Print();
                 keyPressed = Console.ReadKey(true);
 
+                #region Movement
                 // move north
                 if (keyPressed.Key == ConsoleKey.UpArrow)
                 {
@@ -33,7 +34,7 @@ namespace UI
                         {
                             if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetDirectionId(game.player.Position, Direction.North))))
                             {
-                                game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.North));
+                                MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.North));
                             }
                             else
                             {
@@ -42,7 +43,7 @@ namespace UI
                         }
                         else
                         {
-                            game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.North));
+                            MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.North));
                         }
                     }
                     else
@@ -59,7 +60,7 @@ namespace UI
                         {
                             if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetDirectionId(game.player.Position, Direction.East))))
                             {
-                                game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.East));
+                                MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.East));
                             }
                             else
                             {
@@ -68,7 +69,7 @@ namespace UI
                         }
                         else
                         {
-                            game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.East));
+                            MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.East));
                         }
                     }
                     else
@@ -85,7 +86,7 @@ namespace UI
                         {
                             if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetDirectionId(game.player.Position, Direction.South))))
                             {
-                                game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.South));
+                                MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.South));
                             }
                             else
                             {
@@ -94,7 +95,7 @@ namespace UI
                         }
                         else
                         {
-                            game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.South));
+                            MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.South));
                         }
                     }
                     else
@@ -111,7 +112,7 @@ namespace UI
                         {
                             if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetDirectionId(game.player.Position, Direction.West))))
                             {
-                                game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.West));
+                                MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.West));
                             }
                             else
                             {
@@ -120,7 +121,7 @@ namespace UI
                         }
                         else
                         {
-                            game.player.ChangePosition(game.roomHandler.GetDirectionId(game.player.Position, Direction.West));
+                            MovePlayer(game.roomHandler.GetDirectionId(game.player.Position, Direction.West));
                         }
                     }
                     else
@@ -128,6 +129,7 @@ namespace UI
                         NoRoom("west");
                     }
                 }
+                #endregion 
 
                 if (keyPressed.Key == ConsoleKey.I)
                 {
@@ -154,6 +156,15 @@ namespace UI
 
         }
 
+        private void MovePlayer(int _roomID)
+        {
+            if (game.roomHandler.GetRoom(_roomID).EnemyInRoom != 0)
+            {
+                // trigger fight
+            }
+            game.player.ChangePosition(_roomID);
+        }
+
         private void Help()
         {
             Console.Clear();
@@ -175,8 +186,6 @@ namespace UI
             ConsoleUtils.Yellow("\u25a3");
             Console.Write(" - Inventory. Press \"I\" to open.\n");
             Console.ReadKey(true);
-
-
         }
 
         private void NoRoom(string s)
@@ -209,49 +218,11 @@ namespace UI
 
         private void Print()
         {
-            InfoBar2();
-            RoomDescription();
+            InfoBar();
+            RoomText();
         }
 
         private void InfoBar()
-        {
-            Console.Write("| ");
-            ConsoleUtils.Yellow("\u25bc");
-            Console.Write($" {game.roomHandler.GetRoomName(game.player.Position)} | ");
-            ConsoleUtils.Red("\u2764 ");
-            Console.Write($" {game.player.CurrentHealth} | ");
-            if (!game.player.IsRoomExamined(game.player.Position))
-            {
-                ConsoleUtils.Yellow("\u2315");
-                Console.Write(" [S]earch | ");
-            }
-            if (game.roomHandler.CheckDirection(game.player.Position, Direction.North))
-            {
-                ConsoleUtils.Green("\u2191 ");
-                Console.Write($"{game.roomHandler.GetRoomName(game.roomHandler.GetDirectionId(game.player.Position, Direction.North))} ");
-            }
-            if (game.roomHandler.CheckDirection(game.player.Position, Direction.East))
-            {
-                ConsoleUtils.Green("\u2192 ");
-                Console.Write($"{game.roomHandler.GetRoomName(game.roomHandler.GetDirectionId(game.player.Position, Direction.East))} ");
-            }
-            if (game.roomHandler.CheckDirection(game.player.Position, Direction.South))
-            {
-                ConsoleUtils.Green("\u2193 ");
-                Console.Write($"{game.roomHandler.GetRoomName(game.roomHandler.GetDirectionId(game.player.Position, Direction.South))} ");
-            }
-            if (game.roomHandler.CheckDirection(game.player.Position, Direction.West))
-            {
-                ConsoleUtils.Green("\u2190 ");
-                Console.Write($"{game.roomHandler.GetRoomName(game.roomHandler.GetDirectionId(game.player.Position, Direction.West))} ");
-            }
-            Console.Write("| ");
-            ConsoleUtils.Yellow("\u25a3");
-            Console.Write(" [I]nventory | ");
-            ConsoleUtils.Yellow("?");
-            Console.Write(" [H]elp |\n\n");
-        }
-        private void InfoBar2()
         {
             ConsoleUtils.ChangeColor("Write", "| ", ConsoleColor.White);
 
@@ -306,12 +277,17 @@ namespace UI
             ConsoleUtils.ChangeColor("WriteLine", $"\n\u25bc {game.roomHandler.GetRoomName(game.player.Position)}\n", ConsoleColor.Yellow);
         }
 
-        private void RoomDescription()
+        private void RoomText()
         {
             ConsoleUtils.BreakLine(game.roomHandler.DescribeRoom(game.player.Position));
             if (game.player.IsRoomExamined(game.player.Position))
             {
                 Console.WriteLine($"\n\n{game.roomHandler.ExamineRoom(game.player.Position)}");
+            }
+            if (game.player.IsRoomExamined(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId != 0)
+            {
+                Console.WriteLine("You found: \n");
+                Console.WriteLine(game.itemLoader.GetKeyDetails(game.roomHandler.GetRoom(game.player.Position).ItemInRoomId).Name);
             }
         }
     }
