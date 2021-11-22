@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using GameLib;
 
 namespace UI
@@ -132,7 +133,39 @@ namespace UI
         {
             if (game.roomHandler.GetRoom(_roomID).EnemyInRoom != 0)
             {
-                // trigger fight
+                game.combatHandler.StartNewCombat(game.player, game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom), game.itemLoader);
+                string choise = "";
+                while (!game.combatHandler.combatOver)
+                {
+                    CMainMenu combatMenu = new(game.combatHandler.combatLog);
+                    if (!game.combatHandler.playersTurn)
+                    {
+                        game.combatHandler.ContinueCombat();
+                        Thread.Sleep(100);
+                    }
+                    else
+                    {
+                        choise = combatMenu.Run(game.combatHandler.playerHealth, game.combatHandler.enemyHealth);
+                        if (choise == "Attack")
+                        {
+                            game.combatHandler.ContinueCombat();
+                        }
+                        if (choise == "Inventory")
+                        {
+                            InvMenu inventoryMenu = new(game);
+                        }
+                        if (choise == "Escape")
+                        {
+                            System.Console.WriteLine("You escaped the fight!");
+                            break;
+                        }
+                    }
+                    if (game.combatHandler.combatOver)
+                    {
+                        System.Console.WriteLine(game.combatHandler.result);
+                    }
+
+                }
             }
             game.player.ChangePosition(_roomID);
         }
@@ -155,7 +188,7 @@ namespace UI
             Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2192 ", ConsoleColor.Green) + ConsoleUtils.ChangeColor("Write", " - Room to the East. Use arrow key right to navigate there.\n", ConsoleColor.White));
             Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2193 ", ConsoleColor.Green) + ConsoleUtils.ChangeColor("Write", " - Room to the South. Use arrow key down to navigate there.\n", ConsoleColor.White));
             Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2190 ", ConsoleColor.Green) + ConsoleUtils.ChangeColor("Write", " - Room to the West. Use arrow key left to navigate there.\n", ConsoleColor.White));
-            
+
             Console.ReadKey(true);
         }
 

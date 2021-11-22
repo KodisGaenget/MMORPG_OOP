@@ -2,15 +2,15 @@ using System;
 using System.Collections.Generic;
 using GameInterfaces;
 
-namespace ConsoleUI
+namespace UI
 {
 
-    class MainMenu
+    class CMainMenu
     {
         string combatLog = "";
-        private Menu menu;
+        private CMenu menu;
 
-        public MainMenu(string combatLog)
+        public CMainMenu(string combatLog)
         {
             this.combatLog = combatLog;
             // Constructor
@@ -21,7 +21,7 @@ namespace ConsoleUI
             string headerinfo = $"You have: {playerHealth}hp left -- Enemys has: {enemyHealth}hp left\n";
             string prompt = combatLog;
             List<string> options = new List<string> { "Attack", "Inventory", "Escape fight" };
-            Menu menu = new Menu(prompt, options, headerinfo);
+            CMenu menu = new CMenu(prompt, options, headerinfo);
             int selectedIndex = menu.GetMenuIndex();
             switch (selectedIndex)
             {
