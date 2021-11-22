@@ -196,7 +196,7 @@ namespace UI
 
         private void Print()
         {
-            InfoBar();
+            InfoBar2();
             RoomDescription();
         }
 
@@ -237,7 +237,60 @@ namespace UI
             Console.Write(" [I]nventory | ");
             ConsoleUtils.Yellow("?");
             Console.Write(" [H]elp |\n\n");
+        }
+        private void InfoBar2()
+        {
+            ConsoleUtils.ChangeColor("Write", "| ", ConsoleColor.White);
 
+            if (game.player.CurrentHealth < game.player.OriginalHealth / 2.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White));
+            else if (game.player.CurrentHealth < game.player.OriginalHealth / 1.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White));
+            else Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White));
+
+            if (!game.player.IsRoomExamined(game.player.Position))
+            {
+                ConsoleUtils.ChangeColor("Write", $"\u2315 S", ConsoleColor.Yellow);
+                ConsoleUtils.ChangeColor("Write", "earch | ", ConsoleColor.White);
+            }
+
+            var inventory = ConsoleUtils.ChangeColor("Write", $"\u25a3 I", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", "nventory | ", ConsoleColor.White);
+            var help = ConsoleUtils.ChangeColor("Write", $"? H", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", "elp | \n\n", ConsoleColor.White);
+
+            if (game.roomHandler.CheckDirection(game.player.Position, Direction.North))
+            {
+                var directionColor = game.roomHandler.GetRoomName(game.roomHandler.GetDirectionId(game.player.Position, Direction.North));
+                var lockedBool = game.roomHandler.IsRoomLocked(game.roomHandler.GetDirectionId(game.player.Position, Direction.North));
+
+                if (lockedBool) ConsoleUtils.ChangeColor("WriteLine", $"\u2191 {directionColor}", ConsoleColor.Red);
+                else ConsoleUtils.ChangeColor("WriteLine", $"\u2191 {directionColor}", ConsoleColor.Green);
+            }
+
+            if (game.roomHandler.CheckDirection(game.player.Position, Direction.East))
+            {
+                var directionColor = game.roomHandler.GetRoomName(game.roomHandler.GetDirectionId(game.player.Position, Direction.East));
+                var lockedBool = game.roomHandler.IsRoomLocked(game.roomHandler.GetDirectionId(game.player.Position, Direction.East));
+
+                if (lockedBool) ConsoleUtils.ChangeColor("WriteLine", $"\u2192 {directionColor}", ConsoleColor.Red);
+                else ConsoleUtils.ChangeColor("WriteLine", $"\u2192 {directionColor}", ConsoleColor.Green);
+            }
+
+            if (game.roomHandler.CheckDirection(game.player.Position, Direction.South))
+            {
+                var directionColor = game.roomHandler.GetRoomName(game.roomHandler.GetDirectionId(game.player.Position, Direction.South));
+                var lockedBool = game.roomHandler.IsRoomLocked(game.roomHandler.GetDirectionId(game.player.Position, Direction.South));
+
+                if (lockedBool) ConsoleUtils.ChangeColor("WriteLine", $"\u2193 {directionColor}", ConsoleColor.Red);
+                else ConsoleUtils.ChangeColor("WriteLine", $"\u2193 {directionColor}", ConsoleColor.Green);
+            }
+
+            if (game.roomHandler.CheckDirection(game.player.Position, Direction.West))
+            {
+                var directionColor = game.roomHandler.GetRoomName(game.roomHandler.GetDirectionId(game.player.Position, Direction.West));
+                var lockedBool = game.roomHandler.IsRoomLocked(game.roomHandler.GetDirectionId(game.player.Position, Direction.West));
+
+                if (lockedBool) ConsoleUtils.ChangeColor("WriteLine", $"\u2190 {directionColor}", ConsoleColor.Red);
+                else ConsoleUtils.ChangeColor("WriteLine", $"\u2190 {directionColor}", ConsoleColor.Green);
+            }
+            ConsoleUtils.ChangeColor("WriteLine", $"\n\u25bc {game.roomHandler.GetRoomName(game.player.Position)}\n", ConsoleColor.Yellow);
         }
 
         private void RoomDescription()
@@ -246,44 +299,3 @@ namespace UI
         }
     }
 }
-            // Försökte få till någon form av dynamisk keypress som byter ut ..roomHandler.Check{Compass} mot den knapp användaren trycker på, provade även konvertera string -> bool
-            // string Compass;
-            // if (keyPressed.Key == ConsoleKey.LeftArrow) Compass = "West";
-            // if (keyPressed.Key == ConsoleKey.UpArrow) Compass = "North";
-            // if (keyPressed.Key == ConsoleKey.RightArrow) Compass = "East";
-            // if (keyPressed.Key == ConsoleKey.DownArrow) Compass = "South";
-            // // move west
-            // if (keyPressed.Key == ConsoleKey.LeftArrow || keyPressed.Key == ConsoleKey.RightArrow || keyPressed.Key == ConsoleKey.DownArrow || keyPressed.Key == ConsoleKey.UpArrow )
-            // {
-            //     // check if there is a room to the west<
-            //     if (game.roomHandler.Check{Compass}(game.player.Position))
-            //     {                
-            //         // check if the room is locked
-            //         if (game.roomHandler.IsRoomLocked(game.roomHandler.GetRoom(game.player.Position).{Compass}.GetValueOrDefault()))
-            //         {
-            //             // check if the player has the required item in inventory
-            //             if (game.player.Inventory.IsItemIDInInventory(game.roomHandler.RequiredItem(game.roomHandler.GetRoom(game.player.Position).{Compass}.GetValueOrDefault())))
-            //             {
-            //                 game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Position).{Compass}.GetValueOrDefault());
-            //             }
-            //             else
-            //             {
-            //                 Console.WriteLine($"\nThe door to the {game.roomHandler.GetRoomName(game.roomHandler.GetRoom(game.player.Position).{Compass}.GetValueOrDefault())} appears to be locked.\nMaybe there's a key around here somewhere?");
-            //                 Console.ReadKey(true);
-            //             }
-            //         }
-            //         else
-            //         {
-            //             game.player.ChangePosition(game.roomHandler.GetRoom(game.player.Position).{Compass}.GetValueOrDefault());
-            //         }
-            //     }
-
-            //     // if there is no room in x direction, prompt message
-            //     else
-            //     {
-            //         Console.Clear();
-            //         Console.WriteLine($"You charge face first into the {Compass}ern wall almost breaking your nose, you see stars");
-            //         game.player.CurrentHealth -= 5;
-            //         Console.ReadKey(true);
-            //     }
-            // }
