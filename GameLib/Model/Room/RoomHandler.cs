@@ -108,6 +108,7 @@ namespace GameLib
             allRooms.Add(new Room(11, "Observatory", "You arrive at the top of the stairs, there is a door in front of you. You open the door and notice a desk and a chair, with its back turned towards you, in the middle of the room. As you enter, the door slams shut and the chair start spinning around: 'Well well well, if it isn't the hero of the story. You've come far, but this is where your journey and your life ends', The man in the chair cackles maniacally. 'Gustavo, you lunatic. Your reign of terror has been running rampant for too long. Prepear to meet your doom', you shout as you run towards him with your weapon held high, ready to kick some ass. {Insert Gustavo boss}  ", "'There is nothing of value in here I'm afraid, but I will need the head of Gustavo to collect my bounty' goes your inner dialogue as you start chopping off Gustavo's head.  ", 0, 0, 8, 0));
             AddItemToRoom();
             LockRooms();
+            AddEnemies();
         }
 
         private void AddItemToRoom()
@@ -122,7 +123,7 @@ namespace GameLib
 
         private void AddEnemies()
         {
-            
+            allRooms[3].EnemyInRoom = 4;
         }
     }
 
