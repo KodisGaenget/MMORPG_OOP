@@ -4,12 +4,12 @@ using GameLib;
 
 namespace UI
 {
-    public class TestMenu
+    public class RunGame
     {
         Game game;
 
 
-        public TestMenu(Game game)
+        public RunGame(Game game)
         {
             this.game = game;
             game.player.ChangePosition(1);

@@ -10,9 +10,7 @@ namespace UI
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             RoomHandler roomHandler = new();
             Game game = new(1); // 1 = Spelarens id
-            // GameScene myGameScene = new(game);
-            // myGameScene.Start(game);
-            TestMenu menu = new(game);
+            RunGame menu = new(game);
             menu.Run();
         }
     }
