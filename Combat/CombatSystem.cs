@@ -21,7 +21,7 @@ namespace Combat
         Random r = new Random();
         internal string combatLog = "";
         bool fighter1Turn = false;
-        internal string endingMessage = "";
+        internal bool playerWinner;
 
         public CombatSystem(IFightable fighter1, IFightable fighter2, ItemLoader itemLoader)
         {
@@ -47,7 +47,7 @@ namespace Combat
                 fighter1 = newTurn.GetTaker();
             }
             fighter1Turn = !fighter1Turn;
-            endingMessage = CheckCombatOver();
+            playerWinner = CheckCombatOver();
             return fighter1Turn;
         }
 
@@ -109,19 +109,19 @@ namespace Combat
             }
         }
 
-        private string CheckCombatOver()
+        private bool CheckCombatOver()
         {
             if (fighter2.CurrentHealth <= 0)
             {
                 combatOver = true;
-                return "You won the combat!";
+                return true;
             }
             else if (fighter1.CurrentHealth <= 0)
             {
                 combatOver = true;
-                return "You died!";
+                return false;
             }
-            return "";
+            return false;
         }
     }
 }
