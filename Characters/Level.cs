@@ -52,16 +52,20 @@ namespace Characters
         public float ExpToNextLevel(int currentExp, int level)
         {
             int expToLevelUp = 0;
-
-            if (level <= 10)
+            int nextLevel = 0;
+            foreach (var item in ExpToLevel)
             {
-                expToLevelUp = (10 * (level + 1 * level + 1) - (5 * level + 1) + 8);
+                if (item.Key == level)
+                {
+                    nextLevel = item.Key + 1;
+                }
 
+                if (item.Key == nextLevel)
+                {
+                    expToLevelUp = item.Value - currentExp;
+                }
             }
-            else if (level >= 11)
-            {
-                expToLevelUp = (int)((65 * (level + 1 * level + 1) - 165 * (level + 1) - 6750) * 0.82F);
-            }
+
             return expToLevelUp;
         }
     }

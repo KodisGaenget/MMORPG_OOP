@@ -26,39 +26,7 @@ namespace ConsoleUI
 
             // roomHandler.AddRooms(allRooms);
 
-            game.combatHandler.StartNewCombat(game.player, game.spawner.GetEnemy(4), game.itemLoader);
-            string choise = "";
-            while (!game.combatHandler.combatOver)
-            {
-                MainMenu combatMenu = new(game.combatHandler.combatLog);
-                if (!game.combatHandler.playersTurn)
-                {
-                    game.combatHandler.ContinueCombat();
-                    Thread.Sleep(100);
-                }
-                else
-                {
-                    choise = combatMenu.Run(game.combatHandler.playerHealth, game.combatHandler.enemyHealth);
-                    if (choise == "Attack")
-                    {
-                        game.combatHandler.ContinueCombat();
-                    }
-                    if (choise == "Inventory")
-                    {
-                        InventoryMenu inventoryMenu = new(game);
-                    }
-                    if (choise == "Escape")
-                    {
-                        System.Console.WriteLine("You escaped the fight!");
-                        break;
-                    }
-                }
-                if (game.combatHandler.combatOver)
-                {
-                    System.Console.WriteLine(game.combatHandler.result);
-                }
 
-            }
 
 
             //game.Start();

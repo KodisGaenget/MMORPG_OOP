@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using GameLib;
 
 namespace UI
@@ -132,7 +133,39 @@ namespace UI
         {
             if (game.roomHandler.GetRoom(_roomID).EnemyInRoom != 0)
             {
-                // trigger fight
+                game.combatHandler.StartNewCombat(game.player, game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom), game.itemLoader);
+                string choise = "";
+                while (!game.combatHandler.combatOver)
+                {
+                    CMainMenu combatMenu = new(game.combatHandler.combatLog);
+                    if (!game.combatHandler.playersTurn)
+                    {
+                        game.combatHandler.ContinueCombat();
+                        Thread.Sleep(100);
+                    }
+                    else
+                    {
+                        choise = combatMenu.Run(game.combatHandler.playerHealth, game.combatHandler.enemyHealth);
+                        if (choise == "Attack")
+                        {
+                            game.combatHandler.ContinueCombat();
+                        }
+                        if (choise == "Inventory")
+                        {
+                            InvMenu inventoryMenu = new(game);
+                        }
+                        if (choise == "Escape")
+                        {
+                            System.Console.WriteLine("You escaped the fight!");
+                            break;
+                        }
+                    }
+                    if (game.combatHandler.combatOver)
+                    {
+                        System.Console.WriteLine(game.combatHandler.result);
+                    }
+
+                }
             }
             game.player.ChangePosition(_roomID);
         }
@@ -155,7 +188,7 @@ namespace UI
             Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2192 ", ConsoleColor.Green) + ConsoleUtils.ChangeColor("Write", " - Room to the East. Use arrow key right to navigate there.\n", ConsoleColor.White));
             Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2193 ", ConsoleColor.Green) + ConsoleUtils.ChangeColor("Write", " - Room to the South. Use arrow key down to navigate there.\n", ConsoleColor.White));
             Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2190 ", ConsoleColor.Green) + ConsoleUtils.ChangeColor("Write", " - Room to the West. Use arrow key left to navigate there.\n", ConsoleColor.White));
-            
+
             Console.ReadKey(true);
         }
 
@@ -163,7 +196,7 @@ namespace UI
         {
             Console.Clear();
             Console.WriteLine($"You charge face first into the {s}ern wall almost breaking your nose, you see stars.\n");
-            ConsoleUtils.Red("You loose 5 hp");
+            ConsoleUtils.ChangeColor("WriteLine", "You lose 5 hp", ConsoleColor.Red);
             Console.ReadKey(true);
             game.player.CurrentHealth -= 5;
 
@@ -178,7 +211,7 @@ namespace UI
         private void Inventory()
         {
             Console.Clear();
-            ConsoleUtils.Yellow("\u25a3");
+            ConsoleUtils.ChangeColor("Write", "\u25a3", ConsoleColor.Yellow);
             Console.Write(" Inventory \n");
             foreach (var item in game.player.Inventory.GetInventory())
             {
@@ -196,7 +229,7 @@ namespace UI
         private void InfoBar()
         {
             ConsoleUtils.ChangeColor("Write", "| ", ConsoleColor.White);
-            ConsoleUtils.ChangeColor("Write", $"XP to next level: {game.player.CurrentExp} {game.player.ExpToNextLevel()} | ", ConsoleColor.White);
+            ConsoleUtils.ChangeColor("Write", $"XP to next level: {game.player.ExpToNextLevel()} | ", ConsoleColor.White);
             ConsoleUtils.ChangeColor("Write", $"Level: {game.player.Level} | ", ConsoleColor.White);
             Console.Write(ConsoleUtils.ChangeColor("Write", "\u20AB ", ConsoleColor.Green) + ConsoleUtils.ChangeColor("Write", $"{game.player.CoinPurse} | ", ConsoleColor.White));
 

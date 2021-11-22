@@ -4,34 +4,6 @@ namespace UI
 {
     class ConsoleUtils
     {
-        public static void Red(string s)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write(s);
-            Console.ResetColor();
-        }
-
-        public static void Yellow(string s)
-        {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write(s);
-            Console.ResetColor();
-        }
-
-        public static void Green(string s)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(s);
-            Console.ResetColor();
-        }
-
-        public static void Blue(string s)
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write(s);
-            Console.ResetColor();
-        }
-
         public static string ChangeColor(string n, string s, ConsoleColor consoleColor)
         {
             Console.ForegroundColor = consoleColor;
@@ -64,5 +36,13 @@ namespace UI
                 }
             }
         }
+        public static void TypeWriter(string _text)
+        {
+            for (int i = 0; i < _text.Length; i++)
+            {
+                Console.Write(_text[i]);
+                System.Threading.Thread.Sleep(60);
+            }
+        }        
     }
 }
