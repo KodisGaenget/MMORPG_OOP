@@ -14,7 +14,3 @@
 * GameEngine
 
 * UI (Stort projekt)
-
-
-Kolla med Gustav:
-* Är projektet rätt uppdelat?
