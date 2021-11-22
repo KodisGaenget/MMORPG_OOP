@@ -138,6 +138,17 @@ namespace UI
                 {
                     Help();
                 }
+                if (keyPressed.Key == ConsoleKey.S)
+                {
+                    game.player.ExamineRoom(game.player.Position);
+                }
+                if (keyPressed.Key == ConsoleKey.T)
+                {
+                    if (game.player.IsRoomExamined(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId != 0)
+                    {
+                        game.player.Inventory.AddItem(game.roomHandler.TakeItem(game.player.Position), 1);
+                    }
+                }
 
             }
 
@@ -146,6 +157,7 @@ namespace UI
         private void Help()
         {
             Console.Clear();
+            Console.WriteLine("Help");
             ConsoleUtils.Yellow("\u25bc");
             Console.Write(" - Current position\n");
             ConsoleUtils.Red("\u2764");
@@ -179,7 +191,8 @@ namespace UI
 
         private void RoomIsLocked(int _roomID)
         {
-            Console.WriteLine($"{game.roomHandler.GetRoomName(_roomID)} is locked. You will need to find a the {game.roomHandler.GetRoomName(_roomID)} key to unlock it.");
+            Console.WriteLine($"\n{game.roomHandler.GetRoomName(_roomID)} is locked. You will need to find a the {game.roomHandler.GetRoomName(_roomID)} key to unlock it.");
+            Console.ReadKey(true);
         }
 
         private void Inventory()
@@ -296,6 +309,10 @@ namespace UI
         private void RoomDescription()
         {
             ConsoleUtils.BreakLine(game.roomHandler.DescribeRoom(game.player.Position));
+            if (game.player.IsRoomExamined(game.player.Position))
+            {
+                Console.WriteLine($"\n\n{game.roomHandler.ExamineRoom(game.player.Position)}");
+            }
         }
     }
 }
