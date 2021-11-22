@@ -86,6 +86,13 @@ namespace GameLib
             return 0;
         }
 
+        public int TakeItem(int _roomID)
+        {
+            int itemId = GetRoom(_roomID).ItemInRoomId;
+            GetRoom(_roomID).ItemInRoomId = 0;
+            return itemId;
+        }
+
         private void CreateRooms()
         {
             allRooms.Add(new Room(1, "Foyer", "You open the door to the castle and enter the foyer. It's moist and water is leaking in from every where. You notice a rack with 3 knobs on it on which there is one jacket hanging. 'Nice jacket, very modern. It looks brand new, only used a few times. I'm starting to get the feeling that I'm not alone in here'. {There is only one door right in front of you}.", "You came up short, there is nothing of value in this room.", 2, 0, 0, 0));
@@ -105,12 +112,12 @@ namespace GameLib
 
         private void AddItemToRoom()
         {
-            allRooms[8].ItemInRoomId = 31;
+            allRooms[8].ItemInRoomId = 10;
         }
 
         private void LockRooms()
         {
-            allRooms[6].ItemRequiredToEnter = 31;
+            allRooms[6].ItemRequiredToEnter = 10;
         }
     }
 
