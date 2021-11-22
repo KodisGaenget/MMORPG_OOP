@@ -163,7 +163,7 @@ namespace UI
         {
             Console.Clear();
             Console.WriteLine($"You charge face first into the {s}ern wall almost breaking your nose, you see stars.\n");
-            ConsoleUtils.Red("You loose 5 hp");
+            ConsoleUtils.ChangeColor("WriteLine", "You lose 5 hp", ConsoleColor.Red);
             Console.ReadKey(true);
             game.player.CurrentHealth -= 5;
 
@@ -178,7 +178,7 @@ namespace UI
         private void Inventory()
         {
             Console.Clear();
-            ConsoleUtils.Yellow("\u25a3");
+            ConsoleUtils.ChangeColor("Write", "\u25a3", ConsoleColor.Yellow);
             Console.Write(" Inventory \n");
             foreach (var item in game.player.Inventory.GetInventory())
             {
