@@ -14,12 +14,6 @@ namespace Characters
 
         public bool inDb = false;
 
-        public Player(IClass charClass)
-        {
-            Inventory = new();
-            Class = charClass.Name;
-        }
-
         public Player()
         {
             Inventory = new();
