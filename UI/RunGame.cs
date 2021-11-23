@@ -21,7 +21,7 @@ namespace UI
         {
             string prompt = "Welcome to Wörld of Virgincraft: The Saga of the Poopy Pants in the Basement!";
             List<string> options = new List<string> { "Play the game", "Settings", "Credits", "Exit" };
-            Menu menu = new Menu(prompt, options);
+            Menu menu = new Menu(prompt, options, "");
             int selectedIndex = menu.GetMenuIndex();
             switch (selectedIndex)
             {
@@ -168,7 +168,7 @@ namespace UI
             string choise = "";
             while (!game.combatHandler.combatOver)
             {
-                CMainMenu combatMenu = new(game.combatHandler.combatLog);
+                CMainMenu combatMenu = new(game.combatHandler.combatLog, InfoBar(), game);
                 if (!game.combatHandler.playersTurn)
                 {
                     game.combatHandler.ContinueCombat();
@@ -183,7 +183,7 @@ namespace UI
                     }
                     if (choise == "Inventory")
                     {
-                        InvMenu inventoryMenu = new(game);
+                        InventoryMenu inventoryMenu = new(game.GetInventoryInfoList(), game);
                     }
                     if (choise == "Escape")
                     {
@@ -266,35 +266,33 @@ namespace UI
             Console.Clear();
             ConsoleUtils.ChangeColor("Write", "\u25a3", ConsoleColor.Yellow);
             Console.Write(" Inventory \n");
-            InventoryMenu test = new(game.GetInventoryInfoList(), game);
-            test.Run();
-            // foreach (var item in game.GetInventoryInfoList())
-            // {
-            //     // Console.WriteLine(item.Name);
-            //     Console.WriteLine($"{item.Amount}x {item.Name}");
-            // }
-            // Console.ReadKey(true);
+            InventoryMenu inventoryMenu = new(game.GetInventoryInfoList(), game);
+            inventoryMenu.Run();
         }
 
         private void Print()
         {
-            InfoBar();
-            RoomText();
-        }
-
-        private void InfoBar()
-        {
-            DisplayXPToNextLevel();
-            DisplayLevel();
-            DisplayMoney();
-            DisplayHP();
-            DisplayPower();
-            DisplayArmor();
-            DisplaySearch();
-            DisplayInventory();
-            DisplayHelp();
+            Console.WriteLine(InfoBar());
             DisplayNavigation();
             DisplayCurrentRoom();
+            RoomText();
+
+        }
+
+        private string InfoBar()
+        {
+            // Console.Write(DisplayXPToNextLevel());
+            // Console.Write(DisplayLevel());
+            // Console.Write(DisplayMoney());
+            // Console.Write(DisplayHP());
+            // Console.Write(DisplayPower());
+            // Console.Write(DisplayArmor());
+            // Console.Write(DisplaySearch());
+            // Console.Write(DisplayInventory());
+            // Console.Write(DisplayHelp());
+
+            return DisplayXPToNextLevel() + DisplayLevel() + DisplayMoney() + DisplayHP() + DisplayPower() + DisplayArmor() + DisplaySearch() + DisplayInventory() + DisplayHelp();
+
         }
 
         private void DisplayCurrentRoom()
@@ -341,58 +339,61 @@ namespace UI
             }
         }
 
-        private void DisplayHelp()
+        private string DisplayHelp()
         {
-            var help = ConsoleUtils.ChangeColor("Write", $"? H", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", "elp | \n\n", ConsoleColor.White);
+            return ConsoleUtils.ChangeColor("Write", $"? H", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", "elp | \n\n", ConsoleColor.White);
         }
 
-        private void DisplayInventory()
+        private string DisplayInventory()
         {
-            var inventory = ConsoleUtils.ChangeColor("Write", $"\u25a3 I", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", "nventory | ", ConsoleColor.White);
+            return ConsoleUtils.ChangeColor("Write", $"\u25a3 I", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", "nventory | ", ConsoleColor.White);
         }
 
-        private void DisplaySearch()
+        private string DisplaySearch()
         {
             if (!game.player.IsRoomExamined(game.player.Position))
             {
-                ConsoleUtils.ChangeColor("Write", $"\u2315 S", ConsoleColor.Yellow);
-                ConsoleUtils.ChangeColor("Write", "earch | ", ConsoleColor.White);
+                return ConsoleUtils.ChangeColor("Write", $"\u2315 S", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", "earch | ", ConsoleColor.White);
             }
+            return "";
         }
 
-        private void DisplayArmor()
+        private string DisplayArmor()
         {
-            Console.Write(ConsoleUtils.ChangeColor("Write", "\u16e5  ", ConsoleColor.Magenta) + ConsoleUtils.ChangeColor("Write", $"{game.GetDefense()} | ", ConsoleColor.White));
+            return ConsoleUtils.ChangeColor("Write", "\u16e5  ", ConsoleColor.Magenta) + ConsoleUtils.ChangeColor("Write", $"{game.GetDefense()} | ", ConsoleColor.White);
         }
 
-        private void DisplayPower()
+        private string DisplayPower()
         {
-            if (game.player.CurrentPower < game.player.Power / 2.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2726  ", ConsoleColor.Blue) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White));
-            else if (game.player.CurrentPower < game.player.Power / 1.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2726  ", ConsoleColor.Blue) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White));
-            else Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2726  ", ConsoleColor.Blue) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White));
+            string text;
+            if (game.player.CurrentPower < game.player.Power / 2.5) text = ConsoleUtils.ChangeColor("Write", $"\u2726  ", ConsoleColor.Blue) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White);
+            else if (game.player.CurrentPower < game.player.Power / 1.5) text = ConsoleUtils.ChangeColor("Write", $"\u2726  ", ConsoleColor.Blue) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White);
+            else text = ConsoleUtils.ChangeColor("Write", $"\u2726  ", ConsoleColor.Blue) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentPower}", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $" / {game.player.Power} | ", ConsoleColor.White);
+            return text;
         }
 
-        private void DisplayHP()
+        private string DisplayHP()
         {
-            if (game.player.CurrentHealth < game.player.OriginalHealth / 2.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White));
-            else if (game.player.CurrentHealth < game.player.OriginalHealth / 1.5) Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White));
-            else Console.Write(ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White));
+            string text;
+            if (game.player.CurrentHealth < game.player.OriginalHealth / 2.5) text = ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White);
+            else if (game.player.CurrentHealth < game.player.OriginalHealth / 1.5) text = ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White);
+            else text = ConsoleUtils.ChangeColor("Write", $"\u2764  ", ConsoleColor.Red) + ConsoleUtils.ChangeColor("Write", $"{game.player.CurrentHealth}", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $" / {game.player.OriginalHealth} | ", ConsoleColor.White);
+            return text;
         }
 
-        private void DisplayMoney()
+        private string DisplayMoney()
         {
-            Console.Write(ConsoleUtils.ChangeColor("Write", "\u20AB ", ConsoleColor.Green) + ConsoleUtils.ChangeColor("Write", $"{game.player.CoinPurse} | ", ConsoleColor.White));
+            return ConsoleUtils.ChangeColor("Write", "\u20AB ", ConsoleColor.Green) + ConsoleUtils.ChangeColor("Write", $"{game.player.CoinPurse} | ", ConsoleColor.White);
         }
 
-        private void DisplayLevel()
+        private string DisplayLevel()
         {
-            ConsoleUtils.ChangeColor("Write", $"Level: {game.player.Level} | ", ConsoleColor.White);
+            return ConsoleUtils.ChangeColor("Write", $"Level: {game.player.Level} | ", ConsoleColor.White);
         }
 
-        private void DisplayXPToNextLevel()
+        private string DisplayXPToNextLevel()
         {
-            ConsoleUtils.ChangeColor("Write", "| ", ConsoleColor.White);
-            ConsoleUtils.ChangeColor("Write", $"XP to next level: {game.player.ExpToNextLevel()} | ", ConsoleColor.White);
+            return ConsoleUtils.ChangeColor("Write", "| ", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $"XP to next level: {game.player.ExpToNextLevel()} | ", ConsoleColor.White);
         }
 
         private void RoomText()

@@ -9,17 +9,19 @@ namespace UI
         // private string[] Options;
         private List<string> Options = new();
         private string Prompt;
-        public Menu(string prompt, List<string> options)
+        private string Prompt2;
+        public Menu(string prompt, List<string> options, string prompt2)
         {
             Prompt = prompt;
             Options = options;
             SelectedIndex = 0;
+            Prompt2 = prompt2;
         }
 
         private void DisplayOptions()
         {
             Console.WriteLine(Prompt);
-
+            Console.ReadKey(true);
             for (int i = 0; i < Options.Count; i++)
             {
                 string currentOption = Options[i];
@@ -35,6 +37,7 @@ namespace UI
                 }
                 Console.Write($"\n{prefix} {currentOption}");
             }
+            Console.WriteLine($"\n\n{Prompt2}");
         }
 
         public int GetMenuIndex()
