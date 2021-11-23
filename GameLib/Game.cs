@@ -135,7 +135,7 @@ namespace GameLib
             return new();
         }
 
-        private bool ConsumeItem(KeyValuePair<int, int> item)
+        public bool ConsumeItem(KeyValuePair<int, int> item)
         {
             foreach (var item2 in itemLoader.itemList)
             {
