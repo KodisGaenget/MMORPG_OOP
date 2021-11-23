@@ -130,9 +130,6 @@ namespace Rooms
             allRooms[6].ItemInRoomId.Add(30);
             allRooms[6].ItemInRoomId.Add(31);
             allRooms[8].ItemInRoomId.Add(10);
-            allRooms[8].ItemInRoomId.Add(18);
-            allRooms[8].ItemInRoomId.Add(19);
-            allRooms[8].ItemInRoomId.Add(20);
             allRooms[9].ItemInRoomId.Add(11);
             allRooms[9].ItemInRoomId.Add(12);
             allRooms[9].ItemInRoomId.Add(13);
@@ -148,7 +145,13 @@ namespace Rooms
 
         private void AddEnemies()
         {
-            allRooms[3].EnemyInRoom = 4;
+            allRooms[2].EnemyInRoom = 5;
+            allRooms[3].EnemyInRoom = 6;
+            allRooms[5].EnemyInRoom = 7;
+            allRooms[6].EnemyInRoom = 8;
+            allRooms[8].EnemyInRoom = 9;
+            allRooms[9].EnemyInRoom = 10;
+            allRooms[10].EnemyInRoom = 11;
         }
     }
 

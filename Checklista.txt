@@ -1,16 +1,10 @@
-* Gör klart Enemy.cs
- - Skapa uträkning för Combat.
 
-* Behöver vi NPC?
-* Skapa en level up plan
-* Skapa en Fight club : IFight
-    - tex.  new Combat(Player player, Enemy enemy, itemLoader) (Börjat skriva lite uträkningar.)
-    - interface? Olika sorters fights?
+
+* Lägga till nyckel i Prison cells för att låsa upp rummet Observatory för att komma till slutbossen Gustavo
+* Lägga till monster i rum
 * Skapa koppling till Room table i databasen.
 * RoomLoader
-* Gör klart Spells (Klar?) - Tar vi sist om vi hinner 
-* Gör klart PlayerClasses (Saknas lite saker)
-* Enemies- Toxic fart cloud, Goblin, Giant spider, Giant rats, Shapeshifter & Gustavo slut-BOSS
+* Gör klart Spells (Klar) - Tar vi sist om vi hinner lägga till
+* Gör klart PlayerClasses (Saknas lite saker) - Tar vi sist om vi hinner lägga till (Måste göras för att använda spells)
 * GameEngine
-
 * UI (Stort projekt)
