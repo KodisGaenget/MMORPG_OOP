@@ -369,7 +369,7 @@ namespace UI
                 Console.WriteLine("You found: \n");
                 foreach (var item in game.roomHandler.GetRoom(game.player.Position).ItemInRoomId)
                 {
-                    Console.WriteLine(game.itemLoader.GetKeyDetails(item).Name);
+                    Console.WriteLine(game.itemLoader.GetItemDetails(item).Name);
                 }
             }
         }

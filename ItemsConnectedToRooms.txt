@@ -1,71 +1,69 @@
-----FOYER----
+----FOYER ID: 1----
 NOTHING
 
-----DANK HALLWAY----
-Item Id:                Item Name:                         In Room Id:          Room name:          
-21                      Lesser health potion               2                    Dank hallway
-22                      Lesser health potion               2                   
-23                      Lesser power potion                2                    
-24                      Lesser power potion                2                    
+---- DANK HALLWAY ID:2----
+Item Id:                Item Name:                         In Room Index Id:    Room name:          
+21                      2x Lesser health potion            1                    Dank hallwayn                                  
+23                      2x Lesser power potion             1                                             
 
 
-----LIBRARY----
-                        No Item:                         In Room Id:         Room Name:               Enemy ID + Name:
-                        Book 200 xp                        3                   Library                  5          Toxic fart cloud
-
-
-
-----DILDO EXHIBITION ROOM----
-Item Id:                Item Name:                         In Room Id:        Room Name:               Enemy ID + Name:     
-25                      Sharpened dildos                   4                  Dildo exhibition room    6          Two Goblins
+----LIBRARY ID: 3----
+                        No Item:                         In Room Index Id:     Room Name:               Enemy ID + Name:
+                        Book 200 xp                        2                   Library                  5          Toxic fart cloud
 
 
 
-----LIVING ROOM----
-Item Id:                Item Name:                         In Room Id:         Room Name:      
-26                      Double-edged Axe                   5                   Living room
+----DILDO EXHIBITION ROOM ID: 4----
+Item Id:                Item Name:                         In Room Index Id:  Room Name:               Enemy ID + Name:     
+25                      Sharpened dildos                   3                  Dildo exhibition room    6          Two Goblins
 
 
 
-----KITCHEN----
-Item Id:                Item Name:                         In Room Id:         Room Name:               Enemy ID + Name:
-27                      Greater health potion              6                   Kitchen                  7          Three giant rats
-28                      Greater power potion               6                      
+----LIVING ROOM ID: 5----
+Item Id:                Item Name:                         In Room Index Id:   Room Name:      
+26                      Double-edged Axe                   4                   Living room
 
 
 
-----STORAGE ROOM----
-Item Id:                Item Name:                         In Room Id:         Room Name:               Enemy ID + Name:
-29                      Diamond daggers                    7                   Storage room             8          Giant spider
-30                      Superior health potion             7                
-31                      Superrior power potion             7           
+----KITCHEN ID: 6----
+Item Id:                Item Name:                         In Room Index Id:   Room Name:               Enemy ID + Name:
+27                      Greater health potion              5                   Kitchen                  7          Three giant rats
+28                      Greater power potion               5                      
 
 
 
-----STARIWAY----
+----STORAGE ROOM ID: 7----
+Item Id:                Item Name:                         In Room Index Id:   Room Name:               Enemy ID + Name:
+29                      Diamond daggers                    6                   Storage room             8          Giant spider
+30                      Superior health potion             6                
+31                      Superrior power potion             6           
+
+
+
+----STARIWAY ID: 8----
 NOTHING
 
 
 
-----TORTURE CHAMBER----
-                        No Item:                           In Room Id:          Room Name:               Enemy ID + Name:
-                        Kama sutra 500 xp                  9                    Torture chamber          9          Succubus
+----TORTURE CHAMBER ID: 9----
+                        No Item:                           In Room Index Id:    Room Name:               Enemy ID + Name:
+                        Kama sutra 500 xp                  8                    Torture chamber          9          Succubus
 
 
 
-----PRISON CELLS----
-Item Id:                 Item Name:                         In Room Id:         Room Name:              Enemy ID + Name:
-11                       Helmet of Gustavo's bane           10                  Prison cells            10         Shape-shifter   
-12                       Chest of Gustavo's bane            10                 
-13                       Gloves of Gustavo's bane           10                
-14                       Legs of Gustavo's bane             10               
-15                       Boots of Gustavo's bane            10               
-16                       Warhammer of Gustavo's bane        10        
+----PRISON CELLS ID: 10----
+Item Id:                 Item Name:                         In Room Index Id:  Room Name:              Enemy ID + Name:
+11                       Helmet of Gustavo's bane           9                  Prison cells            10         Shape-shifter   
+12                       Chest of Gustavo's bane            9                 
+13                       Gloves of Gustavo's bane           9                
+14                       Legs of Gustavo's bane             9               
+15                       Boots of Gustavo's bane            9               
+16                       Warhammer of Gustavo's bane        9        
 
 
 
-----OBSERVATORY----
-                                                            In Room Id:         Room Name:               Enemy ID + Name:
-                                                            11                  Observatory              11         Gustavo
+----OBSERVATORY ID: 11----
+                                                            In Room Index Id:   Room Name:               Enemy ID + Name:
+                                                            10                  Observatory              11         Gustavo
 
 

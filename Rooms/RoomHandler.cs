@@ -118,10 +118,27 @@ namespace Rooms
 
         private void AddItemToRoom()
         {
+            allRooms[1].ItemInRoomId.Add(21);
+            allRooms[1].ItemInRoomId.Add(21);
+            allRooms[1].ItemInRoomId.Add(23);
+            allRooms[1].ItemInRoomId.Add(23);
+            allRooms[3].ItemInRoomId.Add(25);
+            allRooms[4].ItemInRoomId.Add(26);
+            allRooms[5].ItemInRoomId.Add(27);
+            allRooms[5].ItemInRoomId.Add(28);
+            allRooms[6].ItemInRoomId.Add(29);
+            allRooms[6].ItemInRoomId.Add(30);
+            allRooms[6].ItemInRoomId.Add(31);
             allRooms[8].ItemInRoomId.Add(10);
             allRooms[8].ItemInRoomId.Add(18);
             allRooms[8].ItemInRoomId.Add(19);
             allRooms[8].ItemInRoomId.Add(20);
+            allRooms[9].ItemInRoomId.Add(11);
+            allRooms[9].ItemInRoomId.Add(12);
+            allRooms[9].ItemInRoomId.Add(13);
+            allRooms[9].ItemInRoomId.Add(14);
+            allRooms[9].ItemInRoomId.Add(15);
+            allRooms[9].ItemInRoomId.Add(16);
         }
 
         private void LockRooms()
