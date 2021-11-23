@@ -2,16 +2,70 @@
 NOTHING
 
 ----DANK HALLWAY----
-To be updated
+Item Id:                Item Name:                         In Room Id:          Room name:          
+21                      Lesser health potion               2                    Dank hallway
+22                      Lesser health potion               2                   
+23                      Lesser power potion                2                    
+24                      Lesser power potion                2                    
+
+
+----LIBRARY----
+                        No Item:                         In Room Id:         Room Name:               Enemy ID + Name:
+                        Book 200 xp                        3                   Library                  5          Toxic fart cloud
+
+
+
+----DILDO EXHIBITION ROOM----
+Item Id:                Item Name:                         In Room Id:        Room Name:               Enemy ID + Name:     
+25                      Sharpened dildos                   4                  Dildo exhibition room    6          Two Goblins
+
+
+
+----LIVING ROOM----
+Item Id:                Item Name:                         In Room Id:         Room Name:      
+26                      Double-edged Axe                   5                   Living room
+
+
+
+----KITCHEN----
+Item Id:                Item Name:                         In Room Id:         Room Name:               Enemy ID + Name:
+27                      Greater health potion              6                   Kitchen                  7          Three giant rats
+28                      Greater power potion               6                      
+
+
+
+----STORAGE ROOM----
+Item Id:                Item Name:                         In Room Id:         Room Name:               Enemy ID + Name:
+29                      Diamond daggers                    7                   Storage room             8          Giant spider
+30                      Superior health potion             7                
+31                      Superrior power potion             7           
+
+
+
+----STARIWAY----
+NOTHING
+
+
+
+----TORTURE CHAMBER----
+                        No Item:                           In Room Id:          Room Name:               Enemy ID + Name:
+                        Kama sutra 500 xp                  9                    Torture chamber          9          Succubus
+
+
 
 ----PRISON CELLS----
-Item Id:                 Item Name:                         In Room Id:         Room Name:          Enemy ID + Name:
-11                       Helmet of Gustavo's bane           10                  Prison cells        9          Succubus   
-12                       Chest of Gustavo's bane            10                  Prison cells
-13                       Gloves of Gustavo's bane           10                  Prison cells
-14                       Legs of Gustavo's bane             10                  Prison cells
-15                       Boots of Gustavo's bane            10                  Prison cells
-16                       Warhammer of Gustavo's bane        10                  Prison cells
+Item Id:                 Item Name:                         In Room Id:         Room Name:              Enemy ID + Name:
+11                       Helmet of Gustavo's bane           10                  Prison cells            10         Shape-shifter   
+12                       Chest of Gustavo's bane            10                 
+13                       Gloves of Gustavo's bane           10                
+14                       Legs of Gustavo's bane             10               
+15                       Boots of Gustavo's bane            10               
+16                       Warhammer of Gustavo's bane        10        
 
+
+
+----OBSERVATORY----
+                                                            In Room Id:         Room Name:               Enemy ID + Name:
+                                                            11                  Observatory              11         Gustavo
 
 
