@@ -50,7 +50,11 @@ namespace UI
 
             if (keyPressed.Key == ConsoleKey.Enter)
             {
-                UseItem();
+                if (inventory.Count != 0)
+                {
+                    UseItem();
+                }
+
             }
         }
 
