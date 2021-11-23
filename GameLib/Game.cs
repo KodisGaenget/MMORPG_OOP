@@ -50,14 +50,14 @@ namespace GameLib
             return playerLoader.GetPlayer(id);
         }
 
-        public List<string> GetInventoryList()
+        public List<InventoryInfo> GetInventoryInfoList()
         {
-            List<string> InventoryList = new();
+            List<InventoryInfo> InventoryList = new();
             foreach (var item in player.Inventory.GetInventory())
             {
                 foreach (var item2 in itemLoader.itemList)
                 {
-                    InventoryList.Add(item2.Name);
+                    InventoryList.Add(new InventoryInfo(item2.Id, item2.Name));
                 }
             }
             return InventoryList;
