@@ -53,7 +53,7 @@ namespace Characters
             }
             else
             {
-                items[itemToRemove.Key] = -amount;
+                items[itemToRemove.Key] -= amount;
             }
         }
 
