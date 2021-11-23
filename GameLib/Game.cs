@@ -14,7 +14,6 @@ namespace GameLib
         public RoomHandler roomHandler;
         public CombatHandler combatHandler = new();
         public Player player;
-        public Player player2;
         public Spawner spawner;
         public ItemLoader itemLoader;
 
@@ -25,7 +24,6 @@ namespace GameLib
             itemLoader = new(db);
             spawner = new(db);
             player = SetChoosenPlayer(id);
-            player2 = SetChoosenPlayer(2);
         }
 
         public void UpdateGame()
@@ -40,6 +38,7 @@ namespace GameLib
         }
 
         #region PlayerMethods
+
         public void SavePlayer()
         {
             PlayerSaver playerSaver = new(db, player);

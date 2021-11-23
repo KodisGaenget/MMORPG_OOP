@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GameEnums
+﻿namespace GameEnums
 {
     public enum WeaponType
     {

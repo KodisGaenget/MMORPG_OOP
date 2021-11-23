@@ -43,22 +43,5 @@ namespace Characters
         {
             CurrentEquipped[slot] = item;
         }
-
-        // public override string ToString()
-        // {
-        //     string equippedString = "";
-        //     foreach (var item in CurrentEquipped)
-        //     {
-        //         if (item.Value == 0)
-        //         {
-        //             equippedString += $"{item.Key}: Unequipped\n";
-        //         }
-        //         else if (CheckAndFind.GetItemType(item.Key) == "Armor" || CheckAndFind.GetItemType(item.Key) == "Weapon")
-        //         {
-        //             equippedString += $"{item.Key}: Equipped\n";
-        //         }
-        //     }
-        //     return equippedString;
-        // }
     }
 }

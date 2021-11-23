@@ -1,4 +1,4 @@
-----FOYER ID: 1----
+----FOYER ID: 1----                 -Game is now "balanced" and playable-
 NOTHING
 
 ---- DANK HALLWAY ID:2----
@@ -53,7 +53,7 @@ NOTHING
 
 ----PRISON CELLS ID: 10----
 Item Id:                 Item Name:                         In Room Index Id:  Room Name:               Enemy ID + Name:
-11                       Helmet of Gustavo's bane           9                  Prison cells             10         Shape-shifter  // Shape-shifter too strong?  
+11                       Helmet of Gustavo's bane           9                  Prison cells             10         Shape-shifter  // Shape-shifter too strong? // Shape-shifter is now nerfed 
 12                       Chest of Gustavo's bane            9                 
 13                       Gloves of Gustavo's bane           9                
 14                       Legs of Gustavo's bane             9               
@@ -64,6 +64,6 @@ Item Id:                 Item Name:                         In Room Index Id:  R
 
 ----OBSERVATORY ID: 11----
                                                             In Room Index Id:   Room Name:               Enemy ID + Name:
-                                                            10                  Observatory              11         Gustavo
+                                                            10                  Observatory              11         Gustavo    // Gustavo too strong? // Gustavo is now nerfed
 
 

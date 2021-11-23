@@ -1,5 +1,3 @@
-
-
 namespace GameEnums
 {
     public enum ArmorType

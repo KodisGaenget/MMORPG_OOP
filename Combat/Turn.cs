@@ -33,10 +33,10 @@ namespace Combat
             return (int)realDmg;
         }
 
-        public IFightable GetTaker()
-        {
-            return taker;
-        }
+        // public IFightable GetTaker()
+        // {
+        //     return taker;
+        // }
 
 
 
