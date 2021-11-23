@@ -9,7 +9,6 @@ namespace Characters
         public void Load(Equipment eq)
         {
             Equipment = eq;
-            //TODO make a LootList
         }
     }
 }

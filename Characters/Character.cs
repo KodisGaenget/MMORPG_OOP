@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using GameInterfaces;
 
-
 namespace Characters
 {
     public abstract class Character : IFightable
