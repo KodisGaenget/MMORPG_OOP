@@ -20,7 +20,7 @@ namespace Combat
         internal bool combatOver = false;
         Random r = new Random();
         internal string combatLog = "";
-        bool fighter1Turn = false;
+        internal bool fighter1Turn = false;
         internal bool playerWinner;
 
         public CombatSystem(IFightable fighter1, IFightable fighter2, ItemLoader itemLoader)
