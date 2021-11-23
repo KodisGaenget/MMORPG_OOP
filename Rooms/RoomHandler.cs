@@ -136,11 +136,13 @@ namespace Rooms
             allRooms[9].ItemInRoomId.Add(14);
             allRooms[9].ItemInRoomId.Add(15);
             allRooms[9].ItemInRoomId.Add(16);
+            allRooms[9].ItemInRoomId.Add(32);
         }
 
         private void LockRooms()
         {
             allRooms[6].ItemRequiredToEnter = 10;
+            allRooms[10].ItemRequiredToEnter = 32;
         }
 
         private void AddEnemies()
