@@ -170,9 +170,10 @@ namespace UI
                     {
                         if (game.combatHandler.playerWinner)
                         {
-                            System.Console.WriteLine("You won!");
+                            Console.WriteLine($"You killed {game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).Name.ToString()} and gained {game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).expValue} XP!");
                             game.player.GainExp(game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).expValue);
                             game.roomHandler.GetRoom(_roomID).EnemyInRoom = 0;
+                            Console.ReadKey();
                         }
                         else
                         {
