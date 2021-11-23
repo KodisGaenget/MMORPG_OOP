@@ -53,6 +53,10 @@ namespace DataManager
 
         public bool ContinueCombat()
         {
+            if (combatLog.Length > 120)
+            {
+                combatLog = "";
+            }
             playersTurn = combat.Run();
             UpdateCombatStatus();
             if (combat.fighter2.CurrentHealth! <= 0)
