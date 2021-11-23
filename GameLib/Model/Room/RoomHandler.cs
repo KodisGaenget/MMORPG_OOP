@@ -86,7 +86,7 @@ namespace GameLib
             return 0;
         }
 
-        public List<int> TakeItem(int _roomID)
+        public List<int> TakeItems(int _roomID)
         {
             List<int> items = new();
             foreach (var item in GetRoom(_roomID).ItemInRoomId)

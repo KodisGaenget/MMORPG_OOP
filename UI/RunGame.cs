@@ -98,7 +98,7 @@ namespace UI
                 {
                     if (game.player.IsRoomExamined(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId.Count != 0)
                     {
-                        foreach (var item in game.roomHandler.TakeItem(game.player.Position))
+                        foreach (var item in game.roomHandler.TakeItems(game.player.Position))
                         {
                             game.player.Inventory.AddItem(item, 1);
                         }
