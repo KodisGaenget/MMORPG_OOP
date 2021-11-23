@@ -29,12 +29,23 @@ namespace Characters
 
         public void AddItem(int newItem, int amount)
         {
-            items.Add(newItem, amount);
+            if (IsItemIDInInventory(newItem))
+            {
+                if (FindItem(newItem).Value + amount <= 5)
+                {
+                    items[newItem] += amount;
+
+                }
+            }
+            else
+            {
+                items.Add(newItem, amount);
+            }
         }
 
         public void RemoveItem(int item, int amount = 1)
         {
-            var itemToRemove = FindItem(item, GetInventory());
+            var itemToRemove = FindItem(item);
 
             if (itemToRemove.Value == 1)
             {
@@ -58,7 +69,7 @@ namespace Characters
             return false;
         }
 
-        private KeyValuePair<int, int> FindItem(int searched, IReadOnlyDictionary<int, int> items)
+        private KeyValuePair<int, int> FindItem(int searched)
         {
             KeyValuePair<int, int> founded = new();
 
