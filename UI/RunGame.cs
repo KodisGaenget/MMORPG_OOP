@@ -233,7 +233,7 @@ namespace UI
             Console.Write(" Inventory \n");
             foreach (var item in game.player.Inventory.GetInventory())
             {
-                Console.WriteLine($"{game.itemLoader.GetItemDetails(item.Key).Name}");
+                Console.WriteLine($"{item.Value}x {game.itemLoader.GetItemDetails(item.Key).Name}");
             }
             Console.ReadKey(true);
         }
@@ -303,12 +303,12 @@ namespace UI
             }
         }
 
-        private static void DisplayHelp()
+        private void DisplayHelp()
         {
             var help = ConsoleUtils.ChangeColor("Write", $"? H", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", "elp | \n\n", ConsoleColor.White);
         }
 
-        private static void DisplayInventory()
+        private void DisplayInventory()
         {
             var inventory = ConsoleUtils.ChangeColor("Write", $"\u25a3 I", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", "nventory | ", ConsoleColor.White);
         }
