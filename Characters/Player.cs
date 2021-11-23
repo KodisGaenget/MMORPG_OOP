@@ -48,6 +48,7 @@ namespace Characters
         {
             UnEquip(slot);
             Equipment.EquipItem(slot, itemId);
+            Inventory.RemoveItem(itemId);
         }
 
         public void UnEquip(string slot)
