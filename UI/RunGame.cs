@@ -139,53 +139,63 @@ namespace UI
         {
             if (game.roomHandler.GetRoom(_roomID).EnemyInRoom != 0)
             {
-                game.combatHandler.StartNewCombat(game.player, game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom), game.itemLoader);
-                string choise = "";
-                while (!game.combatHandler.combatOver)
+                Fight(_roomID);
+            }
+            else
+            {
+                game.player.ChangePosition(_roomID);
+            }
+        }
+
+        private void Fight(int _roomID)
+        {
+            game.combatHandler.StartNewCombat(game.player, game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom), game.itemLoader);
+            string choise = "";
+            while (!game.combatHandler.combatOver)
+            {
+                CMainMenu combatMenu = new(game.combatHandler.combatLog);
+                if (!game.combatHandler.playersTurn)
                 {
-                    CMainMenu combatMenu = new(game.combatHandler.combatLog);
-                    if (!game.combatHandler.playersTurn)
+                    game.combatHandler.ContinueCombat();
+                    Thread.Sleep(100);
+                }
+                else
+                {
+                    choise = combatMenu.Run(game.combatHandler.playerHealth, game.combatHandler.enemyHealth);
+                    if (choise == "Attack")
                     {
                         game.combatHandler.ContinueCombat();
-                        Thread.Sleep(100);
+                    }
+                    if (choise == "Inventory")
+                    {
+                        InvMenu inventoryMenu = new(game);
+                    }
+                    if (choise == "Escape")
+                    {
+                        game.player.ChangeHealth(-20);
+                        Console.WriteLine("You escaped the fight!");
+                        break;
+                    }
+                }
+                if (game.combatHandler.combatOver)
+                {
+                    if (game.combatHandler.playerWinner)
+                    {
+                        Console.Clear();
+                        ConsoleUtils.ChangeColor("WriteLine", $"You killed {game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).Name} and gained {game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).expValue} XP!", ConsoleColor.Green);
+                        game.player.GainExp(game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).expValue);
+                        game.roomHandler.GetRoom(_roomID).EnemyInRoom = 0;
+                        Console.ReadKey();
+                        game.player.ChangePosition(_roomID);
                     }
                     else
                     {
-                        choise = combatMenu.Run(game.combatHandler.playerHealth, game.combatHandler.enemyHealth);
-                        if (choise == "Attack")
-                        {
-                            game.combatHandler.ContinueCombat();
-                        }
-                        if (choise == "Inventory")
-                        {
-                            InvMenu inventoryMenu = new(game);
-                        }
-                        if (choise == "Escape")
-                        {
-                            System.Console.WriteLine("You escaped the fight!");
-                            break;
-                        }
+                        Console.WriteLine("You suck and died");
+                        Environment.Exit(0);
                     }
-                    if (game.combatHandler.combatOver)
-                    {
-                        if (game.combatHandler.playerWinner)
-                        {
-                            Console.Clear();
-                            ConsoleUtils.ChangeColor("WriteLine", $"You killed {game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).Name} and gained {game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).expValue} XP!", ConsoleColor.Green);
-                            game.player.GainExp(game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).expValue);
-                            game.roomHandler.GetRoom(_roomID).EnemyInRoom = 0;
-                            Console.ReadKey();
-                        }
-                        else
-                        {
-                            Console.WriteLine("You suck and died");
-                            Environment.Exit(0);
-                        }
-                    }
-
                 }
+
             }
-            game.player.ChangePosition(_roomID);
         }
 
         private void Help()
@@ -231,9 +241,10 @@ namespace UI
             Console.Clear();
             ConsoleUtils.ChangeColor("Write", "\u25a3", ConsoleColor.Yellow);
             Console.Write(" Inventory \n");
-            foreach (var item in game.player.Inventory.GetInventory())
+            foreach (var item in game.GetInventoryInfoList())
             {
-                Console.WriteLine($"{item.Value}x {game.itemLoader.GetItemDetails(item.Key).Name}");
+                // Console.WriteLine(item.Name);
+                Console.WriteLine($"{item.Amount}x {item.Name}");
             }
             Console.ReadKey(true);
         }
