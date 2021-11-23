@@ -70,6 +70,7 @@ namespace Characters
         public void GainExp(int amount)
         {
             CurrentExp += amount;
+            UpdateLevel();
         }
 
         public void AddExamineRoom(int roomId)
