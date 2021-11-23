@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using GameEnums;
 
-namespace GameLib
+namespace Rooms
 {
     public class Room
     {
@@ -29,14 +30,5 @@ namespace GameLib
             EnemyInRoom = 0;
             ItemInRoomId = new();
         }
-    }
-
-    // move enum? where?
-    public enum Direction
-    {
-        North,
-        East,
-        South,
-        West
     }
 }
