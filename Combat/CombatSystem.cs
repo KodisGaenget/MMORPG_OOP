@@ -77,8 +77,13 @@ namespace Combat
 
         private float Resist(IFightable dealer, IFightable taker, int takerArmor)
         {
-            float leveldiff = 2 * (dealer.Level - taker.Level) / 100f;
-            return leveldiff + ((taker.Armor - dealer.Penetration) / 100f);
+            int armorDiff = taker.Armor - dealer.Penetration;
+            if (armorDiff > 100)
+            {
+                armorDiff = 100;
+            }
+            float levelDiff = 2 * (dealer.Level - taker.Level) / 100f;
+            return levelDiff + armorDiff / 100f;
         }
 
         private void SetFighterStats()
