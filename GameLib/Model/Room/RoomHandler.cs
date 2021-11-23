@@ -88,7 +88,11 @@ namespace GameLib
 
         public List<int> TakeItem(int _roomID)
         {
-            List<int> items = GetRoom(_roomID).ItemInRoomId;
+            List<int> items = new();
+            foreach (var item in GetRoom(_roomID).ItemInRoomId)
+            {
+                items.Add(item);
+            }
             GetRoom(_roomID).ItemInRoomId.Clear();
             return items;
         }
