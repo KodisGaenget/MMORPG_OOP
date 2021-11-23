@@ -10,7 +10,7 @@ namespace GameLib
         public string Description { get; set; }
         public string ExamineText { get; set; }
         public Dictionary<Direction, int> Directions { get; set; }
-        public int ItemInRoomId { get; set; }
+        public List<int> ItemInRoomId { get; set; }
         public int ItemRequiredToEnter { get; set; }
         public int EnemyInRoom { get; set; }
 
@@ -25,9 +25,9 @@ namespace GameLib
             Directions.Add(Direction.East, _east);
             Directions.Add(Direction.South, _south);
             Directions.Add(Direction.West, _west);
-            ItemInRoomId = 0;
             ItemRequiredToEnter = 0;
             EnemyInRoom = 0;
+            ItemInRoomId = new();
         }
     }
 

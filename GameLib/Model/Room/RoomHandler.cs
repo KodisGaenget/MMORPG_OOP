@@ -86,11 +86,11 @@ namespace GameLib
             return 0;
         }
 
-        public int TakeItem(int _roomID)
+        public List<int> TakeItem(int _roomID)
         {
-            int itemId = GetRoom(_roomID).ItemInRoomId;
-            GetRoom(_roomID).ItemInRoomId = 0;
-            return itemId;
+            List<int> items = GetRoom(_roomID).ItemInRoomId;
+            GetRoom(_roomID).ItemInRoomId.Clear();
+            return items;
         }
 
         private void CreateRooms()
@@ -113,7 +113,10 @@ namespace GameLib
 
         private void AddItemToRoom()
         {
-            allRooms[8].ItemInRoomId = 10;
+            allRooms[8].ItemInRoomId.Add(10);
+            allRooms[8].ItemInRoomId.Add(18);
+            allRooms[8].ItemInRoomId.Add(19);
+            allRooms[8].ItemInRoomId.Add(20);
         }
 
         private void LockRooms()
