@@ -59,7 +59,7 @@ namespace GameLib
                 {
                     if (item.Key == item2.Id)
                     {
-                        InventoryList.Add(new InventoryInfo(item2.Id, item2.Name));
+                        InventoryList.Add(new InventoryInfo(item2.Id, item2.Name, item.Value));
                     }
                 }
             }
