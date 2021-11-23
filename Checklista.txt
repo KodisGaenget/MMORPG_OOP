@@ -8,3 +8,4 @@
 * Gör klart PlayerClasses (Saknas lite saker) - Tar vi sist om vi hinner lägga till (Måste göras för att använda spells)
 * GameEngine
 * UI (Stort projekt)
+* När man escapear fight förlorar man 20 hp: Ändra så att man få 1 slag av fienden om man försöker fly - Tar vi sist om vi hinner lägga till

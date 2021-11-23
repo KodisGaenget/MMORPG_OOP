@@ -6,7 +6,7 @@ Item Id:                Item Name:                         In Room Index Id:    
 21                      2x Lesser health potion            1                    Dank hallwayn                                  
 23                      2x Lesser power potion             1                                             
 
-
+                                                                                                        All enemies weapon Id: 33
 ----LIBRARY ID: 3----
                         No Item:                         In Room Index Id:     Room Name:               Enemy ID + Name:
                         Book 200 xp                        2                   Library                  5          Toxic fart cloud
