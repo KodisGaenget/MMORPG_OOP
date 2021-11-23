@@ -57,7 +57,10 @@ namespace GameLib
             {
                 foreach (var item2 in itemLoader.itemList)
                 {
-                    InventoryList.Add(new InventoryInfo(item2.Id, item2.Name));
+                    if (item.Key == item2.Id)
+                    {
+                        InventoryList.Add(new InventoryInfo(item2.Id, item2.Name));
+                    }
                 }
             }
             return InventoryList;
