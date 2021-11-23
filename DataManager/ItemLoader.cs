@@ -112,6 +112,18 @@ namespace DataManager
             return null;
         }
 
+        public Item GetItemDetails(int id)
+        {
+            foreach (var item in itemList)
+            {
+                if (item.Id == id)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
         public string GetItemType(int Id)
         {
             foreach (var item in itemIdList)

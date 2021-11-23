@@ -96,9 +96,12 @@ namespace UI
 
                 if (keyPressed.Key == ConsoleKey.T)
                 {
-                    if (game.player.IsRoomExamined(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId != 0)
+                    if (game.player.IsRoomExamined(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId.Count != 0)
                     {
-                        game.player.Inventory.AddItem(game.roomHandler.TakeItem(game.player.Position), 1);
+                        foreach (var item in game.roomHandler.TakeItems(game.player.Position))
+                        {
+                            game.player.Inventory.AddItem(item, 1);
+                        }
                     }
                 }
                 #endregion 
@@ -227,7 +230,7 @@ namespace UI
             Console.Write(" Inventory \n");
             foreach (var item in game.player.Inventory.GetInventory())
             {
-                Console.WriteLine($"{game.itemLoader.GetKeyDetails(item.Key).Name}");
+                Console.WriteLine($"{game.itemLoader.GetItemDetails(item.Key).Name}");
             }
             Console.ReadKey(true);
         }
@@ -358,10 +361,13 @@ namespace UI
             {
                 Console.WriteLine($"\n\n{game.roomHandler.ExamineRoom(game.player.Position)}");
             }
-            if (game.player.IsRoomExamined(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId != 0)
+            if (game.player.IsRoomExamined(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId.Count != 0)
             {
                 Console.WriteLine("You found: \n");
-                Console.WriteLine(game.itemLoader.GetKeyDetails(game.roomHandler.GetRoom(game.player.Position).ItemInRoomId).Name);
+                foreach (var item in game.roomHandler.GetRoom(game.player.Position).ItemInRoomId)
+                {
+                    Console.WriteLine(game.itemLoader.GetKeyDetails(item).Name);
+                }
             }
         }
     }
