@@ -135,22 +135,30 @@ namespace GameLib
             return new();
         }
 
-        public bool ConsumeItem(KeyValuePair<int, int> item)
+        public bool ConsumeItem(int item)
         {
             foreach (var item2 in itemLoader.itemList)
             {
-                var consumable = item2 as Consumable;
-                if (item.Key == consumable.Id)
+                if (item == item2.Id)
                 {
-                    if (consumable.ConsumableType == ConsumableType.HealthPotion)
+                    string itemType = item2.ItemType.ToString();
+                    if (itemType == "Consumable")
                     {
-                        player.ChangeHealth(consumable.AmountToRestore);
-                        player.Inventory.RemoveItem(item.Key, 1);
-                        return true;
+                        var consumable = item2 as Consumable;
+                        if (consumable.ConsumableType == ConsumableType.HealthPotion)
+                        {
+                            player.ChangeHealth(consumable.AmountToRestore);
+                            player.Inventory.RemoveItem(consumable.Id, 1);
+                            return true;
+                        }
+                        else if (consumable.ConsumableType == ConsumableType.PowerPotion)
+                        {
+                            player.CurrentPower = player.Power;
+                        }
                     }
-                    else if (consumable.ConsumableType == ConsumableType.PowerPotion)
+                    else if (itemType == "Weapon" || itemType == "Armor")
                     {
-                        player.CurrentPower = player.Power;
+                        player.Equip(item2.Slot.ToString(), item2.Id);
                     }
                 }
             }
