@@ -27,7 +27,7 @@ namespace Characters
             Level = level.GetLevel(CurrentExp);
             if (oldLevel < Level)
             {
-                int hpGain = Level - oldLevel * 20;
+                int hpGain = 20 * (Level - oldLevel);
 
                 OriginalHealth += hpGain;
                 CurrentHealth += hpGain;
