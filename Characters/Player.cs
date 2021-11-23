@@ -33,6 +33,10 @@ namespace Characters
             Level = level.GetLevel(CurrentExp);
             if (oldLevel < Level)
             {
+                int hpGain = Level - oldLevel * 20;
+
+                OriginalHealth += hpGain;
+                CurrentHealth += hpGain;
                 return true;
             }
             return false;
