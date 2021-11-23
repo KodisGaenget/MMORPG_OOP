@@ -52,6 +52,21 @@ namespace UI
             ConsoleKeyInfo keyPressed;
             while (true)
             {
+                if (game.player.CurrentHealth <= 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine(@"
+            you got
+   ______          ___   _ ______ _____  
+  / __ \ \        / / \ | |  ____|  __ \ 
+ | |  | \ \  /\  / /|  \| | |__  | |  | |
+ | |  | |\ \/  \/ / | . ` |  __| | |  | |
+ | |__| | \  /\  /  | |\  | |____| |__| |
+  \____/   \/  \/   |_| \_|______|_____/ 
+                                         ");
+                    Console.ReadKey(true);
+                    Environment.Exit(0);
+                }
                 Console.Clear();
                 Print();
                 keyPressed = Console.ReadKey(true);
@@ -190,8 +205,18 @@ namespace UI
                     }
                     else
                     {
-                        Console.WriteLine("You suck and died");
-                        Environment.Exit(0);
+                        Console.Clear();
+                        Console.WriteLine(@"
+            you got
+   ______          ___   _ ______ _____  
+  / __ \ \        / / \ | |  ____|  __ \ 
+ | |  | \ \  /\  / /|  \| | |__  | |  | |
+ | |  | |\ \/  \/ / | . ` |  __| | |  | |
+ | |__| | \  /\  /  | |\  | |____| |__| |
+  \____/   \/  \/   |_| \_|______|_____/ 
+                                         ");
+                        Console.ReadKey(true);
+                        Environment.Exit(0); ;
                     }
                 }
 
@@ -379,7 +404,7 @@ namespace UI
             }
             if (game.player.IsRoomExamined(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId.Count != 0)
             {
-                Console.WriteLine("You found: \n");
+                var Take = ConsoleUtils.ChangeColor("Write", $"T", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", "ake:  \n", ConsoleColor.White);
                 foreach (var item in game.roomHandler.GetRoom(game.player.Position).ItemInRoomId)
                 {
                     Console.WriteLine(game.itemLoader.GetItemDetails(item).Name);
