@@ -282,18 +282,7 @@ namespace UI
 
         private string InfoBar()
         {
-            // Console.Write(DisplayXPToNextLevel());
-            // Console.Write(DisplayLevel());
-            // Console.Write(DisplayMoney());
-            // Console.Write(DisplayHP());
-            // Console.Write(DisplayPower());
-            // Console.Write(DisplayArmor());
-            // Console.Write(DisplaySearch());
-            // Console.Write(DisplayInventory());
-            // Console.Write(DisplayHelp());
-
             return DisplayHP() + DisplayPower() + DisplayArmor() + DisplaySearch() + DisplayInventory() + DisplayLevel() + DisplayXPToNextLevel() + DisplayMoney() + DisplayHelp();
-
         }
 
         private void DisplayCurrentRoom()
