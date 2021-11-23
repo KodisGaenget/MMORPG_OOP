@@ -241,12 +241,14 @@ namespace UI
             Console.Clear();
             ConsoleUtils.ChangeColor("Write", "\u25a3", ConsoleColor.Yellow);
             Console.Write(" Inventory \n");
-            foreach (var item in game.GetInventoryInfoList())
-            {
-                // Console.WriteLine(item.Name);
-                Console.WriteLine($"{item.Amount}x {item.Name}");
-            }
-            Console.ReadKey(true);
+            InventoryMenu test = new(game.GetInventoryInfoList(), game);
+            test.Run();
+            // foreach (var item in game.GetInventoryInfoList())
+            // {
+            //     // Console.WriteLine(item.Name);
+            //     Console.WriteLine($"{item.Amount}x {item.Name}");
+            // }
+            // Console.ReadKey(true);
         }
 
         private void Print()
