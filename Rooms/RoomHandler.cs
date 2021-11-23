@@ -128,6 +128,8 @@ namespace Rooms
             allRooms[5].ItemInRoomId.Add(28);
             allRooms[6].ItemInRoomId.Add(29);
             allRooms[6].ItemInRoomId.Add(30);
+            allRooms[6].ItemInRoomId.Add(30);
+            allRooms[6].ItemInRoomId.Add(30);
             allRooms[6].ItemInRoomId.Add(31);
             allRooms[8].ItemInRoomId.Add(10);
             allRooms[9].ItemInRoomId.Add(11);
@@ -137,6 +139,7 @@ namespace Rooms
             allRooms[9].ItemInRoomId.Add(15);
             allRooms[9].ItemInRoomId.Add(16);
             allRooms[9].ItemInRoomId.Add(32);
+            allRooms[10].ItemInRoomId.Add(34);
         }
 
         private void LockRooms()

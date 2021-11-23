@@ -35,7 +35,7 @@ Item Id:                Item Name:                         In Room Index Id:   R
 ----STORAGE ROOM ID: 7----
 Item Id:                Item Name:                         In Room Index Id:   Room Name:               Enemy ID + Name:
 29                      Diamond daggers                    6                   Storage room             8          Giant spider
-30                      Superior health potion             6                
+30                     3x Superior health potion           6                
 31                      Superrior power potion             6           
 
 
@@ -46,14 +46,14 @@ NOTHING
 
 
 ----TORTURE CHAMBER ID: 9----
-                        No Item:                           In Room Index Id:    Room Name:               Enemy ID + Name:
-                        Kama sutra 500 xp                  8                    Torture chamber          9          Succubus
+                        No Item:                           In Room Index Id:    Room Name:               Enemy ID + Name:                 
+                        Kama sutra 500 xp                  8                    Torture chamber          9          Succubus       // Succubus too strong? // Succubus is now nerfed
 
 
 
 ----PRISON CELLS ID: 10----
-Item Id:                 Item Name:                         In Room Index Id:  Room Name:              Enemy ID + Name:
-11                       Helmet of Gustavo's bane           9                  Prison cells            10         Shape-shifter   
+Item Id:                 Item Name:                         In Room Index Id:  Room Name:               Enemy ID + Name:
+11                       Helmet of Gustavo's bane           9                  Prison cells             10         Shape-shifter  // Shape-shifter too strong?  
 12                       Chest of Gustavo's bane            9                 
 13                       Gloves of Gustavo's bane           9                
 14                       Legs of Gustavo's bane             9               
