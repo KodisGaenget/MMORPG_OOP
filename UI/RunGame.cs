@@ -230,7 +230,7 @@ namespace UI
             Console.Write(" Inventory \n");
             foreach (var item in game.player.Inventory.GetInventory())
             {
-                Console.WriteLine($"{game.itemLoader.GetKeyDetails(item.Key).Name}");
+                Console.WriteLine($"{game.itemLoader.GetItemDetails(item.Key).Name}");
             }
             Console.ReadKey(true);
         }
