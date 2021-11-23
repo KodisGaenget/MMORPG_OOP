@@ -6,7 +6,6 @@ namespace UI
     public class Menu
     {
         private int SelectedIndex;
-        // private string[] Options;
         private List<string> Options = new();
         private string Prompt;
         private string Prompt2;
@@ -21,7 +20,7 @@ namespace UI
         private void DisplayOptions()
         {
             Console.WriteLine(Prompt);
-            Console.ReadKey(true);
+
             for (int i = 0; i < Options.Count; i++)
             {
                 string currentOption = Options[i];
@@ -37,6 +36,7 @@ namespace UI
                 }
                 Console.Write($"\n{prefix} {currentOption}");
             }
+
             Console.WriteLine($"\n\n{Prompt2}");
         }
 

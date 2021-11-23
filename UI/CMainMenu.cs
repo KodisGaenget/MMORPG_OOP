@@ -27,7 +27,7 @@ namespace UI
             string headerinfo = $"You have: {playerHealth}hp left -- Enemys has: {enemyHealth}hp left\n";
             string prompt = combatLog;
             List<string> options = new List<string> { "Attack", "Inventory", "Escape fight" };
-            Menu menu = new Menu(infoBar, options, prompt);
+            Menu menu = new Menu(headerinfo, options, prompt);
             int selectedIndex = menu.GetMenuIndex();
             switch (selectedIndex)
             {
