@@ -13,11 +13,6 @@ namespace DataManager
         public bool combatOver = false;
         public bool playersTurn;
 
-        public CombatHandler()
-        {
-
-        }
-
         public bool StartNewCombat(Player player, Enemy enemy, ItemLoader itemLoader)
         {
             combat = new(player, enemy, itemLoader);
@@ -41,21 +36,24 @@ namespace DataManager
 
         public bool ContinueCombat()
         {
-            if (combatLog.Length > 120)
+            if (!combatOver)
             {
-                combatLog = "";
+                if (combatLog.Length > 120)
+                {
+                    combatLog = "";
+                }
+                playersTurn = combat.Run();
+                UpdateCombatStatus();
+                if (combat.fighter2.CurrentHealth! <= 0)
+                {
+                    return true;
+                }
+                else if (combat.fighter1.CurrentHealth! <= 0)
+                {
+                    return false;
+                }
             }
-            playersTurn = combat.Run();
-            UpdateCombatStatus();
-            if (combat.fighter2.CurrentHealth! <= 0)
-            {
-                return true;
-            }
-            else if (combat.fighter1.CurrentHealth! <= 0)
-            {
-                return false;
-            }
-            return true;
+            return false;
         }
     }
 }
