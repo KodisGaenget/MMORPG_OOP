@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using GameEnums;
 
-namespace GameLib
+namespace Rooms
 {
     public class RoomHandler
     {

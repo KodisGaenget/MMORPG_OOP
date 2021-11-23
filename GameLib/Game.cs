@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Characters;
 using DataManager;
+using Rooms;
 using GameEnums;
 using Items;
 

@@ -21,7 +21,7 @@ namespace DataManager
         public bool StartNewCombat(Player player, Player enemy, ItemLoader itemLoader)
         {
             combat = new(player, enemy, itemLoader);
-            bool playersTurn = combat.Run();
+            bool playersTurn = combat.fighter1Turn;
             UpdateCombatStatus();
             if (!playersTurn && combat.fighter2.CurrentHealth! <= 0)
             {

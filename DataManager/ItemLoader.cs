@@ -9,10 +9,6 @@ namespace DataManager
     {
         public Dictionary<int, string> itemIdList;
         public List<Item> itemList = new();
-        // public List<Armor> armorList = new();
-        // public List<Weapon> weaponList = new();
-        // public List<Consumable> consumableList = new();
-        // public List<Key> keyList = new();
 
         Database db;
 
@@ -43,22 +39,18 @@ namespace DataManager
             {
                 if (item.Value == "Armor")
                 {
-                    // armorList.Add(db.GetArmorItem(item.Key));
                     itemList.Add(db.GetArmorItem(item.Key));
                 }
                 else if (item.Value == "Weapon")
                 {
-                    // weaponList.Add(db.GetWeaponItem(item.Key));
                     itemList.Add(db.GetWeaponItem(item.Key));
                 }
                 else if (item.Value == "Consumable")
                 {
-                    // consumableList.Add(db.GetConsumableItem(item.Key));
                     itemList.Add(db.GetConsumableItem(item.Key));
                 }
                 else if (item.Value == "Key")
                 {
-                    // keyList.Add(db.GetKeyItem(item.Key));
                     itemList.Add(db.GetKeyItem(item.Key));
                 }
             }
@@ -137,4 +129,3 @@ namespace DataManager
         }
     }
 }
-
