@@ -42,17 +42,8 @@ namespace UI
             return lineCount;
         }
 
-        public static void TypeWriter(string s, ConsoleKey consoleKey, bool skipText)
+        public static void TypeWriter(string s, ConsoleKey consoleKey)
         {
-            if (!skipText)
-            {
-                Console.SetCursorPosition(0, CountStringLines(s) + 4);
-                ChangeColor("Write", "Press ", ConsoleColor.DarkGray);
-                ChangeColor("Write", $"{consoleKey.ToString().ToUpper()}", ConsoleColor.DarkYellow);
-                ChangeColor("Write", " to skip", ConsoleColor.DarkGray);
-            }
-            Console.SetCursorPosition(0, 2);
-
             int i = 0;
             do
             {
@@ -64,7 +55,9 @@ namespace UI
                     System.Threading.Thread.Sleep(40);
                     if (i >= s.Length) break;
                 }
+                if (i >= s.Length) break;
             } while (Console.ReadKey(true).Key != consoleKey);
+            
             if (i < s.Length) Console.Write($"{s.Substring(i, s.Length - i)}");
             Console.ResetColor();
         }

@@ -20,7 +20,7 @@ namespace UI
         public void Run()
         {
             string prompt = "Welcome to Wörld of Virgincraft: The Saga of the Poopy Pants in the Basement!";
-            List<string> options = new List<string> { "Play the game", "Settings", "Credits", "Exit" };
+            List<string> options = new List<string> { "Play the game", "Exit" };
             Menu menu = new Menu(prompt, options, "");
             int selectedIndex = menu.GetMenuIndex();
             switch (selectedIndex)
@@ -29,18 +29,7 @@ namespace UI
                     Console.Clear();
                     GameLoop();
                     break;
-
                 case 1:
-                    Console.Clear();
-                    ConsoleUtils.TypeWriter("Lorem Ipsum is simply dummy text of the printing and typesetting industry.\n\nLorem Ipsum has been the industry's standard dummy text ever since the 1500s,\nwhen an unknown printer took a galley of type and scrambled it to make a type specimen book.\n\nIt has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.\nIt was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,\nand more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", ConsoleKey.Enter, false);
-                    Console.ReadKey();
-                    break;
-
-                case 2:
-                    Console.Write("Credits");    // Credits
-                    break;
-
-                case 3:
                     Console.Write("Exit");
                     Environment.Exit(0);
                     break;
@@ -388,7 +377,9 @@ namespace UI
 
         private void RoomText()
         {
-            ConsoleUtils.BreakLine(game.roomHandler.DescribeRoom(game.player.Position));
+            if(!game.player.IsRoomExamined(game.player.Position))
+            ConsoleUtils.TypeWriter(game.roomHandler.DescribeRoom(game.player.Position), ConsoleKey.Enter);
+            else Console.WriteLine(game.roomHandler.DescribeRoom(game.player.Position));
             if (game.player.IsRoomExamined(game.player.Position))
             {
                 Console.WriteLine($"\n\n{game.roomHandler.ExamineRoom(game.player.Position)}");
