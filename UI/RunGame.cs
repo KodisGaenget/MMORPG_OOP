@@ -19,7 +19,7 @@ namespace UI
 
         public void Run()
         {
-            string prompt = "Welcome to Wörld of Virgincraft: The Saga of the Poopy Pants in the Basement!";
+            string prompt = "Wörld of Gustavo’s evil reign";
             List<string> options = new List<string> { "Play the game", "Exit" };
             Menu menu = new Menu(prompt, options, "");
             int selectedIndex = menu.GetMenuIndex();
