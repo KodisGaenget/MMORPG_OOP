@@ -20,7 +20,7 @@ namespace UI
         public void Run()
         {
             string prompt = "Wörld of Gustavo’s evil reign";
-            List<string> options = new List<string> { "Play the game", "Exit" };
+            List<string> options = new List<string> { "Play the game", "Settings", "Exit" };
             Menu menu = new Menu(prompt, options, "");
             int selectedIndex = menu.GetMenuIndex();
             switch (selectedIndex)
@@ -30,6 +30,11 @@ namespace UI
                     GameLoop();
                     break;
                 case 1:
+                    Console.Clear();
+                    Console.Write("Settings");
+                    break;
+                case 2:
+                    Console.Clear();
                     Console.Write("Exit");
                     Environment.Exit(0);
                     break;
@@ -96,6 +101,20 @@ namespace UI
 
                 if (keyPressed.Key == ConsoleKey.S)
                 {
+                    if (!game.player.IsRoomExamined(game.player.Position))
+                    {
+                        Console.Write($"\n\nYou look around the {game.roomHandler.GetRoomName(game.player.Position)}");
+                        System.Threading.Thread.Sleep(500);
+                        Console.Write(".");
+                        System.Threading.Thread.Sleep(500);
+                        Console.Write(".");
+                        System.Threading.Thread.Sleep(500);
+                        Console.Write(".");
+                        System.Threading.Thread.Sleep(1000);
+                    }
+                    else Console.WriteLine("\nRoom already searched.\n");
+                    System.Threading.Thread.Sleep(1000);
+
                     game.player.AddExamineRoom(game.player.Position);
                 }
 
@@ -155,9 +174,10 @@ namespace UI
         {
             game.combatHandler.StartNewCombat(game.player, game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom), game.itemLoader);
             string choise = "";
+            string text = InfoBar();
             while (!game.combatHandler.combatOver)
             {
-                CMainMenu combatMenu = new(game.combatHandler.combatLog, "text", game);
+                CMainMenu combatMenu = new(game.combatHandler.combatLog, text, game);
                 if (!game.combatHandler.playersTurn)
                 {
                     game.combatHandler.ContinueCombat();
@@ -165,7 +185,7 @@ namespace UI
                 }
                 else
                 {
-                    choise = combatMenu.Run(game.combatHandler.playerHealth, game.combatHandler.enemyHealth);
+                    choise = combatMenu.Run();
                     if (choise == "Attack")
                     {
                         game.combatHandler.ContinueCombat();
@@ -247,7 +267,7 @@ namespace UI
 
         private void RoomIsLocked(int _roomID)
         {
-            Console.WriteLine($"\n{game.roomHandler.GetRoomName(_roomID)} is locked. You will need to find a the {game.roomHandler.GetRoomName(_roomID)} key to unlock it.");
+            Console.WriteLine($"\n{game.roomHandler.GetRoomName(_roomID)} is locked. You will need to find the {game.roomHandler.GetRoomName(_roomID)} key to unlock it.");
             Console.ReadKey(true);
         }
 
@@ -269,7 +289,7 @@ namespace UI
 
         }
 
-        private string InfoBar()
+        public string InfoBar()
         {
             return DisplayHP() + DisplayPower() + DisplayArmor() + DisplaySearch() + DisplayInventory() + DisplayLevel() + DisplayXPToNextLevel() + DisplayMoney() + DisplayHelp();
         }
@@ -377,8 +397,8 @@ namespace UI
 
         private void RoomText()
         {
-            if(!game.player.IsRoomExamined(game.player.Position))
-            ConsoleUtils.TypeWriter(game.roomHandler.DescribeRoom(game.player.Position), ConsoleKey.Enter);
+            if (!game.player.IsRoomExamined(game.player.Position))
+                ConsoleUtils.TypeWriter(game.roomHandler.DescribeRoom(game.player.Position), ConsoleKey.Enter);
             else Console.WriteLine(game.roomHandler.DescribeRoom(game.player.Position));
             if (game.player.IsRoomExamined(game.player.Position))
             {
@@ -386,10 +406,27 @@ namespace UI
             }
             if (game.player.IsRoomExamined(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId.Count != 0)
             {
-                var Take = ConsoleUtils.ChangeColor("Write", $"T", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", "ake:  \n", ConsoleColor.White);
+                var Take = ConsoleUtils.ChangeColor("Write", $"\nT", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", "ake:  \n", ConsoleColor.White);
                 foreach (var item in game.roomHandler.GetRoom(game.player.Position).ItemInRoomId)
                 {
-                    Console.WriteLine(game.itemLoader.GetItemDetails(item).Name);
+                    if(game.itemLoader.GetItemDetails(item).ItemType == ItemType.Consumable)
+                    {
+                        string attributeToRestore = "";
+                        ConsoleColor attributeColor = ConsoleColor.White;
+                        string restoreAmount = $"- restores {game.itemLoader.GetConsumableDetails(item).AmountToRestore}";
+                        if(game.itemLoader.GetConsumableDetails(item).ConsumableType == ConsumableType.HealthPotion)
+                        {
+                            attributeToRestore = "health";
+                            attributeColor = ConsoleColor.Red;
+                        }
+                        else if(game.itemLoader.GetConsumableDetails(item).ConsumableType == ConsumableType.PowerPotion)
+                        {
+                            attributeToRestore = "power";
+                            attributeColor = ConsoleColor.Blue;
+                        }
+                        Console.WriteLine(ConsoleUtils.ChangeColor("Write", $"{game.itemLoader.GetItemDetails(item).Name} ", attributeColor) + ConsoleUtils.ChangeColor("Write", $"{restoreAmount} {attributeToRestore} points", ConsoleColor.White));
+                    }
+                    else Console.WriteLine(ConsoleUtils.ChangeColor("Write", $"{game.itemLoader.GetItemDetails(item).Name}", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $" ({game.itemLoader.GetItemDetails(item).ItemType})", ConsoleColor.White));
                 }
             }
         }
