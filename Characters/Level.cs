@@ -12,7 +12,7 @@ namespace Characters
 
         public Level()
         {
-            for (int i = 2; i < maxLvl + 1; i++)
+            for (int i = 0; i < maxLvl + 1; i++) // Fixed???
             {
                 if (i <= 11)
                 {
