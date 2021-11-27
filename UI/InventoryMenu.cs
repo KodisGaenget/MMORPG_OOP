@@ -2,6 +2,7 @@ using GameLib;
 using Items;
 using System;
 using System.Collections.Generic;
+using GameEnums;
 
 namespace UI
 {
@@ -65,7 +66,6 @@ namespace UI
             Console.Write(" Inventory (press Enter to use/equip. Press Escape to go back.)\n\n");
             for (int i = 0; i < inventory.Count; i++)
             {
-
                 string inventoryItem = inventory[i].Name;
                 int itemAmount = inventory[i].Amount;
                 string prefix;
@@ -79,6 +79,30 @@ namespace UI
                     prefix = " ";
                 }
                 Console.WriteLine($"{prefix} {itemAmount}x {inventoryItem}");
+                // if(game.itemLoader.GetItemDetails(selectedIndex).ItemType == ItemType.Consumable)
+                // {
+                //                     // Consumable dets
+                // Console.Write($"Name: {game.itemLoader.GetConsumableDetails(selectedIndex).Name}\n");
+                // Console.Write($"Max stack: {game.itemLoader.GetConsumableDetails(selectedIndex).MaxStack}\n");
+                // Console.Write($"Consumable type: {game.itemLoader.GetConsumableDetails(selectedIndex).ConsumableType}\n");
+                // Console.Write($"Restore: {game.itemLoader.GetConsumableDetails(selectedIndex).AmountToRestore}\n\n");
+                // }
+
+                // Console.Write($"ItemType: {game.itemLoader.GetItemDetails(i).ItemType}");
+                // Console.Write($"ItemName: {game.itemLoader.GetItemDetails(i).Name}");
+
+                // // Armor dets
+                // Console.WriteLine("Armor:");
+                // Console.Write($"Def: {game.itemLoader.GetArmorDetails(i).Defense}\n");
+                // Console.Write($"Material: {game.itemLoader.GetArmorDetails(i).Material}\n");
+                // Console.Write($"Slot: {game.itemLoader.GetArmorDetails(i).Slot}\n");
+                // Console.Write($"ItemType: {game.itemLoader.GetArmorDetails(i).ItemType}\n\n");
+
+                // // Weapon dets
+                // Console.WriteLine("Weapon:");
+                // Console.Write($"Mindamage: {game.itemLoader.GetWeaponDetails(i).MinDamage}\n");
+                // Console.Write($"Maxdamage: {game.itemLoader.GetWeaponDetails(i).MaxDamage}\n");
+                // Console.Write($"Name: {game.itemLoader.GetWeaponDetails(i).Name}\n");
             }
         }
 
