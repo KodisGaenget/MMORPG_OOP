@@ -22,9 +22,9 @@ namespace UI
             // Constructor
         }
 
-        public string Run(int playerHealth, int enemyHealth)
+        public string Run()
         {
-            string headerinfo = $"You have: {playerHealth}hp left -- Enemys has: {enemyHealth}hp left\n";
+            string headerinfo = "";
             string prompt = combatLog;
             List<string> options = new List<string> { "Attack", "Inventory", "Escape fight" };
             Menu menu = new Menu(headerinfo, options, prompt);
