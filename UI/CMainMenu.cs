@@ -22,10 +22,10 @@ namespace UI
 
         public string Run()
         {
-            string prompt = $"{game.combatHandler.playerHealth} vs {game.combatHandler.enemyHealth}";
+            string prompt = "";
             string prompt2 = combatLog;
             List<string> options = new List<string> { "Attack", "Inventory", "Escape fight" };
-            Menu menu = new Menu(prompt, options, prompt2);
+            Menu menu = new Menu(prompt, options, prompt2, game, false);
             int selectedIndex = menu.GetMenuIndex();
             switch (selectedIndex)
             {

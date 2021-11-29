@@ -21,7 +21,7 @@ namespace UI
         {
             string prompt = "Wörld of Gustavo’s evil reign";
             List<string> options = new List<string> { "Play the game", "Settings", "Exit" };
-            Menu menu = new Menu(prompt, options, "");
+            Menu menu = new Menu(prompt, options, "", game, true);
             int selectedIndex = menu.GetMenuIndex();
             switch (selectedIndex)
             {
@@ -296,7 +296,7 @@ namespace UI
         {
             string prompt = "Would you like to loot it?";
             List<string> options = new List<string> { "Yes", "No" };
-            Menu menu = new Menu(prompt, options, "");
+            Menu menu = new Menu(prompt, options, "", game, false);
             int selectedIndex = menu.GetMenuIndex();
             switch (selectedIndex)
             {

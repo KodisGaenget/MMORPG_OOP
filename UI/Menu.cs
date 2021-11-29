@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+using GameLib;
 namespace UI
 {
     public class Menu
@@ -9,16 +9,26 @@ namespace UI
         private List<string> Options = new();
         private string Prompt;
         private string Prompt2;
-        public Menu(string prompt, List<string> options, string prompt2)
+        Game game;
+        private bool startMenu;
+
+        public Menu(string prompt, List<string> options, string prompt2, Game game, bool startMenu)
         {
             Prompt = prompt;
             Options = options;
             SelectedIndex = 0;
             Prompt2 = prompt2;
+            this.game = game;
+            this.startMenu = startMenu;
         }
 
         private void DisplayOptions()
         {
+            if(!startMenu)
+            {
+                PlayerInfoBar playerInfoBar = new();
+                Console.Write(playerInfoBar.InfoBar(game));
+            }
             Console.WriteLine(Prompt);
 
             for (int i = 0; i < Options.Count; i++)
@@ -72,7 +82,6 @@ namespace UI
                 // Hanterar piltangenter end
 
             } while (keyPressed != ConsoleKey.Enter); // Loopa tills det att enter trycks
-
             return SelectedIndex; // Returnera indexvärde
         }
     }
