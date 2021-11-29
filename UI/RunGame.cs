@@ -184,7 +184,7 @@ namespace UI
                 }
                 else
                 {
-                    choise = combatMenu.Run();
+                    choise = combatMenu.Run(_roomID);
                     if (choise == "Attack")
                     {
                         game.combatHandler.ContinueCombat();

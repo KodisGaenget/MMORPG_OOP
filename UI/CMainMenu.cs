@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
-using GameInterfaces;
 using GameLib;
-
+using System;
 
 namespace UI
 {
@@ -10,7 +8,7 @@ namespace UI
     class CMainMenu
     {
         string combatLog = "";
-        private Menu menu;
+        // private Menu menu;
         Game game;
 
         public CMainMenu(string combatLog, Game game)
@@ -20,9 +18,13 @@ namespace UI
             // Constructor
         }
 
-        public string Run()
+        public string DisplayEnemyHP() // TEMP TEST - Make into EnemyInfoBar
         {
-            string prompt = "";
+            return $"\u2764  {game.combatHandler.enemyHealth}";
+        }
+        public string Run(int _roomID)
+        {
+            string prompt = $"Enemy: {game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).Name}\nHP: {DisplayEnemyHP()}"; // TEMP TEST
             string prompt2 = combatLog;
             List<string> options = new List<string> { "Attack", "Inventory", "Escape fight" };
             Menu menu = new Menu(prompt, options, prompt2, game, false);

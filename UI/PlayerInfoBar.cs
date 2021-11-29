@@ -8,11 +8,30 @@ namespace UI
 {
     public class PlayerInfoBar
     {
-        public string InfoBar(Game game)
+        public string InfoBarBasic(Game game)
         {
-            return DisplayCurrentRoom(game) + DisplayHP(game) + DisplayPower(game) + DisplayArmor(game) + DisplayLevel(game) + DisplayXPToNextLevel(game) + DisplayMoney(game) + BreakLine(2);
+            return      
+            DisplayCurrentRoom(game) +
+            DisplayHP(game) +
+            DisplayPower(game) +
+            DisplayArmor(game) +
+            DisplayDamage(game) +
+            DisplayLevel(game) +
+            DisplayXPToNextLevel(game) +
+            DisplayMoney(game);
+        }
+        public string InfoBar(Game game) // TODO: Show InfoBarBasic only when in combat
+        {
+            bool combat = false; 
+            if(!combat) return InfoBarBasic(game) + InfoBarOutOfCombat(game) + BreakLine(2);
+            else return InfoBarBasic(game) + BreakLine(2);
         }
 
+        public string InfoBarOutOfCombat(Game game)
+        {
+            return DisplaySearch(game) + DisplayHelp(game);
+        }
+        
         private string BreakLine(int n)
         {
             string s = "";
@@ -54,6 +73,11 @@ namespace UI
             return text;
         }
 
+        private string DisplayDamage(Game game) // TEMPORARY?
+        {
+            string text = ConsoleUtils.ChangeColor("Write", $"\u2726  ", ConsoleColor.Blue) + ConsoleUtils.ChangeColor("Write", $"{game.player.MinDamage} - {game.player.MaxDamage} ", ConsoleColor.Blue);
+            return text;
+        }
         public string DisplayHP(Game game)
         {
             string text;
