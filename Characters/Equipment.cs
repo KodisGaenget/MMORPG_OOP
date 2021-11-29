@@ -34,14 +34,9 @@ namespace Characters
             return readOnly;
         }
 
-        internal void EquipItem(string slot, int newItem)
+        internal void ChangeEquipItem(string slot, int newItem)
         {
             CurrentEquipped[slot] = newItem;
-        }
-
-        internal void UnequipItem(string slot, int item)
-        {
-            CurrentEquipped[slot] = item;
         }
     }
 }

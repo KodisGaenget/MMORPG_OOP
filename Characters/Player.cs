@@ -45,7 +45,7 @@ namespace Characters
         public void Equip(string slot, int itemId)
         {
             UnEquip(slot);
-            Equipment.EquipItem(slot, itemId);
+            Equipment.ChangeEquipItem(slot, itemId);
             Inventory.RemoveItem(itemId);
         }
 
@@ -56,7 +56,7 @@ namespace Characters
             {
                 Inventory.AddItem(oldItem, 1);
             }
-            Equipment.UnequipItem(slot, -1);
+            Equipment.ChangeEquipItem(slot, -1); // Sets equipment slot to empty
         }
         public void Load(Inventory inv, Equipment eq, List<int> examined)
         {
