@@ -174,10 +174,9 @@ namespace UI
         {
             game.combatHandler.StartNewCombat(game.player, game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom), game.itemLoader);
             string choise = "";
-            string text = InfoBar();
             while (!game.combatHandler.combatOver)
             {
-                CMainMenu combatMenu = new(game.combatHandler.combatLog, text, game);
+                CMainMenu combatMenu = new(game.combatHandler.combatLog, game);
                 if (!game.combatHandler.playersTurn)
                 {
                     game.combatHandler.ContinueCombat();

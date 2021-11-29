@@ -75,6 +75,7 @@ namespace UI
             Console.Clear();
             PlayerInfoBar playerInfoBar = new();
             Console.Write(playerInfoBar.InfoBar(game));
+            
             ConsoleUtils.ChangeColor("Write", "\u25a3", ConsoleColor.Yellow);
             Console.Write(" Inventory (press Enter to use/equip. Press Escape to go back.)\n\n");
             for (int i = 0; i < inventory.Count; i++)
