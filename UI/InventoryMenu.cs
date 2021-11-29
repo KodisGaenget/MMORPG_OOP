@@ -24,8 +24,8 @@ namespace UI
         public void Run()
         {
             ConsoleKeyInfo keyPressed;
-            bool InvLoop = true;
-            while(InvLoop)
+            bool InventoryLoop = true;
+            while(InventoryLoop)
             {
 
             do
@@ -52,11 +52,12 @@ namespace UI
                 }
 
             if (keyPressed.Key == ConsoleKey.Enter)
-            {
-
+            {   
+                game.GetInventoryInfoList();
                 if (inventory.Count != 0)
                 {
                     UseItem();
+                    UpdateInventory();
                     Console.Clear();
                 }
             }
@@ -65,7 +66,7 @@ namespace UI
 
             if(keyPressed.Key == ConsoleKey.Escape)
             {
-                InvLoop = false;
+                InventoryLoop = false;
                 break;
             }
             }
@@ -120,6 +121,11 @@ namespace UI
                 // Console.Write($"Maxdamage: {game.itemLoader.GetWeaponDetails(i).MaxDamage}\n");
                 // Console.Write($"Name: {game.itemLoader.GetWeaponDetails(i).Name}\n");
             }
+        }
+
+        public void UpdateInventory()
+        {
+            inventory = game.GetInventoryInfoList();
         }
         private void UseItem()
         {

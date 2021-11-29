@@ -153,6 +153,7 @@ namespace GameLib
                         else if (consumable.ConsumableType == ConsumableType.PowerPotion)
                         {
                             player.CurrentPower = player.Power;
+                            player.Inventory.RemoveItem(consumable.Id, 1);
                         }
                     }
                     else if (itemType == "Weapon" || itemType == "Armor")
