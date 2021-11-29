@@ -6,11 +6,13 @@ using GameEnums;
 
 namespace UI
 {
+
     class InventoryMenu
     {
         List<InventoryInfo> inventory;
         int selectedIndex;
         Game game;
+        // NewBaseType newBaseType;
 
         public InventoryMenu(List<InventoryInfo> _inventory, Game _game)
         {
@@ -22,9 +24,12 @@ namespace UI
         public void Run()
         {
             ConsoleKeyInfo keyPressed;
+            bool InvLoop = true;
+            while(InvLoop)
+            {
+
             do
             {
-                Console.Clear();
                 DisplayInventory();
                 keyPressed = Console.ReadKey(true);
 
@@ -46,22 +51,30 @@ namespace UI
                     }
                 }
 
-
-            } while (keyPressed.Key != ConsoleKey.Enter && keyPressed.Key != ConsoleKey.Escape);
-
             if (keyPressed.Key == ConsoleKey.Enter)
             {
+
                 if (inventory.Count != 0)
                 {
                     UseItem();
+                    Console.Clear();
                 }
+            }
 
+            } while (keyPressed.Key != ConsoleKey.Enter && keyPressed.Key != ConsoleKey.Escape);
+
+            if(keyPressed.Key == ConsoleKey.Escape)
+            {
+                InvLoop = false;
+                break;
+            }
             }
         }
-
-
         private void DisplayInventory()
         {
+            Console.Clear();
+            PlayerInfoBar playerInfoBar = new();
+            Console.Write(playerInfoBar.InfoBar(game));
             ConsoleUtils.ChangeColor("Write", "\u25a3", ConsoleColor.Yellow);
             Console.Write(" Inventory (press Enter to use/equip. Press Escape to go back.)\n\n");
             for (int i = 0; i < inventory.Count; i++)
@@ -79,6 +92,8 @@ namespace UI
                     prefix = " ";
                 }
                 Console.WriteLine($"{prefix} {itemAmount}x {inventoryItem}");
+
+                
                 // if(game.itemLoader.GetItemDetails(selectedIndex).ItemType == ItemType.Consumable)
                 // {
                 //                     // Consumable dets
@@ -105,7 +120,6 @@ namespace UI
                 // Console.Write($"Name: {game.itemLoader.GetWeaponDetails(i).Name}\n");
             }
         }
-
         private void UseItem()
         {
             game.ConsumeItem(inventory[selectedIndex].Id);

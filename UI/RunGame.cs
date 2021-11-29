@@ -282,13 +282,33 @@ namespace UI
 
         private void Print()
         {
-            Console.WriteLine(InfoBar());
-            DisplayNavigation();
-            DisplayCurrentRoom();
-            RoomText();
-
+            PlayerInfoBar playerInfoBar = new();
+            playerInfoBar.InfoBar(game);
+            if (game.player.IsRoomExamined(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId.Count != 0)
+            {
+                LootMenu();
+            }
+            else 
+                DisplayNavigation();
+                RoomText();
         }
 
+        private void LootMenu()
+        {
+            string prompt = "Would you like to loot it?";
+            List<string> options = new List<string> { "Yes", "No" };
+            Menu menu = new Menu(prompt, options, "");
+            int selectedIndex = menu.GetMenuIndex();
+            switch (selectedIndex)
+            {
+                case 0:
+                    Console.WriteLine("Looted.");
+                    break;
+                case 1:
+                    Console.Write("You looted nothing.");
+                    break;
+            }
+        }
         public string InfoBar()
         {
             return DisplayHP() + DisplayPower() + DisplayArmor() + DisplaySearch() + DisplayInventory() + DisplayLevel() + DisplayXPToNextLevel() + DisplayMoney() + DisplayHelp();
@@ -405,7 +425,7 @@ namespace UI
                 Console.WriteLine($"\n\n{game.roomHandler.ExamineRoom(game.player.Position)}");
             }
             if (game.player.IsRoomExamined(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId.Count != 0)
-            {
+            { 
                 var Take = ConsoleUtils.ChangeColor("Write", $"\nT", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", "ake:  \n", ConsoleColor.White);
                 foreach (var item in game.roomHandler.GetRoom(game.player.Position).ItemInRoomId)
                 {
@@ -428,7 +448,7 @@ namespace UI
                     }
                     else Console.WriteLine(ConsoleUtils.ChangeColor("Write", $"{game.itemLoader.GetItemDetails(item).Name}", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $" ({game.itemLoader.GetItemDetails(item).ItemType})", ConsoleColor.White));
                 }
-            }
+            } 
         }
     }
 }

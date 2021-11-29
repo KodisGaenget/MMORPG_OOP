@@ -11,7 +11,7 @@ namespace UI
     {
         string combatLog = "";
         private Menu menu;
-        string infoBar;
+        string infoBar = "test";
         Game game;
 
         public CMainMenu(string combatLog, string _infoBar, Game game)
@@ -24,10 +24,13 @@ namespace UI
 
         public string Run()
         {
-            string headerinfo = "";
-            string prompt = combatLog;
+            PlayerInfoBar playerInfoBar = new();
+            Console.WriteLine(playerInfoBar.InfoBar(game));
+            string prompt = "playerInfoBar.InfoBar(game)";
+            string infoBar = prompt;
+            string prompt2 = combatLog;
             List<string> options = new List<string> { "Attack", "Inventory", "Escape fight" };
-            Menu menu = new Menu(headerinfo, options, prompt);
+            Menu menu = new Menu(prompt, options, prompt2);
             int selectedIndex = menu.GetMenuIndex();
             switch (selectedIndex)
             {
