@@ -172,7 +172,7 @@ namespace UI
 
         private void Fight(int _roomID)
         {
-            game.combatHandler.StartNewCombat(game.player, game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom), game.itemLoader);
+            game.combatHandler.StartNewCombat(game.player, game.spawner.LoadEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom), game.itemLoader);
             string choise = "";
             while (!game.combatHandler.combatOver)
             {
@@ -206,8 +206,8 @@ namespace UI
                     if (game.combatHandler.playerWinner)
                     {
                         Console.Clear();
-                        ConsoleUtils.ChangeColor("WriteLine", $"You killed {game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).Name} and gained {game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).expValue} XP!", ConsoleColor.Green);
-                        game.player.GainExp(game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).expValue);
+                        ConsoleUtils.ChangeColor("WriteLine", $"You killed {game.spawner.LoadEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).Name} and gained {game.spawner.LoadEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).expValue} XP!", ConsoleColor.Green);
+                        game.player.GainExp(game.spawner.LoadEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).expValue);
                         game.roomHandler.GetRoom(_roomID).EnemyInRoom = 0;
                         Console.ReadKey();
                         game.player.ChangePosition(_roomID);
@@ -287,9 +287,9 @@ namespace UI
             {
                 LootMenu();
             }
-            else 
+            else
                 DisplayNavigation();
-                RoomText();
+            RoomText();
         }
 
         private void LootMenu()
@@ -424,21 +424,21 @@ namespace UI
                 Console.WriteLine($"\n\n{game.roomHandler.ExamineRoom(game.player.Position)}");
             }
             if (game.player.IsRoomExamined(game.player.Position) && game.roomHandler.GetRoom(game.player.Position).ItemInRoomId.Count != 0)
-            { 
+            {
                 var Take = ConsoleUtils.ChangeColor("Write", $"\nT", ConsoleColor.Yellow) + ConsoleUtils.ChangeColor("Write", "ake:  \n", ConsoleColor.White);
                 foreach (var item in game.roomHandler.GetRoom(game.player.Position).ItemInRoomId)
                 {
-                    if(game.itemLoader.GetItemDetails(item).ItemType == ItemType.Consumable)
+                    if (game.itemLoader.GetItemDetails(item).ItemType == ItemType.Consumable)
                     {
                         string attributeToRestore = "";
                         ConsoleColor attributeColor = ConsoleColor.White;
                         string restoreAmount = $"- restores {game.itemLoader.GetConsumableDetails(item).AmountToRestore}";
-                        if(game.itemLoader.GetConsumableDetails(item).ConsumableType == ConsumableType.HealthPotion)
+                        if (game.itemLoader.GetConsumableDetails(item).ConsumableType == ConsumableType.HealthPotion)
                         {
                             attributeToRestore = "health";
                             attributeColor = ConsoleColor.Red;
                         }
-                        else if(game.itemLoader.GetConsumableDetails(item).ConsumableType == ConsumableType.PowerPotion)
+                        else if (game.itemLoader.GetConsumableDetails(item).ConsumableType == ConsumableType.PowerPotion)
                         {
                             attributeToRestore = "power";
                             attributeColor = ConsoleColor.Blue;
@@ -447,7 +447,7 @@ namespace UI
                     }
                     else Console.WriteLine(ConsoleUtils.ChangeColor("Write", $"{game.itemLoader.GetItemDetails(item).Name}", ConsoleColor.White) + ConsoleUtils.ChangeColor("Write", $" ({game.itemLoader.GetItemDetails(item).ItemType})", ConsoleColor.White));
                 }
-            } 
+            }
         }
     }
 }

@@ -14,7 +14,14 @@ namespace DataManager
             this.db = db;
         }
 
-        public Enemy GetEnemy(int id)
+        public Enemy GetEnemy()
+        {
+            // this.id = id;
+            // Load();
+            return e;
+        }
+
+        public Enemy LoadEnemy(int id)
         {
             this.id = id;
             Load();

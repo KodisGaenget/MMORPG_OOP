@@ -24,7 +24,7 @@ namespace UI
         }
         public string Run(int _roomID)
         {
-            string prompt = $"Enemy: {game.spawner.GetEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).Name}\nHP: {DisplayEnemyHP()}"; // TEMP TEST
+            string prompt = $"Enemy: {game.spawner.LoadEnemy(game.roomHandler.GetRoom(_roomID).EnemyInRoom).Name}\nHP: {DisplayEnemyHP()}"; // TEMP TEST
             string prompt2 = combatLog;
             List<string> options = new List<string> { "Attack", "Inventory", "Escape fight" };
             Menu menu = new Menu(prompt, options, prompt2, game, false);
