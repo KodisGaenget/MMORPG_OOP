@@ -9,16 +9,22 @@ namespace UI
     public class RunGame
     {
         Game game;
+        // PlayerInfoBar2 infoBar; // skapa infobar
 
 
         public RunGame(Game game)
         {
             this.game = game;
             game.player.ChangePosition(1);
+            // infoBar = new(game); // instansiera ny infobar
         }
 
         public void Run()
         {
+            // Console.WriteLine(infoBar.FullBar()); // exempel för användning av infobar objektet
+            // Console.WriteLine(infoBar.CurrentRoom()); // exempel för att bara få ut CurrentRoom (▼ Foyer)
+
+
             string prompt = "Wörld of Gustavo’s evil reign";
             List<string> options = new List<string> { "Play the game", "Settings", "Exit" };
             Menu menu = new Menu(prompt, options, "", game, true);
