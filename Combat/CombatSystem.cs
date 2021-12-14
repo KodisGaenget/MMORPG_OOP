@@ -45,8 +45,8 @@ namespace Combat
                     Turn newTurn = new(fighter1, fighter2, CalcDmgDealt(fighter1, fighter2), Resist(fighter1, fighter2, fighter2Armor));
                     if (combatLog.Length > 200) combatLog = newTurn.Attack() + "\n";
                     else combatLog += newTurn.Attack() + "\n";
-                    
-                    // fighter2 = newTurn.GetTaker(); //Vad gör detta? Undersök
+
+
                     fighter2.CurrentPower += 5;
                     fighter1Turn = !fighter1Turn;
                 }
@@ -62,7 +62,6 @@ namespace Combat
                     Turn newTurn = new(fighter2, fighter1, CalcDmgDealt(fighter2, fighter1), Resist(fighter2, fighter1, fighter1Armor));
                     if (combatLog.Length > 200) combatLog = newTurn.Attack() + "\n";
                     else combatLog += newTurn.Attack() + "\n";
-                    // fighter1 = newTurn.GetTaker(); //Vad gör detta? Undersök
                     fighter1.CurrentPower += 5;
                     fighter1Turn = !fighter1Turn;
                 }
